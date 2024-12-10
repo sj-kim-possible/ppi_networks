@@ -1,0 +1,1805 @@
+METHOD SAND RESOURC ES
+Dynamic landscape ofprotein occupancy
+across theEscherichia colichromosome
+Peter L.Freddolino ID
+1,2*,Haley M.Amemiya ID
+2,3,Thomas J.Goss1,
+Saeed Tavazoie ID
+4,5,6*
+1Department ofBiological Chemistry ,University ofMichigan Medical School, AnnArbor, Michigan, United
+States ofAmerica, 2Department ofComput ational Medicine andBioinformatic s,University ofMichigan
+Medical School, AnnArbor, Michigan, United States ofAmerica, 3Cellular andMolecular Biology Program,
+University ofMichigan Medical School, AnnArbor, Michigan, United States ofAmerica, 4Department of
+Biologica lSciences ,Columbia University, New York, New York, United States ofAmerica, 5Department of
+System sBiology, Columbia Univers ity,New York, New York, United States ofAmerica, 6Departm entof
+Biochemi stryandMolecular Biophysics ,Columbia University ,New York, New York, United States ofAmerica
+*petefre d@umich.edu (PLF); st2744@ columbia.e du(ST)
+Abstract
+Free-living bacteria adapt toenvironmental change byreprogramming gene expression
+through precise interactions ofhundreds ofDNA-bindi ngproteins. Apredictive understand-
+ingofbacterial physiology requires ustoglobally monitor allsuch protein–DNA interactions
+across arange ofenvironmen talandgenetic perturbations. Here, weshow thatsuch global
+observations arepossible using anoptimized version ofinvivoprotein occupancy display
+technology (invivoprotein occupancy display—hig hresolution, IPOD-HR) andpresent a
+pilotapplication toEscherichia coli.Weobserve thattheE.coliprotein–DNA interactome
+organizes into2distinct prototypic features: (1)highly dynamic condition-dependent tran-
+scription factor (TF)occupancy; and(2)robust kilobase scale occupancy bynucleoid fac-
+tors, forming silencing domains analogous toeukaryotic heterochromatin. Weshow that
+occupancy dynamics across arange ofconditions canrapidly reveal theglobal transcrip-
+tional regulatory organization ofabacterium. Beyond discovery ofpreviously hidden regula-
+torylogic, weshow thatthese observations canbeutilized tocomputationally determine
+sequence specificity models forthemajority ofactive TFs. Ourstudy demonstrates that
+global observations ofprotein occupancy combined withstatistical inference canrapidly and
+systematically reveal thetranscriptional regulatory andstructural features ofabacterial
+genome. Thiscapacity isparticularly crucial fornon-mode lbacteria thatarenotamenable to
+routine genetic manipulation.
+Introduction
+Transcriptional regulation plays acentral role inestablishing adaptive gene expression states.
+Inbacteria, thedominant regulators aretranscription factors (TFs) [1,2] and sigma factors,
+which direct theactivity ofRNA polymerase holoenzyme toaspecific subset ofpromoters
+[3,4]. The phenotypic state ofthebacterial cellisdetermined inlarge part byitstranscriptional
+PLOS BIOL OGY
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 1/42a1111111111
+a1111111111
+a1111111111
+a1111111111
+a1111111111
+OPEN ACCESS
+Citation: Freddolino PL,Amemiya HM,Goss TJ,
+Tavazoie S(2021) Dynamic landscape ofprotein
+occupancy across theEscherichia coli
+chromosom e.PLoS Biol19(6): e3001306. https://
+doi.org/10.13 71/journal.pbi o.3001306
+Academic Editor: Matthew K.Waldor, Brigham
+andWomen’s Hospital, UNITED STATES
+Received: October 27,2020
+Accepted: June 2,2021
+Published: June 25,2021
+Peer Review History: PLOS recognize sthe
+benefits oftranspar ency inthepeer review
+process; therefore, weenable thepublication of
+allofthecontent ofpeer review andauthor
+response salongside final, published articles. The
+editorial history ofthisarticle isavailable here:
+https://doi.o rg/10.1371/jo urnal.pbio.3 001306
+Copyright: ©2021 Freddolino etal.Thisisanopen
+access article distributed under theterms ofthe
+Creative Commons Attribution License, which
+permits unrestricte duse,distribu tion,and
+reproduction inanymedium, provided theoriginal
+author andsource arecredited.
+Data Availabilit yStatement: Allsequenci ngdata
+andanalysis related tothemanuscript have been
+deposited attheGene Express ionOmnibus under
+accession GSE142291 .regulatory state, which, inturn, isdictated bythebinding pattern ofTFs and sigma factors
+across thechromosome, likely ininterplay with structural factors such asthelocal supercoiling
+state [5].
+Atpresent, however, ourknowledge ofthecomplete wiring ofbacterial transcriptional reg-
+ulatory networks remains insufficient tofully predict ordesign regulatory responses toarbi-
+trary environmental conditions. The case ofEscherichia coliserves asanillustrative case study:
+Due toitsstatus asapreeminent model organism and important human pathogen, theE.coli
+transcriptional regulatory network hasbeen anintense subject ofinvestigation forseveral
+decades. Asaresult, researchers have obtained anincreasingly comprehensive and detailed
+map ofthebinding specificities and physiological roles oftranscriptional regulators inthis
+organism [6].However, roughly onequarter oftheapproximately 250TFs inE.colihave no
+available binding orregulatory data [7],and many more arevirtual unknowns interms ofthe
+signals that might alter their regulatory activity. Likely asaresult ofthisknowledge gap, Larsen
+and colleagues recently found that despite ourbroad knowledge ofthepotential regulatory tar-
+gets ofE.coliTFs, ourability topredict regulatory behavior onthebasis ofexpression levels of
+TFs isnobetter than itwould beforrandom networks. The authors attribute thispartly tothe
+factthat even when aTFisexpressed, inmany cases, itwillnotbind itstargets intheabsence
+ofadditional signals [8].Furthermore, E.colirepresents abest-case scenario interms ofour
+knowledge state forabacterial transcriptional regulatory network and formost bacterial spe-
+ciescurrent databases lagfarbehind.
+Expanding ourcapability topredict, and ultimately design, bacterial regulatory responses
+willbecritical forcontrolling bacterial pathogenesis and engineering synthetic microbes in
+biotechnology applications. Achieving such acomplete predictive understanding, however,
+requires substantial additional information both onthebinding sites ofas-yet uncharacterized
+TFs and theactual physical occupancy ofsites forboth known and uncharacterized factors
+across conditions. Widely used methods such aschromatin immunoprecipitation sequencing
+(ChIP-seq) pose difficulties onboth fronts: They demand acombinatorial explosion ofexperi-
+ments tostudy many TFs across avariety ofconditions and require either anantibody against
+each TFofinterest orgenetic manipulation sufficient toaddanepitope tagtoeach target TF.
+Inorder tosignificantly advance ourunderstanding oftranscriptional network dynamics
+and chromosomal structure, wesought tomonitor, inparallel, theoccupancy states ofall
+DNA-binding proteins across asetofgenetic and environmental perturbations. Weargue that
+such comprehensive observations arecritical fordefining theglobal modes oftranscriptional
+regulation and determining theregulatory logic that underlies adaptive reprogramming of
+gene expression, particularly given theimportance ofcombinatorial logic bymany factors and
+sites indictating transcriptional output [9].Inorder toachieve ourgoal, wedecided toemploy
+theconcept ofinvivo protein occupancy display (IPOD) which we,inaprevious proof-of-
+concept study, demonstrated toreveal global occupancy ofprotein binding sites across theE.
+colichromosome [10]. However, wehadtointroduce critical modifications and enhancements
+inorder todeconvolve distinct contributions from sequence-specific TFs and RNA polymer-
+aseand define binding sites athigh resolution. Wewillrefer tothissecond-generation IPOD
+technology asinvivo protein occupancy display—high resolution (IPOD-HR). IPOD-HR
+enables efficient coverage ofalarge range ofphysiological conditions inrelatively fewexperi-
+ments (1experiment percondition, rather than the1experiment perTFpercondition that
+would berequired forChIP-seq). Aswedemonstrate below, asingle IPOD-HR experiment
+canreveal theoccupancy dynamics ofdozens ofknown and novel active TFs genome-wide,
+permitting rapid profiling ofglobal transcriptional regulatory logic across different conditions.
+Furthermore, thecomprehensive nature ofIPOD-HR profiles enables efficient statistical infer-
+ence ofsequence specificity models (transcription factor binding site[TFBS] motifs) foractive
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 2/42Funding: Thissutdy wasfunded byHHS |National
+Institutes ofHealth (NIH): STR01-AI0 77562; by
+HHS |Nationa lInstitutes ofHealth (NIH): PLFR00-
+GM09703 3andbyHHS |National Institutes of
+Health (NIH): PLFR35-GM12 8637. Thefunders
+hadnoroleinstudy design, datacollecti onand
+analysis, decision topublish, orprepara tionofthe
+manuscript.
+Competing interests :Theauthors have declared
+thatnocompeting interests exist.
+Abbreviati ons:ATAC-seq, assay fortransposas e-
+accessible chromati nusing sequencing ;ChIP-seq,
+chromatin immunopre cipitation sequen cing; CWT,
+continuous wavelet transform ;EPOD, extended
+protein occupa ncydomain; FAIRE, formaldehyde-
+assisted isolation ofregulatory elements; FDR,
+false discove ryrate;FWHM, fullwidth athalf
+maximum; GO,gene ontology; heEPOD, highly
+expressed extended protein occupan cydomain;
+IPOD, invivoprotein occupancy display; IPOD-HR,
+invivoprotein occupan cydisplay—high resolution;
+LC-MS/MS ,liquid chromatogr aphy withtandem
+mass spectrome try;MNase-s eq,micrococcal
+nuclease digestion withdeep sequencin g;MS,
+mass spectrome try;MS/MS, tandem mass
+spectrome try;NGS, next-generati onsequenci ng;
+ORF, open reading frame; RDM, richdefined
+medium; RNA-seq, RNA sequen cing; TF,
+transcripti onfactor; TFBS, transcripti onfactor
+binding site;TPM, transcripts permillion; tsEPOD,
+transcripti onally silent extended protein occupa ncy
+domain; WT,wild-type.TFs, both recapitulating well-known regulatory logic and revealing thepresence and condi-
+tion-dependent activities ofnovel regulatory elements.
+Here, wecharacterized thedynamics oftheglobal protein–DNA interactome ofE.coli
+across arange of3physiological conditions and 3genetic perturbations. Our observations
+allowed ustoinfer, inparallel, theactivities ofmost annotated TFs across conditions, and pro-
+vided acatalog ofmany additional likely regulatory sites and DNA sequence motifs for
+uncharacterized TFs. With thecompact setofexperiments, wereveal thedramatic regulatory
+dynamics ofdozens ofTFs that collectively shape theresponse ofE.colitochanging environ-
+ments. Insharp contrast, wefind that atthekilobase scale, thegenome ischaracterized byaset
+ofrelatively static structural domains, which consist oftranscriptionally silent lociwith dense
+protein occupancy that appear mostly constitutive across arange ofphysiological conditions.
+These regions, which werefer toasextended protein occupancy domains (EPODs) following
+thenomenclature ofVora and colleagues [10], appear toact,atleast partially, tosuppress pro-
+phages and mobile genetic elements.
+Because ourapproach does notrelyonprior knowledge ofTFsofinterest orgenetic manip-
+ulation ofthetarget organism, butrather only onessential physicochemical properties ofpro-
+tein–DNA complexes, weexpect that itwillbebroadly applicable across bacterial species, even
+those which cannot becultured orgenetically manipulated. Our approach lays thetechnical
+and analytic foundation torapidly characterize theregulatory and structural features ofany
+bacterial chromosomes.
+Results
+Global high-resolution profiling ofcondition-dependent transcription
+factor occupancy across theE.coli chromosome
+The IPOD-HR procedure isshown inschematic form inFig1A:Cells aregrown under aphys-
+iological condition ofinterest, fixed using formaldehyde, and then lysed. Heavy digestion of
+thechromosomal DNA provides minimized DNA fragments that may beineither aprotein
+bound orunbound state. The protein bound DNA fragments aresubsequently isolated using a
+phenol–chloroform extraction. Under appropriate buffer conditions, theamphipathic pro-
+tein–DNA complexes aredepleted from theaqueous phase and partition toarobust disc atthe
+aqueous–organic interface [10].
+Aswewilldemonstrate below, themeasurements enabled byIPOD-HR cansubsequently
+beused forabroad range ofdownstream analyses, such assimultaneous monitoring ofthe
+activities ofcharacterized TFs, large-scale inference ofbinding motifs forpreviously uncharac-
+terized DNA-binding proteins, and identification ofkeyoccupancy sites driving previously
+unrecognized gene regulatory logic. Toaccomplish these objectives, itisessential toseparate
+outtheoccupancy signal ofRNA polymerase from that ofspecific regulatory factors ofinter-
+est.Otherwise, thestrong occupancy signal caused byRNA polymerase could mask changes in
+protein occupancy that infactprovide regulatory information. Todeconvolve occupancy
+caused bysequence-specific TFs and that ofRNA polymerase, wesubtract thenormalized
+RNA polymerase ChIP-seq signal from that ofthenormalized rawIPOD-HR signal (see Meth-
+odsfordetails), generating acorrected IPOD-HR profile that isamore precise representation
+ofthecell’s dynamic regulatory state (Fig 1B). IPOD-HR isconceptually similar totheoriginal
+IPOD method [10] interms ofoverall workflow, butcontains critical optimizations and exten-
+sions designed topermit genome-wide identification ofbinding byTFs and organizing factors
+such asnucleoid-associated proteins inacondition-specific manner. Ontheexperimental end,
+IPOD-HR incorporates amore stringent washing procedure (the inclusion ofaTris base wash
+and anadditional interphase extraction step toincrease thespecificity ofisolation ofprotein–
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 3/42PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 4/42DNA complexes), aswell aspretreatment ofthecells with rifampin prior tocross-linking to
+minimize thecontributions ofRNA polymerase occupancy totheobserved signal, and an
+RNA polymerase ChIP-seq experiment inparallel toallow separation ofRNA polymerase
+occupancy from that ofother proteins (more information ontheinterplay ofRNA polymerase
+occupancy and that ofother proteins isgiven inS1Text). Onthecomputational end,
+IPOD-HR makes useofacompletely rewritten analysis pipeline (asdetailed inMethods) that
+provides proper adjustment forRNA polymerase occupancy, gives anintegrated workflow for
+calculation oftotal protein occupancy (including uncertainty estimates), and allows forthe
+identification ofkeyoccupancy features such asoccupancy peaks corresponding toindividual
+binding sites, aswell aslarge regions ofhigh protein occupancy that actassilencing complexes
+ontheE.coligenome.
+Wenote inpassing that, atfirst glance, IPOD may seem toshare superficial similarities
+with formaldehyde-assisted isolation ofregulatory elements (FAIRE, originally described in
+[11]). However, FAIRE experiments were designed todetect regions ofnucleosome-depleted
+DNA ineukaryotic chromosomes. IPOD wasindependently developed todetect occupancy of
+individual factors inprokaryotic chromosomes [10], and IPOD-HR contains further optimiza-
+tions and additional experimental and computational steps toimprove performance indetect-
+ingboth localized and large-scale protein occupancy inbacteria.
+Anillustrative example oftheability ofIPOD-HR toidentify regulatory protein occupancy,
+itsdynamics across conditions, and theimportance offactoring outtheRNA polymerase sig-
+nalisshown inFig1C.Weconsider theIPOD-HR occupancy profiles forthepromoter region
+upstream ofthepurC gene inwild-type (WT) and ΔpurR cells during growth inrich defined
+medium (RDM). Based onthecharacterized behavior ofPurR (which binds DNA inresponse
+toexogenous purine supplementation [12,13]), under thisgrowth condition, transcription of
+purC should berepressed bybinding ofPurR toitspromoter. However, ifoneconsiders only
+therawIPOD-HR occupancy profiles (top panel), binding tothePurR siteinthisregion is
+apparent inboth WT and ΔpurR cells. The resolution tothisseeming paradox becomes appar-
+entthrough inclusion ofthecorrection forRNA polymerase occupancy (middle panel), which
+issubstantially higher in ΔpurR cells. Asexpected, theresulting corrected IPOD-HR occu-
+pancy profiles (bottom panel) reveal aprotein occupancy peak directly ontopoftheannotated
+PurR binding siteinthisregion intheWT cells, and nodetectable occupancy inthe ΔpurR
+cells. This demonstrates theability ofIPOD-HR toreveal condition-dependent TFoccupancy
+dynamics even inregions that may overlap with RNA polymerase binding. Inthefollowing
+sections, IPOD-HR refers totheRNA polymerase–corrected occupancy signal, unless other-
+wise noted.
+Local and large-scale protein occupancy patterns across theE.coli
+chromosome
+Tobenchmark ourability toquantitatively profile protein occupancy athigh spatial resolution,
+weperformed IPOD-HR onE.colicells from mid-exponential growth inRDM (Fig 2A). Over
+thelength ofthechromosome, weobserved alarge number ofsmall peaks, presumablyFig1.Schematic ofIPOD-HR technolog yand detection ofcontext-de pendent binding bytheTFPurR. (A)Overall workflo wforisolation ofthe
+IPOD-HR fraction and quantifi cation oftotal protein occupanc y.(B)The final IPOD-HR signal isobtained bysubtracting anormalized RNA polymeras e
+occupanc ysignal from therawIPOD-HR protein occupanc y,resulting inapolymerase -correcte dsignal. (C)Example ofRNA polymerase –corrected
+IPOD-HR profile upstream ofthepurC gene, where subtraction ofRNA polymerase occupancy from therawIPOD-HR signal properly reveals aPurR
+bindin gsiteinrich media that islostupon deletion ofpurR ortransition tominimal media. Intheschematic above theplots, blue regions show genes,
+orange regions show promo ters, and purple regions show annotated TFBSs. ChIP-seq, chromati nimmunoprec ipitation sequenc ing;IPOD, invivo protein
+occupanc ydisplay; IPOD-HR ,invivo protein occupanc ydisplay—h ighresolution; TFBS, transcrip tion factor binding site; WT, wild-type .
+https:// doi.org/10.1371 /journal.pbio .3001306.g001
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 5/42Fig2.IPOD-HR profiles reveal rich high-res olution occupancy dynamics and large-scale structural features across thechromosom e.(A)Outer track: IPOD-HR
+occupancy (robust Z-scores, 5-kb moving average); middle track: total RNA read density (5-kb moving average); inner track: locations ofinferred EPODs. The outer
+green wedges mark theportion ofthechromoso meshown insubsequent panels. The origin ofthecoordinate system isoriented atthetopoftheplot. Alldata inthis
+figure areforthe“WT,rich” condition unless otherwise noted. (B)IPOD-HR occupancy measured during growth inglucose RDM, inthevicinity ofwedge ifrom panel
+A.Green segments below thegenomic coordinates indicate theregions highlighted inpanels C–D. (C)Conditi on-dependen toccupanc ychanges attheArgR binding
+sites upstream ofargA. (D)Identifi cation ofcondition-spe cific occupancy ofalikely LysR binding sitebetweenlysA andlysR. (E)Cumulativ ehistograms showing RNA
+polymerase ChIP-subtrac tedIPOD-HR occupanc yincoding vs.noncoding regions and atsites that match known TFBSs from RegulonDB [7],compared with thecurve
+that would beexpected from astandard normal distributi onofscores. Additional descriptive statistics and significance calls aregiven inS1Table. (F)Occupanc y(blue)
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 6/42corresponding toprotein binding events atindividual regulatory sites. Inaddition, we
+observed many large-scale (>1 kb)regions ofhigh occupancy, which werefer toasEPODs,
+following thenomenclature ofVora and colleagues [10]. Anexample ofcondition-dependent
+changes inbinding oflocal TFs isshown inFig2Band 2C.Examination ofanapproximately
+50-kb slice ofthegenome reveals dozens ofsmall occupancy peaks, with avisually apparent
+enrichment inintergenic regions (Fig 2B). Many such peaks, which presumably correspond to
+individual protein binding events, coincide with known TFBSs. Forexample, theregion
+upstream ofargA (Fig 2C) shows strong occupancy atknown ArgR binding sites and condi-
+tion-appropriate occupancy dynamics including weakening ofbinding inarginine-poor con-
+ditions [14,15] and lossofoccupancy upon deletion oftheargR gene. Atthesame time, similar
+occupancy patterns canbeobserved atmany sites lacking anannotated TFBS, asseen inFig
+2D,where aconditionally dynamic binding siteisapparent between lysA andlysR and acon-
+stitutive binding siteinthelysA gene body. This dynamic sitebetween thegenes likely corre-
+sponds tobinding ofLysR itself inourminimal media condition, asLysR isknown tobind
+somewhere intheregion justupstream oflysR torepress transcription oflysR and activate
+transcription oflysA [16], buttheprecise location ofthebinding sitehasnotpreviously been
+determined toourknowledge, and thus itsexact coordinates arenotpresent incommon data-
+bases such asRegulonDB [7].Tofacilitate inspection ofother regions ofinterest, weprovide
+complete occupancy traces fortheconditions studied inS1Data. Asexpected, atagenome-
+wide scale IPOD-HR signals show both significantly higher occupancy inintergenic regions
+relative tocoding regions and significantly higher occupancy atannotated TFBSs relative to
+other regions ofthechromosome (Fig 2E;seealso S1Table), demonstrating astrong overlap
+oftheobserved protein occupancy with transcriptional regulatory sites. Indeed, applying peak
+calling totheIPOD-HR signal demonstrates anincreasingly strong overlap with known TFBSs
+asthethreshold forpeak calling isincreased (S1Fig; afulllisting ofpeak calls isgiven inS2
+Data).
+Itisalso apparent byinspection ofthegenome-wide occupancy shown inFig2Athat many
+extended regions ofhigh protein occupancy coincide with regions ofrelatively lowtranscrip-
+tion. Forexample, inFig2F,weshow atypical approximately 300-kb region with alternating
+segments ofhigh protein occupancy that have relatively lowtranscription, with those oflow
+protein occupancy and relatively high transcription (also apparent inthehigher-resolution
+plot inFig2G). Thus, inaddition torevealing occupancy atthelevel ofindividual regulatory
+sites, IPOD-HR enables tracking ofthebehavior oflarge, densely protein occupied regions of
+thechromosome that appear tocoincide with transcriptionally silent loci. Wewillexplore
+both ofthese prototypic classes ofoccupancy, inmore detail, below.
+Transcription factor and sigma factor occupancy dynamics across genetic
+and environmental perturbations
+Since IPOD-HR occupancy profiles show highly enriched overlaps with known TFBSs (Fig
+2E), weasked whether IPOD-HR profiles canbeused toreveal theoccupancy dynamics for
+knownE.coliTFs across asetofconditions. Indeed, wefind that IPOD-HR reveals consistent
+and condition-appropriate regulatory logic atthelevel ofindividual regulons and patterns ofand total RNA abundance (orange) foraselected sector ofthegenome (wedge iifrom panel A),showing thepresence ofseveral EPODs inregions correspond ingtolow
+RNA abunda nce; rolling medians over a5-kb window areplotted, with RNA read densities shown inunits ofRPM. (G)Magnificatio noftheregion highlighted bythe
+green barinpanel F,illustrating asilenced region inand aroundrhsC, alongsid eflanking areas oflowIPOD-HR occupancy and high transcription .A5-kb rolling
+median isplotted. ChIP, chromatin immuno precipitation; EPOD, extended protein occupanc ydomain; IPOD-HR ,invivo protein occupanc ydisplay—h ighresolution;
+RDM, rich defined medium; RPM, reads permillion ;TF,transcription factor; TFBS, transcrip tion factor binding site; WT, wild-type .
+https://do i.org/10.1371/j ournal.pbio. 3001306.g002
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 7/42regulatory behavior across regulons. Asexpected, strains with each of3single TFdeletions
+(argR,lexA, andpurR) show global lossofoccupancy attheensemble ofannotated sites forthe
+corresponding TFs (Fig 3A) relative togrowth under equivalent conditions ofWT cells (WT,
+rich). Analysis ofcondition-dependent changes intheoccupancy ofbinding sites forsingle
+TFs likewise recapitulates expected behavior; forexample, ArgR [17] and PurR [12,18] show
+enhanced binding toDNA inthepresence ofamino acid ornucleobase ligands that aresup-
+plied directly inourrich media conditions, and theIPOD-HR occupancy signal shows global
+lossofoccupancy forbinding sites ofboth ofthese TFs innutrient-depleted conditions (mini-
+mal media) when compared with exponential growth inrich media (Fig 3A). Incontrast,
+RutR shows increased overall occupancy inminimal media relative torich media conditions,
+consistent with theknown inhibition ofRutR binding bythymine and uracil [19]; similar
+behavior isobserved forthecytidine-responsive CytR [20,21]. Sites forArcA, which becomes
+active under lowoxygen conditions [22,23], show strong increases inoccupancy instationary
+phase athigh culture density (Fig 3A). Taken together, these findings demonstrate that
+IPOD-HR provides aquantitative readout ofchanges inregulatory activity across abroad
+range ofphysiological and genetic perturbations.
+The utility ofIPOD-HR intracking theoccupancy ofknown binding sites extends toglobal
+regulators with large characterized regulons; forexample, comparison oftheoccupancy at
+annotated Lrpbinding sites observed inIPOD-HR data totheoccupancy ofLrpitself atthe
+same sites inLrpChIP-seq data under similar conditions shows asignificantly more similar
+occupancy profile than isseen forother TFs with large regulons (Fig 3B), aswould beexpected
+iftheIPOD-HR profile were tracking Lrpoccupancy across conditions. Importantly, thiscon-
+cordance ismaintained even inthepresence ofmany other occupancy changes being mea-
+sured forother proteins atlocations throughout thegenome, and potential interference from
+other factors binding tosites overlapping theLrpsites.
+Similar insights canbeobtained across theE.colitranscriptional regulatory network by
+extending ouranalysis toallcharacterized TFBSs annotated inRegulonDB [7];weshow the
+resulting condition-dependent occupancies inpanel AofS2Fig. Asisapparent from theraw
+occupancies, E.coliTFs differ substantially from each other inthestrength oftheIPOD-HR
+footprint that they generate (leading, forexample, tothevery strong signals forfactors such as
+IdnR). Across theconditions inourstudy, 122outofthe176TFs inRegulonDB hadatleast 1
+sitewith detectable occupancy (robust z-score>3), and thus weareable toprovide data onthe
+characterized binding sites forthemajority ofTFs inE.coli. The remaining TFs likely repre-
+sent acombination offactors that arenotexpressed oractive under thelimited setofcondi-
+tions that weconsidered and those that cannot becross-linked efficiently toDNA by
+formaldehyde (e.g., Lacrepressor, which waspreviously shown nottocross-link effectively to
+DNA with formaldehyde [26], and does notshow substantial IPOD-HR signal) ordonotpar-
+tition appropriately inthephenol–chloroform extraction. Forthemajority offactors showing
+detectable occupancy, condition-dependent dynamics canbeobserved most clearly bynor-
+malizing theTFlevel occupancy bythehighest occupancy condition observed forthat factor
+(S2Fig, panel B).
+Byapplying anunsupervised clustering approach (see Methods fordetails), weidentified
+transcriptional regulatory modules that show consistent co-regulation across theconditions in
+ourstudy. Wefound clustering ofTFs with highly similar behavior (Fig 3C) that coordinate,
+forexample, oxidative metabolism (red), amino acid uptake and synthesis (brown), and iron
+homeostasis (green). Wealso observe several cases where related regulators orregulatory cas-
+cades areclustered together; forexample, thewell-known regulators ofcarbon metabolism
+Craand CRP (blue), NtrC and itstranscriptional activator Fis(purple), orthetightly inter-
+twined acid response regulators GadE, GadW, and GadX (pink). Inorder totestwhether the
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 8/42Fig3.IPOD-HR profiles reveal global binding activity ofknown TFs and sigma factors. (A)Average (geometric mean) occupancies forallannotate d
+binding sites ofthe6indicated TFsunder each indicated condition. Error bars indica tea95% confidence interval based onparametric bootstrap ping with
+pessimistic assumptions; seeMethods fordetails. The number ofdetectable sites used toestimat ethecondition- specific occupanc ieswere 30,10,2,45,6,and 9
+forArgR, LexA, PurR, ArcA, RutR, and CytR, respective ly.(B)Spearman correlations between alloccupancy values atannotated binding sites fortheindicated
+TFs(allTFswith atleast 50sites intheRegulonDB database) intheIPOD-HR vs.LrpChIP data sets. Points shown inredhave astatistically significan t
+correlatio n(FDR-correcte dp-value<0.05). Annotated binding sites arefrom RegulonD Brelease 9.4,prior toinclusion oftheChIP data used here, with
+overlapping orbookended sites forthesame TFmerged prior toanalysi s);data arefrom [24] (Lrp ChIP) orthepresent study (IPOD-HR). Data aretaken from
+themost closely equivalent conditions (log phase growth inminimal media, logphase growth inrich media, andstationary phase inrich media), although the
+carbon source isdifferent (glycer olvs.glucose). (C)Heat map showing theconsensus clustering (co-occurr ence frequencie s)ofthepattern ofoccupancy
+dynamics fortheregulons ofallconsidered TFsacross thevaried nutrient conditions inthisstudy (see Methods fordetails). Consens usdivision into 10clusters
+viaagglomera tiveclustering isshown atright; foreach cluster, representa tiveTFs(onmatrix) and regulated GOterms (right) areshown, with numbers in
+parentheses indica ting theapproximate p-value forenrichme ntofthat GOterm. Afulllisting ofp-values isgiven inS2Table. (D)Changes inoccupancy and
+target gene transcript level forallannotated repressive binding sites ofArgR and PurR (for minim almedia vs.rich media), ineach case demonstrati ngthe
+strong and oppositel ydirected changes inbindin gandregulatory effects across theregulons. (E)Correlatio nofpromoter- level occupancy change s(measured
+byRNA polymerase ChIP-seq) and change sintranscript abunda nce, shown fortheWT stationary phase condition compared with exponen tialphase. Shaded
+area shows abootstrap-b ased 95% confiden ceinterval. (F)IPOD-HR protein occupancy profiles inthevicinity ofthepotF promoter under theindicated
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 9/42co-clustering more generally indicated asignificant overlap intheregulons offactors, or
+merely that they respond similarly tochanging conditions, wecalculated thepairwise Jaccard
+indices (i.e., thesizeoftheintersection ofregulons between 2TFs divided bythesizeoftheir
+unions, interms ofnumber ofregulated genes) forallpairs ofTFs considered inouranalysis.
+Wethen compared thedistribution ofJaccard indices forTFs that came from thesame cluster
+tothat ofJaccard indices forpairs ofTFs that didnotco-cluster inFig3C.TFpairs that co-
+clustered were almost equally likely tohave anonzero Jaccard index (and thus share atleast
+some regulatory targets) than were TFpairs from different clusters (odds ratio 0.95,p=0.76,
+Fisher exact test). Thus, co-clustering appears toreflect different TFs that have similar condi-
+tion-dependent occupancy profiles, rather than factors that regulate identical targets (likely
+minimizing redundancy ofregulatory information infavor ofcombinatorial regulation ofa
+single target byfactors that each sense different stimuli). Weexpect that substantially more
+insight into these patterns may beobtained inthefuture through application ofIPOD-HR toa
+broader array ofconditions.
+Wethus find that IPOD-HR occupancy profiles canprovide detailed, site-level, condition-
+specific information onregulatory protein occupancy across theentire chromosome. Bycom-
+paring changes inprotein occupancy with changes intranscript levels across conditions, we
+canrelate changes inprotein occupancy totheir positive ornegative regulatory consequences.
+This canbeseen for2nutrient-sensing transcriptional repressors with sites annotated inRegu-
+lonDB, ArgR, and PurR, across changes innutrient conditions (Fig 3D). The changes inpro-
+tein occupancy and regulatory output atthese sites show that forboth factors, there isastrong
+lossofprotein occupancy atrepressive ArgR and PurR sites and acorresponding increase in
+transcriptional output inregulated genes, when considering minimal media relative torich
+media.
+Since each IPOD-HR global protein occupancy data setisperformed alongside anRNA
+polymerase ChIP-seq experiment, wecaneasily track promoter occupancy alongside TFBS
+occupancy. The useofrifampin permits transcriptional initiation, butprevents elongation past
+afewnucleotides [27]. Thus, these data setsareideal foridentifying regulation atthelevel of
+RNA polymerase (e.g., viadifferent sigma factors). The differential patterns ofRNA polymer-
+aseoccupancy show strong correlations with transcript levels foreach sigma factor’s regulon
+across arange ofconditions. Asshown inFig3E,when comparing logarithmic versus station-
+aryphase conditions, thechanges intranscript abundance and RNA polymerase promoter
+occupancy show aSpearman correlation of0.94 (p=0.005); anequivalent comparison for
+changes inoccupancy versus expression forcells grown inminimal media yields similar results
+(Spearman correlation 0.77,p=0.072).
+Inaddition torevealing theoccupancy ofindividual, well-separated TFBSs, IPOD-HR
+occupancy canalso yield insight into TFbehavior atregulatory regions bound bymultiple fac-
+tors. Anexample isshown inFig3FforthepotF promoter, which contains closely spaced Lrp,
+ArcA, and ArgR binding sites. The observed occupancy profile appears decomposable into a
+contribution from Lrpbinding (strong inminimal media and moderate intheRDM condi-
+tions), ArgR binding (strongest inrich media, moderate instationary phase RDM and inmini-
+mal media, and absent in ΔargR cells), and ArcA binding (mainly instationary phase).
+Binding oftheLrpsiteatthepotF promoter isknown tobestrongest inminimal media andconditions. Drawn TFBSs aretaken from Ecocyc [25] reflecting recent updates inknown TFBSs inthisregion. (G)IPOD-HR occupancy profiles upstream of
+ndh under theindicated conditions .Forallrows ofTFBSs except thetop, allTFBSs inagiven row correspond tothefactor named atthebeginning ofthat row.
+ChIP, chromati nimmunoprec ipitation; ChIP-seq, chromatin immunoprec ipitation sequenc ing; FDR, false discovery rate; GO, gene ontology; IPOD-HR ,in
+vivo protein occupancy display—h ighresoluti on;TF,transcription factor; TFBS, transcrip tion factor binding site; WT, wild-type .
+https://do i.org/10.1371/j ournal.pbio. 3001306.g003
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 10/42weaker butstillpresent inRDM (both inexponential and stationary phase; seeFig4Aof[24]);
+thebroad occupancy around theannotated Lrpsiteislikely duetoweaker binding ofother
+sites from theLrpoctamer. The inferred behaviors ofArgR and ArcA binding arelikewise
+consistent with theoverall behavior ofsites forthose TFs inourexperiments (Fig 3A, S2Fig).
+Amore complex example canbeseen inFig3G,where weshow thendh promoter containing
+overlapping binding sites for6different TFs. Atsuch acomplex promoter, deconvolution of
+theobserved occupancy isstillpossible subject toconsistency assumptions (that sites fora
+given TFwillallchange occupancy inthesame direction inunison, even ifbydifferent
+amounts). Based onthisassumption, thepredominant contributors tobinding atthendh pro-
+moter appear likely tobeIHF and PdhR inthe“WT,rich” condition, IHF and NsrR inthe
+“WT,minimal” condition, and NsrR and ArcA inthe“WT,stationary” condition. However,
+assignments ofoccupancy tospecific factors atsuch acomplex promoter cannot bemade with
+certainty onthebasis ofIPOD-HR data alone; combination with ChIP data under similar con-
+ditions (asinvoked inthediscussion above forFig3F)canaidinassignment, ascould more
+formal methods fordeconvolving theprotein occupancy signal based ontheoverall distribu-
+tion ofsites foreach factor across thegenome (similar totheapproach taken byCENTIPEDE
+foreukaryotic chromatin accessibility data [28]); development ofsuch analysis tools isanarea
+ofactive research.
+Global occupancy dynamics reveals theaction ofnew DNA-binding
+proteins
+Despite extensive annotation efforts, atpresent, fewer than 1,100 ofthe3,560 annotated tran-
+scriptional units present intheRegulonDB database have anyannotated regulation byTFs
+assigned tothem [7].While several recent notable efforts have sought toexpand thecomplete-
+ness ofthese regulatory annotations bystudying theDNA-binding preferences ofpurified TFs
+[6,29,30], orviacomputational inference oflikely additional regulation [31] and regulatory
+modules [32], none ofthese methods provides either direct evidence forbinding invivo or
+information oncondition-dependent changes inoccupancy. IPOD-HR, incontrast, canpro-
+vide both. Furthermore, theprotein occupancy signals thus obtained provide information on
+occupancy ofboth well-characterized and uncharacterized proteins. Infact, many dynamic
+IPOD-HR peaks occur inpromoters with noprevious annotation forTFBSs, aswewilldiscuss
+indetail inthefollowing section.
+Arepresentative example ofanorphan occupancy peak isseen upstream ofthegenesdaC
+(Fig 4).InourRNA sequencing (RNA-seq) data,sdaC transcript levels arenearly 20-fold
+higher during exponential growth inrich media (317.3 transcripts permillion [TPM]) com-
+pared with either exponential growth inminimal media (17.9 TPM) orstationary phase inrich
+media (16.7 TPM). IPOD-HR occupancy profiles (Fig 4A) show alikely transcriptional activa-
+torbinding siteupstream ofthesdaC core promoter, which shows strong occupancy inthe
+WT M9/RDM/glu conditions butnottherelated conditions wheresdaC expression islower;
+incontrast, theonly annotated TFBS inthat region isarepressive Lrpsite200bpdownstream
+oftheoccupancy peak. Toidentify theTF(s) responsible forthat occupancy, weused abiotiny-
+lated bait DNA matching thesequence ofthesdaC promoter region toisolate proteins bound
+tothat region fromE.colicells grown intheWT M9/RDM/glu condition (Fig 4B). Mass spec-
+trometry onisolated bait-dependent bands revealed 2poorly characterized TFs, UlaR and
+YieP, which showed highly enriched binding tothesdaC promoter (see S3Table). While UlaR
+proved difficult topurify duetopoor solubility and wasthus excluded from further analysis,
+wefound that purified YieP does indeed show specific shifting ofthesdaC promoter inanelec-
+trophoretic mobility shift assay (Fig 4C). Consistently, recent RNA-seq data onaΔyieP strain
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 11/42PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 12/42shows asignificant drop insdaC transcript levels (2.7-fold change, q=7.6�10−18)relative to
+isogenic cells with aplasmid-born reintroduction ofYieP during growth inLBmedia (per-
+sonal communication, C.Bianco and C.Vanderpool).
+YieP wasrecently (and independently) selected byPalsson and colleagues asavalidation
+case tobeused intheir consideration ofcomputational methods foridentifying thebinding
+sites oforphan TFs and subjected toChIP-exo analysis oncells grown inglucose minimal
+media using epitope-tagged YieP [31]. Indeed, their data demonstrate both strong direct YieP
+occupancy, and ahigh confidence YieP motif match, attheprecise position oftheoccupancy
+peak detected inourIPOD-HR data set(Fig 4D). Based ontherelative intensity atthat posi-
+tion across conditions, combined with theexpression data noted above, weinfer that YieP
+binds tothesdaC promoter innutrient-replete conditions and acts asatranscriptional activa-
+tor(explaining thesolitary strong peak inour“WT,rich” condition), whereas inother condi-
+tions, YieP binding isweakened (but notabolished), and additional factors such asLrplikely
+bind downstream oftheYieP sitetorepresssdaC transcription.
+Wemust emphasize that thediscovery ofYieP binding sites through IPOD-HR and subse-
+quent mass spectrometry experiments (byus)occurred inparallel with theChIP-exo experi-
+ments ofGao and colleagues, and, indeed, represent highly complementary paths for
+identification ofthebinding sites fororphan TFs, with onecentered onacandidate protein
+and theother oncandidate sites.
+Inorder todirectly assess theregulatory role oftheidentified YieP binding sites, weinte-
+grated alacZ reporter atthearaBAD-araC locus inboth WT and ΔyieP backgrounds, driven
+byvariants ofthesdaC promoter that either match theoriginal sequence, orhave 1orboth
+YieP binding sites scrambled (see Methods fordetails). Consistent with theRNA-seq data
+described above, weobserved that deletion ofyieP leads toasignificant drop inreporter activ-
+itywith theWTsdaC promoter (Fig 4E,“WTsdaCp”). Interpretation ofthesingle-site scram-
+bles iscomplicated bythefactthat thepromoter variants appear tohave substantively different
+effects intheWT andyieP backgrounds; however, what isclear isthat removal ofboth YieP
+binding sites (Fig 4E,“Site 1/2scramble”) leads toadrop inreporter activity intheWT back-
+ground that isvirtually identical tothat observed with deletion ofyieP, whereas inayieP back-
+ground, there isinstead asignificant increase inreporter activity when thesites arescrambled.Fig4.Experimenta lidentifica tion oftheprotein bound toanovel occupancy peak upstream ofthesdaC
+promoter .(A)IPOD-HR profiles upstream ofsdaC inrich (M9/RDM/g lu)media, minima l(M9/glu )media, and in
+rich media instationary phase (the drawn Lrpbinding siteistaken from Ecocyc [25] and isnotpresent in
+RegulonD B).(B)Schemati cofpulldown/m assspectrome tryexperime ntsused toidentify factors binding thesdaC
+promoter. (C)Gelshift experime ntsshowing specific interaction ofYieP with thesdaC promoter. Increasing
+concentrat ions ofpurified His 6-YieP areincubated with amixture offluorescein- labeled promoter regions fromsdaC
+andpurC and then runonagel,demonst rating specific shifting ofthesdaC promoter region. YieP concentratio nsare
+given asthenumber of2-fold dilutions relative tofullstrength. (D)Comparison ofIPOD-HR occupancy profile (asin
+panel A)with ChIP-exo data from [31], with thelatter given astotal read counts (parsed from GEO accession numbers
+GSM302 2131 and GSM302 2132). The toptrack ofpredicted YieP sites shows significant hitsfortheYieP motif
+identified based onthat ChIP-exo data set.Out of1,025 potentia lYieP sites inthegenome, thelocation highlighted in
+cyan istied for10th highest score (identified using FIMO; seeMethod sfordetails). Occupanc ysignal isgiven as
+−log 10(p)fortheIPOD-HR track orrawcounts (averaged across strands) fortheChIP-exo tracks. (E)Results ofMiller
+assays inwhichlacZ transcrip tion isdriven byacopy ofthesdaC promoter, either with thenative sequence (WT) or
+with oneorboth oftheapparent YieP binding sites scrambled, inboth aWT andyieP backgroun d.Large points and
+error bars show aposteri ormean and 95% credible interval from aBayesian analysis; small points show individual data
+points, with symbols denoting thedayonwhich data were gathered (atotal of8biological replicat essplit across 4
+different days were performed foreach strain). Significance isassessed using 1-sided Bayes factors with theinterpreti ve
+scale ofKass and Raftery [33] (�:Substant ial,��:Strong,���,Decisive). Stars within theplot denote direct comparison s
+oftheWT andyieP strains foreach promoter, whereas those above theplot denote compa risons ofeach promoter
+variant with theoriginal within agiven genetic backgroun d.ChIP, chromati nimmunopr ecipitation; IPOD-HR ,in
+vivo protein occupancy display—hig hresolution; WT, wild-type .
+https://d oi.org/10.1371/j ournal.pbio. 3001306.g004
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 13/42The sign epistasis observed between yieP genotype and thepresence ofYieP sites atthesdaC
+promoter argues that theobserved YieP binding sites arefunctional regulatory sites, butthat
+YieP also acts indirectly atthispromoter (either through alterations ofcellular physiology in
+theyieP background orgenetic interaction with another regulator acting atthispromoter, e.g.,
+byrepressing and/or directly competing forbinding with arepressor that acts here).
+The example presented here ofregulation ofsdaC bytheuncharacterized TFYieP high-
+lights thebroad potential forusing IPOD-HR torapidly identify and characterize previously
+cryptic regulatory connections. IPOD-HR thus complements themultitude ofother
+approaches noted above (based on,e.g., promoter libraries orcomputational inference) and
+provides theunique benefit ofdirectly assessing binding toDNA invivo, atnative loci, under
+physiological conditions ofinterest.
+The utility ofIPOD-HR inidentifying theactivity ofpreviously uncharacterized TFs moti-
+vates itsextension toagenome-wide scale, providing aninvivo complement tohigh-through-
+putinvitro screening methods such asgenomic SELEX [6].Byapplying peak calling toour
+IPOD-HR data setsacross the6conditions considered inthepresent study, wewere able to
+identify thousands oflikely TFBSs, many ofwhich arenotidentifiable based onexisting data-
+bases. Acomprehensive listing ofpeak calls across conditions and thresholds isgiven inS2
+Data. Tocompare thepeak setsidentified from IPOD-HR data with ourexisting state of
+knowledge, wedivided thepeak calls obtained from IPOD-HR into asetofannotated TFBSs
+from RegulonDB and asetofbinding sites predicted using allknown PWMs available inthe
+SwissRegulon database (see Methods fordetails). Wefind that across arange ofthresholds,
+approximately halfofthebinding sites identified byIPOD-HR overlap with either known or
+predicted sites, whereas theother halfrepresent novel binding sites which likely (asinthecase
+oftheYieP sitedescribed above) reflect theactivity ofpoorly annotated ororphan TFs. Pooling
+thenewly identified binding sites across conditions, ourIPOD-HR data setsareable toprovide
+atotal of14,271 putative TFBSs, representing 5,090 unique sites, which areoccupied invivo
+under atleast 1condition; wealso track thedynamics ofoccupancy ofthose sites across condi-
+tions. This extensive map ofchromosomal occupancy and itsdynamics provide thecommu-
+nity with awealth ofknown and putative novel regulatory interactions that canbefurther
+explored and validated byfollow-up experiments such asthose shown inFig4.Itisalso possi-
+bletocross-reference thenewly identified binding sites with high-throughput studies ofpoten-
+tialbinding locations fornewly characterized TFs (e.g., ChIP orgenomic SELEX data) to
+identify potential factors binding toaregion ofinterest and tousetheIPOD-HR occupancy
+maps toobtain initial estimates ofthecondition-dependent occupancy ofanyidentified sites.
+Global denovo discovery ofsequence specificity motifs foractive
+transcription factors
+While thepeak calls obtained from IPOD-HR data show strong enrichments with known
+TFBSs (S1Fig), many ofthecalled peaks donotmatch anyknown orpredicted TFBSs (as
+detailed inFig5A) and likely correspond either tounknown sites forwell-characterized TFs
+orbinding sites forpreviously uncharacterized TFs. Given that themajority ofthenewly
+inferred binding sites appear nottocorrespond toknown orpredicted sites forannotated TFs,
+wehypothesized that theregulons corresponding tothose motifs would likely show enrich-
+ments forpoorly annotated genes, asweexpect here toreveal theregulatory logic driving typi-
+cally understudied pathways. Wethus identified likely regulatory targets ofeach newly called
+peak, divided them between poorly annotated genes (those with UniProt annotation scores of
+1or2outof5[34]) and well-annotated genes, and then examined theproportion ofpoorly
+annotated targets foroccupancy peaks matching RegulonDB binding sites compared with all
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 14/42PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 15/42other peaks. Asshown inFig5B,peaks that donotcorrespond toRegulonDB-annotated bind-
+ingsites arestrongly enriched upstream ofpoorly annotated genes, whereas those matching
+annotated binding sites areenriched forwell-annotated genes. Thus, examination ofoccu-
+pancy peaks derived from IPOD-HR enables identification ofalarge number ofnew putative
+regulatory sites, with aparticular abundance ofpossible regulators ofpoorly annotated genes.
+Our large-scale identification ofnew TFBSs also raises theimportant possibility that new
+TFbinding motifs might likewise beidentifiable through denovo computational motif discov-
+eryinthesetofallsequences within IPOD-HR peaks. Indeed, theapplication oftheFIRE [35]
+motif discovery algorithm topeak locations obtained from IPOD-HR data reveals hundreds of
+denovo discovered sequence motifs that areinformative ofstrong occupancy sites, even after
+pruning ofredundant motifs (Fig 5C). Upon cross-referencing with adatabase ofknownE.
+coliTFBS motifs using TOMTOM [36], wefind that approximately 25% ofthediscovered
+motifs canbematched with known motifs (notably, 86/97 oftheannotated motifs intheE.coli
+SwissRegulon database arematched byatleast 1inferred motif from thesetpresent prior to
+redundancy pruning and 68/97 match atleast 1motif present inourinferred setafter prun-
+ing), while, atthesame time, nearly 200novel motifs arecalled with similar confidence (Fig
+5D). Acomprehensive listofredundancy-pruned motifs called across allconditions inour
+study isgiven inS3Data. Toprovide estimates ofthefalse discovery rate (FDR) arising from
+ourmotif inference, weperformed anidentical motif discovery procedure foreach biological
+condition on20“decoy” data setsinwhich theunderlying E.coligenomic sequence wasFig5.Genome-w idedenovo discovery ofsequence specificity motifs foractively bound TFs. (A)Atapeak calling
+threshold of4(cfS1Fig), weshow thenumber ofidentified binding sites that overlap with annotated sites in
+RegulonD B(“RegulonD B”), motif-ba sedpredicted binding sites (“SwissRegul on”), ornovel (“New”). The “Combined ”
+category represents peak setswhere thepeaks atagiven threshold identified across allconditions aremerged, prior to
+comparison swith theRegulonDB and predicted databases. Qualitatively similar results areobserved atalltested peak
+calling thresho lds(allpeaks areprovided inS2Data). (B)Allcalled IPOD-HR occupanc ypeaks across theconditions
+shown inpanel Awere combined and then partitioned based onwhether they overlap with aknown orinferred
+binding siteinRegulonDB (RegulonDB peaks) ornot(Other peaks). Peaks were then conside redtohave regulatory
+potential ifthey fellwithin 100bpofanannotated transcrip tion start site, and thefractio nofthegenes potentia lly
+regulated byeach peak category plotted across different peak calling threshold .Error bars show 95% credible intervals
+calculate dassuming that theincidence ofpoorly annotate dgenes intheinferred regulon isabinomial random
+variable, using Bayesian inference with aBeta(1,1) prior. The dashed lineshows theoverall fraction ofpoorly
+annotate dgenes included intheanalysis (i.e., those belongin gtotranscripts regulated byatleast 1annotated
+transcrip tion start siteinRegulonDB ).(C)Number ofmotifs discovered denovo using IPOD-HR occupancie sunder
+each condition inourstudy. “All” and “pruned” refer toalldiscover edmotifs and those surviving cluster-ba sed
+filtering byRSAT (see Methods fordetails), respective ly.“Real” shows themotif counts discovered inrealdata, and
+“Decoy” shows themaximum discovered motif count across 20independen tcircular permutation softhedata under
+each condition. (D)Classifica tion ofnonredunda ntmotifs across conditions as“Identified ”(match toanexisting
+motif from theSwissRegulon database, viaTOMTOM, with E-value<0.5) or“Unidentifie d”(nomatches found with
+E<0.5). “Combined ”refers tothefullsetofmotifs discovered after pooling allmotifs across allconditions and
+redundanc yfiltering; ahorizontal dashed lineshows thetotal number ofknown motifs present inSwissRegulon .(E)
+Example cases of“Identified” matches ofIPOD-HR -inferred motifs with motifs from theSwissRegul ondatabase,
+showing good correspond ence with annotated CRP (left) and NanR motifs. E-values arising from theTOMTOM
+search pairing newly discovered motifs with similar known motifs areshown beneath each inferred motif.yaxes for
+motifs inthisand thefollowing panel show information content inbits. Inthecase ofCRP, thehalfsitewasinferred
+and isshown here inboth theforward and reverse orientati onsaligned tothemotif inSwissRe gulon. (F)Examples of2
+newly inferred motifs that donothave identifiab lehitsintheSwissRe gulon database (asassessed using TOMTOM) .In
+each case, representati veGOterms showing significan tenrichment samid thepredicted regulon associated with that
+motif areshown (see Methods fordetails). (G)Overlap ofpredicted binding sites forIPOD-HR inferred motifs with
+either coding regions (genes) orpromo ters(both asannotated inRegulonD B)using only strict motif hits; shown are
+thelog2fold enrichme ntordepletion oftheoverlap ascompared with that expected bychance. (H)Forthepredicted
+regulon ofeach newly inferred motif (using only strict motif hits), weshow thefraction ofregulon members that are
+poorly annotate d(UniPr otannotation score of1or2outof5);forcomparison ,dashed lines areshown forthevalues
+obtained when thesame statistic iscalculated forallannotated TF–gene interactions inRegulonDB (“Annotated
+TFBS”) and forthegenome asawhole (“Overall”). GO, gene ontolog y;IPOD-HR ,invivo protein occupancy display—
+high resolution; TF,transcription factor; WT, wild-type .
+https://d oi.org/10.1371/j ournal.pbio. 3001306.g005
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 16/42rotated byarandom distance relative tothepeak calls, thus preserving thecorrelation struc-
+ture ofboth thedata and sequence with respect tothemselves (light bars inFig5C). Our decoy
+data setsgave risetonomore than 1motif under anycondition, giving risetoaneffective FDR
+(across shuffles and conditions) oflessthan 0.5% even forourfully pruned motifs. Using only
+thenovel motifs (i.e., motifs that didnothave detectable similarity toanymotifs intheSwiss-
+Regulon database) inagenome-wide search forpotential binding sites using FIMO, wefind
+that 84.8% ofallIPOD occupancy peaks atapeak calling threshold of4canbeexplained by
+binding sites forthenovel motifs, compared with 7.5% that canbeexplained byannotated
+binding sites from RegulonDB (predicted binding sites forallnewly inferred motifs from the
+IPOD-HR data areenumerated inS4Data). Thus, thenewly inferred motifs provide asub-
+stantially expanded ability toassign theobserved profile ofprotein binding across the
+chromosome.
+InFig5E,weshow 2representative examples ofdiscovered motifs that show strong
+matches with annotated motifs, demonstrating that themotifs forwell-characterized transcrip-
+tional regulators such asCRP and NanR canbeinferred directly from IPOD-HR data. For
+comparison, inFig5F,weshow 2newly inferred motifs that donotmatch anyknown motifs
+intheE.coliSwissRegulon database. Intriguingly, thepattern ofbinding sites across theE.coli
+chromosome forboth ofthese novel motifs illustrates apotential regulatory function, with the
+first motif associating with asubstantial fraction ofthegenes involved inimport and metabo-
+lism oflowpreference carbohydrates and thesecond apparently involved iniron acquisition
+and regulation ofprotein catabolism. Inorder toprovide additional insight into thepotential
+physiological roles ofthefactors binding these motifs, weconsidered thesimilarity oftheir
+putative regulons tothose ofwell-characterized TFs, making useoftheJaccard index compar-
+ingthegene setspotentially regulated byeach motif with those ofknown TFs. Forthetop
+motif shown inFig5F,thebest match isforCRP, with aJaccard index of0.19. This finding is
+consistent with theputative role inregulating carbon source utilization, although theregulon
+ofthenew motif isclearly distinct from those ofanywell-characterized factor given that the
+highest Jaccard index observed foritwas0.19, and thenext highest hitafter CRP was0.12.
+Applying thesame analysis tothebottom motif shown inFig5Fshows that thestrongest
+detectable similarity inregulons istothose ofH-NS (0.12) and Fur(0.11). These matches indi-
+cate potential roles forthenew motif incoordinating responses tochanges iniron starvation
+and other stress conditions such aschanging temperatures, butagain, theregulon ofthenewly
+identified motif isclearly quite distinct from that ofthecharacterized TF.Inorder tofacilitate
+similar analysis ofthepotential functions oftheother newly inferred motifs, weprovide inS5
+Data theJaccard indices forallsignificant overlaps between theputative regulons ofournewly
+inferred motifs and those ofexisting factors asannotated inRegulonDB (see caption for
+details). Inaddition, weprovide anextended discussion oftheoverlaps between known TFBSs
+and predicted binding sites forthenew motifs inS2Text.
+Wefurther assessed theregulatory capacity ofallnewly called sequence motifs bycompar-
+ingtheir genome-wide distribution ofbinding sites with annotated genes (coding regions) and
+promoters. Wewould expect that binding sites forfunctional transcriptional regulators would
+beenriched within promoters and depleted from coding regions, aswasthecase foroverall
+IPOD-HR occupancy (Fig 2E). Indeed, theoverlap distributions ofbinding sites forournewly
+inferred motifs areuniformly enriched forannotated promoters and depleted foropen reading
+frame (ORFs; Fig5G;p=1.0�10−27,Wilcoxon rank sum test), demonstrating that motifs
+inferred directly from IPOD-HR occupancy data occur primarily inlikely regulatory regions.
+Equivalent results were obtained even after excluding allofthenewly inferred motifs with
+identifiable similarity toSwissRegulon motifs (p=2.42�10−19,Wilcoxon rank sum test). To
+further investigate theglobal regulatory potential ofthenewly inferred motifs, weapplied
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 17/42iPAGE [37] toidentify cases ofsignificant mutual information between predicted binding sites
+foragiven motif (within 100bpofanannotated transcription start siteinRegulonDB) and the
+corresponding gene ontology (GO) terms ofgenes inthepotentially regulated operons. We
+found that outofatotal of1,732 motifs with identifiable binding sites, 1,611 have significant
+mutual information with genes from atleast 1GOterm (notably including 163outofthe176
+nonredundant motifs that hadidentifiable binding sites byourcriteria, and nodetectable simi-
+larity topreviously known motifs). These findings highlight potential pathways that may be
+regulatory targets ofthese newly inferred motifs; theresulting predicted regulatory targets are
+summarized inS6Data. Inthefuture, tracking oftheoccupancy ofthese motifs over abroader
+range ofphysiological conditions would yield additional insight into thelikely stimuli sensed
+bythem and thedownstream processes that they may regulate (and might allow merging of
+some ofthenewly inferred motifs that infactrepresent different sequences bound bythesame
+factor).
+Given that themajority ofthenewly inferred motifs appear nottocorrespond toannotated
+TFs, and ourfindings above regarding theenrichment ofpoorly annotated genes downstream
+oforphan binding peaks, wehypothesized that theregulons corresponding toournewly
+inferred motifs would likely show enrichments forpoorly annotated genes, asweexpect here
+toreveal theregulatory logic driving typically understudied pathways. Wethus calculated the
+fractions ofthehypothetical regulons ofeach newly inferred motif that consist ofpoorly anno-
+tated genes (defined asnoted above). Asshown inFig5H, wefound that theregulons ofthe
+newly inferred motifs were significantly enriched forpoorly annotated genes when compared
+with both theannotated E.colitranscriptional regulatory network inRegulonDB (p=6.26�
+10−10,Wilcoxon signed rank test) and theoverall average rate ofpoorly annotated genes
+throughout thechromosome (p=3.49�10−5,Wilcoxon signed rank test). Pairwise compari-
+sonoftherate ofpoorly annotated genes between theregulon ofeach newly inferred motif
+and allgenes that were notmembers ofthecorresponding regulon likewise showed asignifi-
+cant enrichment forpoorly annotated genes (p=9.78�10−6,Wilcoxon signed rank test).
+Taken together, weseethat IPOD-HR enables inference ofalarge number ofsequence motifs,
+many ofwhich likely correspond tofunctional, butcurrently understudied, transcriptional
+regulators inE.coli, providing asubstantial resource forongoing investigation ofthistran-
+scriptional regulatory network.
+Extended protein occupancy domains define distinct and largely stable
+transcriptionally silent regions with unique sequence features
+One ofthemost striking findings enabled bytheoriginal application ofIPOD wasthediscov-
+eryofEPODs: large regions oftheE.colichromosome that show unusually dense levels ofpro-
+tein occupancy over kilobase orlonger scales [10]. EPODs arealso clearly apparent inallour
+IPOD-HR data setsand appear tocorrespond functionally tothetranscriptionally silent
+extended protein occupancy domains (tsEPODs) ofVora and colleagues [10]. The profile of
+protein occupancy and EPODs, along with theaccompanying impacts ontranscript levels, for
+arepresentative region ofthegenome isshown inFig6A.Indeed, wefound that many highly
+protein occupied regions measured using theoriginal IPOD method (inparticular, thehighly
+expressed extended protein occupancy domains orheEPODs) represent RNA polymerase
+occupancy, whereas theEPODs now revealed byIPOD-HR consist solely oflarge domains of
+occupancy byproteins other than RNA polymerase (which typically also exclude RNA poly-
+merase). Wediscuss these differences and thedetails oftheapproach used inIPOD-HR to
+remove contributions from RNA polymerase inS1Text. The specific resolution oftsEPODs
+afforded bytheIPOD-HR method and thecoverage ofmultiple genetic and nutrient
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 18/42PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 19/42perturbations inthepresent data setsallow ustofully investigate thenature and condition-
+dependent occupancy ofthese chromosomal structures.
+The identified EPODs show remarkable stability (Fig 6B), with approximately 200EPODs
+ineach physiological condition (orapproximately 450using arelaxed calling threshold; see
+Methods fordetails) and similar fractions ofthegenome contained inEPODs ineach case. A
+comprehensive listing ofEPODs identified across ourconditions isgiven inS7Data. The
+ΔargR strain serves asanoutlier among thegenetic perturbations, with modestly decreased
+(but stillsubstantial) EPOD coverage, possibly duetodecreased expression ofH-NS inthis
+condition (RNA polymerase occupancy ofthehnspromoter measured inourChIP data setis
+2-fold lower than inWT cells under equivalent conditions; itisunclear whether thisreflects a
+regulatory ormetabolic effect caused bylossofArgR). The differing behavior ofthe ΔargR
+strain appears milder using therelaxed EPOD calling threshold, and thus thedifference isat
+least partially justathresholding effect (Fig 6B). The locations ofindividual EPODs arelike-
+wise well maintained, even across very different physiological conditions. Forexample, inFig
+6C,weshow IPOD-HR occupancy across thesame region asshown inFig6A,comparing
+exponential growth inrich versus minimal media and stationary phase cells. Incontrast with
+thecondition-dependent occupancy ofindividual TFs, attheapproximately kilobase scale, the
+occupancy traces arenearly superimposable and show that most EPODs called under thevari-
+ousconditions overlap. Furthermore, outofthesubset ofEPOD calls that arepresent inthe
+“WT,rich” condition butabsent intheothers, allarepresent inthe“WT,minimal” condition
+using therelaxed EPOD calling threshold, and allbuttwoalso present inthestationary phase
+condition using that threshold, suggesting that many ofthesmall differences inEPOD loca-
+tions that doappear between EPOD calls under different physiological conditions areinfact
+duetothresholding effects. Weobserve thesame trends genome-wide: excluding the ΔargR
+case, 71% to86% ofgenomic locations (atthebase pair level) that arecalled asEPODs under
+anyonecondition arelikewise EPOD calls under anyother condition (Fig 6D), and atleast
+78% (and typically much more) oftheEPODs called inonecondition arecontained within the
+relaxed threshold calls under anyother condition (n.b. the“relaxed” threshold used here corre-
+sponds totheoriginal EPOD definition from [10]). Itisalso worth noting, inthiscontext, that
+89% ofthetsEPOD-occupied locations from [10] arecontained inthenew “WT,rich” relaxed
+threshold EPOD set,inlinewith theobserved concordance across experimental conditions in
+ournew data sets.
+Several defining characteristics ofEPODs arereadily apparent upon cross-referencing with
+other genome-wide data sets(Fig 6E): They represent regions ofhigh ATcontent, which are
+both associated with lowlevels ofnative transcripts and decreased transcriptional propensity
+(i.e., expression ofstandardized integrated reporters [38]). Consistent with ouroriginal find-
+ings [10], EPODs also show high occupancy ofH-NS, HU, and LRP; lowoccupancy ofFis;andFig6.EPODs define stable genomic structures and areassocia tedwith many distinct features. (A)EPOD calls from arepresentati vegenomic region inthe
+WT rich media condition, along with protein occupanc yand RNA levels smoothed with a1-kb rolling median. Alldisplayed/ analyzed EPOD calls refer toour
+strict threshold unless otherwise noted. (B)Number ofcalled EPODs bycondition (left) and fraction ofthegenome covered byEPODs (right) forboth our
+loose andstrict thresho lds(see textfordetails). (C)IPOD-HR occupancie s(shown over a1-kb rolling median) and associated EPOD calls under 3different
+conditions, inthesame genomic region shown inpanel A.EPOD calls areshown above theoccupanc y,inthesame order asthedata tracks. (D)Lower triangle:
+Overlap ofEPOD calls (using asymmetrized distance that istheaverage ofthefraction ofEPOD positions from acondition athat isalso called incondition b
+and vice versa) between each pair (a,b) ofthestudied conditions .Upper triangle: Each entry shows thefraction oftheEPOD calls (ata5-bp resoluti on)from
+thesample defining that row that iscontained inarelaxed setofEPOD calls (see text) ofthesample defining that column (only theupper triangle ofthat matrix
+isshown; thelower triangle issimilar except that thesmaller ΔargR EPOD setcontains fewer oftheEPODs from other conditions) .(E)Density plots showing
+normalized histograms (smoothe dbyakernel density estimator) ofthespecified quantitie sforregions ofthegenome that areinEPODs vs.those that arenot
+(Backgrou nd), asassessed intheWT M9/RDM/ glu(WT,rich) condition. “�”indicates FDR-correc tedp<0.005 viaapermutat iontest(again stanull
+hypothesis ofnodifference inmedians). Significance calling and additiona lcomparison sareshown inS4Table. EPOD, extended protein occupancy domain;
+IPOD-HR ,invivo protein occupanc ydisplay—h ighresolution; WT, wild-type.
+https://do i.org/10.1371/j ournal.pbio. 3001306.g006
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 20/42areassociated with high efficiency ofTn5 integration (Fig 6E). While thelatter might seem
+surprising given that highly protein occupied regions oneukaryotic chromatin tend toexclude
+Tn5 (asisused togreat effect inassay fortransposase-accessible chromatin using sequencing
+[ATAC-seq] experiments [39]), wenote that bacterial H-NS occupancy haspreviously been
+shown tofacilitate Tn5 activity [40]. Additional characteristics ofEPODs, such asreduced
+densities ofpossible Dam methylation sites (consistent with theexpected blocking ofDam
+methylase bybound proteins, previously shown ininvivo methylase protection experiments
+[41]) and acharacteristic pattern ofDNA structural parameters including decreased minor
+groove width, areshown inS4Table.
+The remarkable condition invariance ofthelocations ofEPODs outlined above, even across
+such dramatic changes astransition from exponential tostationary phase, suggests that
+EPODs predominantly represent fixed structural features oftheE.colichromosome, rather
+than highly dynamic regulatory structures. Wethus examined theclasses ofgenes (assessed
+using GOterms) most strongly enriched ordepleted inEPODs. Asillustrated inFig7A,
+EPODs show strong enrichments formobile elements (GO:0006313) and prophage genes (spe-
+cifically lytic pathways; GO:0019835) and aredepleted forcore metabolic pathways such as
+ribosome components (GO:0005840). Indeed, EPODs areassociated with thesilencing of
+many prophages (e.g., Fig7B)and even smaller operons ofunknown function (e.g., Fig7C).
+Our findings regarding EPODs, particularly thehigh levels ofH-NS binding inEPODs and
+theknown role ofH-NS asaxenogeneic silencer [42,43], arehighly consistent with prior infor-
+mation regarding thesilencing role ofH-NS. Inorder todetermine theextent towhich H-NS
+silenced regions and EPODs asdefined here overlap, wecompared thedistribution ofEPODs
+across thegenome with H-NS ChIP-seq data from [44]. Using anunsupervised clustering
+method todivide genomic intervals into high, medium, and lowlevels ofH-NS occupancy, we
+found that 72.4% ofEPODs fallinto thehigh H-NS category, compared with 5.4% ofnon-
+EPOD regions (S3Fig, panel A).Nevertheless, when considering theaverage transcript levels
+observed asarising from thesame genomic intervals, theEPODs from thelowH-NS and
+medium H-NS categories stillshowed significantly lower expression than non-EPOD regions
+with similar H-NS levels (S3Fig, panel B),and thesmall number ofhighly H-NS bound
+regions that arenotpart ofEPODs areinfactmore silent than highly H-NS bound EPODs.
+Taken together, wethus observe that while many EPODs represent chromosomal regions
+silenced byH-NS, roughly one-third toone-fourth ofEPODs donotshow thecharacteristics
+ofhighly H-NS occupied regions, butarenevertheless transcriptionally silenced byan
+extended stretch ofhigh protein occupancy. The possibility ofcourse exists that H-NS isrepo-
+sitioned intheconditions ofourstudy, which differ from those of[44], tocover theremainder
+oftheEPODs identified here. The mechanism ofsilencing atthese non-H-NS dependent
+EPODs willlikely beafruitful area forfuture investigation.
+Discussion
+The study ofbacterial transcriptional regulatory networks haslong benefitted from bottom-up
+approaches such asDNase footprinting, ChIP-chip, and ChIP-seq tomap thebehavior ofindi-
+vidual factors and regulons. Atthesame time, however, theinsight provided bysuch
+approaches hasbeen inherently limited bytheneed tospecify apriori thetarget ofinvestiga-
+tion, either interms oftheregulator, regulated gene, orboth. However, aswehope tohave
+demonstrated here, aglobal agnostic strategy (asexemplified byIPOD-HR) provides aunique
+top-down complement toexisting methods bypermitting rapid profiling oftheprotein occu-
+pancy landscape ofabacterial chromosome. Wehave demonstrated that IPOD-HR simulta-
+neously enables resolution ofindividual changes inTFbinding atspecific sites, inference of
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 21/42PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 22/42new regulatory motifs that likely correspond tofunctional butpoorly characterized transcrip-
+tional regulators, and large-scale patterns ofprotein occupancy indicative ofconstitutively
+silenced genomic regions. IPOD-HR thus falls into thesame family asmethods such asDNase
+Ihypersensitivity [45], micrococcal nuclease digestion with deep sequencing (MNase-seq)
+[46], and ATAC-seq [39], butwasfrom itsinception developed, tuned, and validated forthe
+unique molecular and biophysical features ofbacterial chromosomes (wenote that applica-
+tions ofATAC-like methods tobacteria have recently been reported inpreprints [47,48] post-
+dating theoriginal preprint ofthepresent manuscript [49]).
+Weexpect that all3keycapabilities ofIPOD-HR highlighted above willprove tobeofsub-
+stantial utility ininvestigating allcultivable bacterial transcriptional regulatory networks and
+could potentially even beapplied toenvironmental samples tostudy occupancy landscapes in
+uncultivable bacteria. The ability todirectly track theoccupancy ofTFBSs foralarge setof
+transcriptional regulators inparallel provides themissing link that haspreviously stymied
+efforts topredict thetranscriptional output ofE.coliacross conditions, asconsideration of
+only theexpression levels ofTFs topredict thebehavior oftheir regulons hasyielded mixed
+results [8,50]. Furthermore, theability toidentify likely regulatory sites even intheabsence of
+prior knowledge, asshown both forisolated promoters (Fig 4)and inference ofentire regulons
+(Fig 5),willsubstantially accelerate ourability tocomplete awiring diagram fortheE.coli
+transcriptional regulatory network and torapidly approach thenetworks ofother lesswell-
+characterized bacterial species. Inthelatter case, weexpect that theability ofIPOD-HR to
+highlight thelocations ofTFBSs, and thedemonstrated feasibility ofinferring DNA-binding
+protein sequence motifs based onthose sites, willallow therapid identification ofsites ofinter-
+estfordetailed follow-up studies (e.g., application ofpulldowns similar tothose inFig4to
+identify theprecise factor(s) occupying aparticular motif). The resulting information willpro-
+vide anessential setofbuilding blocks toaidintheoverall reconstruction ofatranscriptional
+regulatory network. Inaddition, tracking oftheoccupancy ofdifferent motifs across condi-
+tions willlikely assist intheidentification ofbiological conditions pertinent tothefunction of
+thefactor binding each motif, and cross-referencing with RNA polymerase occupancy will
+provide evidence onthesign ofregulatory output associated with each site. IPOD-HR thus
+provides apowerful high-throughput invivo approach tracking occupancy atnative sites,
+complementing methods based onscreening with purified proteins [29], computational infer-
+ence [31], orreporter assays [30].
+Our study ofdiverse experimental conditions across different genetic and physiological
+states provides acomprehensive view oftheprotein–DNA interactome ofE.coli. Aswehave
+shown, themajority ofdiscovered occupancy events donotcorrespond topreviously known
+orannotated sites ofprotein–DNA interactions. Wehave further shown that these global
+occupancy profiles canbeused forwholesale discovery ofsequence specificity forthesetof
+TFs active under these conditions. These occupancy maps and thecorresponding DNA motifs
+provide thecommunity with arich catalog oflikely regulatory events tostudy, targeting either
+particular genes orlarger pathways. Indeed, ourfinding that thenovel occupancy sites andFig7.EPODs arestatistica llyenriched forgenes inspecific functional categories. (A)The genome wassplit into
+EPOD and backgroun dregions asinFig6;wethen applied iPAGE [37] toidentify GOterms showing significan t
+mutual informat ionwith occupancy inEPODs. Allshown GOterms were significant according tothebuilt-in tests in
+iPAGE. (B)Multiple EPODs areassociated with silencing oftheCP4-57 prophage. Shown aretheIPOD-HR
+occupanc yand transcript levels inthevicinity oftheprophage locus during growth inrich defined media with glucose,
+with EPOD locations indicated above theplots. (C)Associa tion ofasmall EPOD with 2genes ofunknown function ,
+yigF andyigG, along with theputative transporter rarD/yigH; data tracks defined asinpanel B.EPOD, extended
+protein occupancy domain; GO, gene ontology; IPOD-HR ,invivo protein occupanc ydisplay—h ighresolution.
+https://d oi.org/10.1371/j ournal.pbio. 3001306.g007
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 23/42DNA motifs arehighly enriched upstream ofgenes that areunderstudied promises todiscover
+and expand thephysiological and regulatory modules ofE.coli.
+Our study also provides significant additional evidence forthepresence oflarge, transcrip-
+tionally silent, high-occupancy chromosomal domains inE.coli, termed “EPODs.” Many such
+EPODs clearly correspond toregions ofH-NS binding, which haspreviously been shown to
+form several types offilaments that silence horizontally acquired DNA [5,43,51–53]. Onthe
+other hand, wealso observe asubstantial fraction ofEPODs that donotcorrespond toH-NS
+binding and yetarestillassociated with transcriptionally silent regions ofthechromosome.
+Numerous questions regarding thenature and role ofthose EPODs remain forfuture work,
+including thefollowing: What istheprotein composition ofnon-H-NS EPODs? What rules
+dictate their formation onspecific sites? Wearealso tempted tospeculate that, insome con-
+texts, non-H-NS EPODs may undergo condition-dependent changes inoccupancy that drive
+transcriptional regulation, although nosuch cases could bedefinitively identified inthecondi-
+tions studied here. Such behavior hasalready been observed forH-NS filaments invarious
+enterobacteria [54,55]. Ongoing application ofIPOD-HR toabroader range ofphysiological
+conditions inE.coliwillprovide further insight into theoverall landscape oflarge-scale protein
+occupancy across conditions, allowing tracking both ofoccupancy associated with H-NS (and
+therelated protein StpA) and other classes ofEPODs inasingle experiment.
+Our IPOD-HR strategy formapping theglobal dynamics oftheE.coliprotein–DNA inter-
+actome relies only onsimple physicochemical principles forisolating protein–DNA com-
+plexes. Assuch, itiseasily transferable toother bacterial species. The rich and comprehensive
+data setsthat would result, and application ofstatistical inference during data processing as
+exemplified here, willprovide important regulatory roadmaps inorganisms with lesswell-
+studied transcriptional regulatory networks, such asnon-model bacterial species ofclinical
+and industrial importance. Inthefuture, applications toabroader range ofphysiological con-
+ditions (inE.coli) and toother bacterial strains and species willprovide important information
+ontherole oflarge-scale nucleoprotein assemblies ongene regulation and pave theway for
+more comprehensive and predictive models oftranscriptional regulatory logic.
+Methods
+Strain construction
+The base strain forallexperiments used here isanMG1655 stock obtained from theTavazoie
+Lab(Columbia University, New York, NY), which belongs tothesubstrain typified byATCC
+700926 [56]. Allspecified gene knockouts were obtained byP1transduction [57] oftheFRT-
+flankedkanR marker from thecorresponding knockout strain oftheKeio collection [58], fol-
+lowed byFlprecombinase mediated excision ofthemarker using thepCP20 plasmid [59] to
+leave asmall scar inplace oftheoriginal ORF. Candidate isolates foreach deletion were grown
+overnight at42˚C todrop thepCP20 plasmid and then replica plated onto appropriate selec-
+tiveplates toensure lossofboth theplasmid and kanamycin resistance marker. Knockouts
+were confirmed byPCR fragment sizing and/or sequencing across themarker scar. Note that
+the ΔlexA strain that werefer toisinfact ΔlexA/ΔsulA, aslossoflexA islethal inthepresence
+ofafunctional sulA gene [60,61].
+Forconstruction ofthelacZ reporter strains fortheexperiments shown inFig4E,thelacZ
+gene from ourMG1655 background strain wasfirst removed byP1transduction ofachloram-
+phenicol resistance gene, yielding MG1655 lacZ::cml. Anadditional copy ofthisstrain was
+constructed bytransduction oftheKeio collection yieP::kan gene and subsequent marker exci-
+sion (asabove) toyield MG1655 lacZ::cml yieP::scar. Wethen generated plasmid-born copies
+ofareporter gene inwhich thelacZ ORF wasplaced directly after thesdaC promoter ofE.coli
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 24/42MG1655 (positions 2927672–2928228 ontheU00096_3 reference genome). Wealso generated
+promoter variants inwhich either orboth oftheidentified putative YieP binding sites inthe
+promoter were perturbed, with Site1“catttcATTTGTTATATGAAT gtttctt” to“catttcATAAC
+TTATATGTTAgtttctt” containing amutation and Site2containing a“cagttaATATGTCATA
+CAATTtatgttg” to“cagttaATGACTCATACTT CAtatgttg” mutation (ineach case thecapital-
+ized region istheputative YieP site; Site2corresponds tositehighlighted incyan inFig4D,
+with Site1thesitefurther upstream ofitrelative tosdaC). All4promoter variants were gener-
+ated byGibson assembly [62] using theNEB Hifi Builder Master Mix (New England Biolabs,
+Ipswich, MA) onaplasmid next toanFRT-flanked kanamycin resistance marker, cloned into
+DH5α cells, and validated bySanger sequencing ofthepromoter and adjacent plasmid regions.
+The promoter-lacZ constructs were then each integrated into aWT MG1655 strain replacing
+thearaC-araBAD locus via λredrecombination ofadsDNA PCR product produced using NEB
+Q5polymerase (using pKD46 asahelper plasmid asabove), selected onMacConkey/arabinose
++kanamycin plates, and transduced into theMG1655 lacZ::cml and MG1655 lacZ::cml yieP::
+scar strains. The kanamycin resistance marker wasremoved following thestandard
+pCP20-based marker excision protocol asabove, and thefinal 8strains (allpairwise combina-
+tions of4promoter variants andyieP+/−) were validated byPCR fragment sizing oftheyieP
+andaralociand Sanger sequencing ofthesdaC promoter attheara::sdaCp-lacZ locus.
+Media/culture conditions
+Forroutine cloning applications and forrecovery ofcryogenically preserved cells, weused LB
+(Lennox) media (10g/Ltryptone, 5g/Lyeast extract, and 5g/LNaCl), with bacteriological
+agar (15g/L) added asappropriate.
+Forphysiological experiments, wemade useofavariety ofsupplemented versions ofM9
+defined medium (6g/LNa2HPO 4,3g/LKH 2PO 4,1g/LNH 4Cl,0.5g/LNaCl, 1mM MgSO 4)
+[56]. Our M9minimal media condition (M9/min) additionally includes 0.2% (w/v) glucose,
+0.4mM CaCl 2,40μMferric citrate, and themicronutrient mixture typically incorporated in
+MOPS minimal media [63]. Our M9RDM condition (M9/rdm) instead incorporates into the
+M9base 0.4% (w/v) glucose, MOPS micronutrients (asabove), 4μMCaCl 2,40μMferric cit-
+rate, and 1xsupplements ACGU and EZasused inMOPS RDM [63].
+Cell growth and harvest forIPOD-HR
+The cells ofinterest were grown overnight inthemedia ofinterest after inoculation from an
+LBplate. Inthemorning, theculture wasback-diluted into fresh, prewarmed media toan
+OD600 of0.003. The culture wasthen grown tothetarget OD600 (0.2, except inthecase ofsta-
+tionary phase samples, which aredescribed below), atwhich point a200-μL aliquot was
+removed and preserved in1mLofDNA/RNA Shield (Zymo Research, Irvine, CA) following
+themanufacturer’s instructions.
+The remainder oftheculture wastreated with rifampin toafinal concentration of150μg/
+mLand incubated for10minutes under thesame culture conditions asthemain growth to
+immobilize initiating RNA polymerase atactive promoters and permit completion oftran-
+scripts inprogress. The culture wasthen rapidly mixed with concentrated formaldehyde/
+sodium phosphate (pH 7.4) buffer sufficient toyield afinal concentration of10mM NaPO 4
+and 1%v/vformaldehyde. Cross-linking wasallowed toproceed for5minutes atroom tem-
+perature with vigorous shaking, followed byquenching with anexcess ofglycine (final concen-
+tration 0.333 M)for5minutes with shaking atroom temperature. The cross-linked cells were
+subsequently chilled oniceand washed twice with ice-cold phosphate buffered saline, 10mL
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 25/42perwash. The fully washed pellets were carefully dried, anyremaining media pipetted away,
+and then thepellets were snap-frozen inadryice-ethanol bath and stored at-80C.
+Inthecase ofourstationary phase samples, cells were grown asdescribed above interms of
+back-dilution and growth toanOD600 of0.2,and then grown foranadditional 3hours prior
+toRNA harvest, rifampin treatment, and cross-linked asdescribed above.
+Cell lysis and DNA preparation
+Frozen cellpellets were resuspended in1xIPOD lysis buffer (10mM Tris HCl, pH8.0;50mM
+NaCl) containing 1xprotease inhibitors (Roche Complete Mini, EDTA free, Roche Diagnos-
+ticsGmbH, Mannheim, Germany) and 52.5 kU/mL ofready-lyse (Epicentre, Madison, WI):
+600μLperpellet (stationary phase cells were diluted 10× prior tolysis, and only 1/10 ofthe
+resulting material used, duetothemuch higher biomass ofthose pellets). Weincubated the
+resuspended pellet for15minutes at30˚C and then placed itonice.Wethen sonicated the
+cells using aBranson digital sonicator at25% power, using three 10-second bursts with 10-sec-
+ond pauses between bursts. The cells were maintained inaweticebath throughout sonication.
+Wethen performed acalibrated DNA digestion tosub-200-bp fragments, byadding tothe
+sonicated lysates 60μgRNase A(Thermo Fisher Scientific, Waltham, MA), 6μLDNase I
+(Fisher product #89835), 5.4μL100mM MnCl2, and 4.5μL100mM CaCl2, and then incubat-
+ingonice.While theappropriate digestion time must becalibrated foreach particular sample
+type and batch ofDNase, 30minutes ofdigestion proved appropriate forallsamples here.
+Reactions were quenched after completion bytheaddition of50μL500mM EDTA (pH 8.0),
+typically yielding 50-to200-bp fragments.
+IPOD-HR interface extraction
+Prior tointerface extraction, samples were clarified bycentrifugation for10minutes at
+169,000 xgat4C.After clarification, a50microliter input sample wasdiluted 1:9inelution
+buffer (50mM Tris, pH8.0;10mM EDTA; 1%SDS) and kept oniceuntil thereverse cross-
+linking step. The remainder ofthelysate wasmixed with 1volume of100mM Tris base and 2
+volumes of25:24:1 phenol:chloroform :isoamyl alcohol, vortexed, and then incubated for10
+minutes atroom temperature. After incubation, thesample wasspun at21,130 xgfor2min-
+utes atroom temperature, allowing formation ofawhite disc attheaqueous–organic interface
+enriched forprotein–DNA complexes [10,11].
+The complete aqueous phases were removed and discarded, and theremaining disc washed
+again with 350microliters TE(10mM Tris, pH8.0;1mM EDTA), 350microliters 100mM
+Tris base, and 700microliters 24:1 chloroform:isoamyl alcohol. The resulting mixture wasvor-
+texed vigorously and again centrifuged for2minutes at21,130 xg.Allliquid wasagain
+removed, and thewash wasrepeated using 700microliters TEand 700microliters 24:1 chloro-
+form:isoamyl alcohol. After vortexing, centrifugation, and removal ofthefinal wash (exactly as
+above), anyresidual liquid wasremoved bywicking with alaboratory wipe (ifanysubstantial
+pools ofliquid were present). Finally, theinterface wasresuspended in500microliters ofelu-
+tion buffer (described above), vortexed vigorously, and kept oniceuntil reverse cross-linking
+(nomore than afewhours).
+Wecaution thereader that theseparation oftheinterface layer from theliquid oneither
+side ofitiscrucial tosuccess with thismethod. Wehave found itmost effective totiltthe
+microcentrifuge tube toward while pipetting outtheorganic layer from beneath, atwhich
+point theinterface willadhere tothetube wall and allow easy removal oftheaqueous layer.
+Wehave also found that thehandling characteristics oftheinterface vary greatly with theplas-
+ticware inuse. Forthework described here, wehave used 2-mL microcentrifuge tubes from
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 26/42USA Scientific (Ocala, FL)forallinterface handling, astheinterfaces adhere nicely tothetube
+wall (other plasticware may yield variable results); atthesame time, theuseoflow-retention
+pipette tipsappears toreduce binding oftheinterface tothetip.
+RNA polymerase chromatin immunoprecip itation
+DNA forRNA polymerase ChIP-seq experiments wasprepared asdescribed above for
+IPOD-HR interface extraction upthrough thelysate clarification stage. Whenever possible, we
+used frozen pellets obtained from thesame culture formatched IPOD-HR and ChIP-seq
+experiments, inwhich case thelysates were pooled and mixed immediately prior toremoval of
+asingle input sample. ChIP procedures here were modeled onthose of[64].
+The digested lysates were mixed 1:1with 2xIPbuffer (200 mM Tris, pH8.0;600mM NaCl;
+4%Triton X-100; 2xRoche Complete EDTA-free protease inhibitors) and then kept onicefor
+nomore than afewhours prior toantibody addition. Weadded 10microliters ofpurified
+anti-E.coliRNA polymerase antibody (NeoClone WP023, NeoClone, Madison, WI) and incu-
+bated overnight with rocking at4˚C. Near theend oftheincubation period, weresuspended
+analiquot of50microliters ofprotein Gdynabeads (Invitrogen, subsidiary ofThermo Fisher
+Scientific, Waltham, MA) and equilibrated theprotein Gbeads with 1xIPbuffer lacking prote-
+aseinhibitors. The bead aliquot wasadded totheantibody-lysate mixture and then incubated
+2hours with rocking at4˚C. The bead–antibody–target complexes were subsequently sub-
+jected tothefollowing series ofwashes, with 1mLused perwash. Allwashes were atroom
+temperature and involved manual resuspension ofthebeads inthenew wash buffer followed
+byimmediate re-separation:
+•1xWash buffer A(100 mM Tris, pH8.0;250mM LiCl; 2%Triton X-100; 1mM EDTA)
+•1xWash buffer B(100 mM Tris, pH8.0;500mM NaCl; 1%Triton X-100; 0.1% sodium
+deoxycholate; 1mM EDTA)
+•1xWash buffer C(10mM Tris, pH8.0;500mM NaCl; 1%Triton X-100; 1mM EDTA)
+•1xTE(10mM Tris, pH8.0;1mM EDTA).
+The antigens were subsequently eluted byadding 500microliters ofelution buffer (compo-
+sition described above) and incubating 30minutes at65˚C, with vigorous vortexing every 5to
+10minutes.
+Cross-linking reversal and recovery ofDNA
+The DNA from theinput, IPOD-HR, and ChIP fractions described above wasrecovered using
+identical procedures: Samples diluted inelution buffer (see above) were incubated overnight
+(6to16hours) at65˚C toreverse formaldehyde cross-links. After allowing thesamples tocool
+toroom temperature, wethen added 100μgofRNase A(Thermo Fisher Scientific), incubated
+2hours at37˚C, then added 200μgofproteinase K(Fermentas, subsidiary ofThermo Fisher
+Scientific, Waltham, MA) and incubated anadditional 2hours at50˚C. DNA wasthen recov-
+ered viastandard phenol–chlorofor mextraction and ethanol precipitation, following protocols
+from [57]. Weused Glycoblue (Ambion, subsidiary ofThermo Fisher Scientific, Waltham,
+MA) asacoprecipitant, NaCl asaprecipitating salt(due tothepresence ofSDS inoursolu-
+tion), and washed with ice-cold 95% ethanol toavoid lossoflowmolecular weight DNA.
+Recovered DNA wasquantified viafluorescent quantitation (using either theInvitrogen
+PicoGreen orPromega (Madison, WI) QuantIT system), and samples ofsufficiently high con-
+centration were also runona2%agarose gelforfragment sizeassessment. Typical total yields
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 27/42from theprocedure above were ontheorder of1μgofDNA fortheinput samples, 100to200
+ngfortheIPOD-HR samples, and 1to10ngfortheChIP samples.
+Preparation ofnext-generation sequencing (NGS) libraries
+Except asotherwise noted, allDNA samples were prepared forIllumina sequencing using the
+NEBNext Ultra DNA Library Prep Kit(NEB product #E7370), with either single index ordual
+index primers also obtained from NEB. Wefollowed themanufacturer’s instructions except
+forthefollowing variations:
+•Cleanups prior tothePCR step were performed using aZymo Clean&Concentrator 5spin
+column kitorZymo Oligo Clean&Concentrator spin column kitinstead ofAmpure beads,
+inorder toavoid thelossoflowmolecular weight DNA.
+•Weused Ampure and Axygen PCR cleanup beads interchangeably. The final cleanup step
+wasinsome cases repeated toremove obvious populations ofadapter dimers.
+Alllibraries were sequenced oneither anIllumina HiSeq orNextSeq instrument; detailed
+statistics onread lengths and counts areprovided inS5Table. Asmall number ofsamples
+were prepared forsequencing using anIllumina Truseq Nano kitor(inthecase ofonebiologi-
+calreplicate) aTruseq kitinstead oftheNEBnext kitnoted above (those samples areidentified
+inS5Table); wefound that upon calculation ofcorrelations between thecoverages ofabroad
+range ofIPOD, input, and RNA polymerase, ChIP-seq samples prepared using various
+sequencing preparation kitsthat theTruseq Nano samples were indistinguishable from NEB-
+Next Ultra samples upon clustering oftheoccupancy profiles across sample types and condi-
+tions. Toavoid anypossibility ofbias from thesingle included Truseq replicate (which wasfor
+the ΔlexA genotype), weobserved qualitatively equivalent results inTFBS occupancy dynamics
+(Fig 3A) iftheTruseq replicate wasremoved from analysis (notably, therank ordering of
+LexA occupancy across samples waspreserved, and ofthe6conditions considered, only the
+stationary phase and ΔlexA conditions hadaverage occupancy −log 10pscores lessthan 2).
+RNA isolation and RNA-seq sample preparation
+Asnoted above, samples forRNA isolation were preserved immediately prior torifampin
+addition bydilution ina5xexcess ofDNA/RNA Shield (Zymo Research); theRNA samples
+were then stored at−80˚C until purification. RNA wasisolated using aZymo QuickRNA
+microprep kitfollowing themanufacturer’s instructions, including theon-column DNase
+digestion. Purified RNA wasquantified using RiboGreen (Invitrogen) and then ribosome-
+depleted using theIllumina RiboZero Gram-negative bacteria kitaccording tothemanufac-
+turer’s instructions, with theinput RNA amount and allreaction volumes cutinhalf. Final
+recovery oftheribo-depleted RNA wasaccomplished using themodified Zymo spin column
+protocol present intheRiboZero documentation. Ribo-depleted RNA wasthen prepared for
+sequencing using theNEBNext Ultra Directional RNA kit(NEB product E7420) and
+sequenced asdescribed above fortheDNA samples.
+Analysis ofNGS data
+AllNGS data were preprocessed using acommon pipeline, after which DNA and RNA data
+setswere processed separately. The reference genome inallcases wasthemost recent version
+oftheE.coliMG1655 genome (GenBank U00096.3), with gene, TFBS, and transcription start
+siteannotations from RegulonDB [7].Data processing wasautomated using in-house python
+and bash scripts and parallelized where possible using GNU parallel [65] orthepython
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 28/42multiprocessing library. The python and bash source code used toderive processed occupancy
+data from rawreads isavailable from https://github.com/freddolino-l ab/ipod_v1_2020; we
+also have distributed aready-to-use analysis environment intheform ofasingularity con-
+tainer, asdocumented intheGitHub repository noted above.
+Read quality control and preprocessing. Allreads were subjected toadapter removal
+using cutadapt 1.8.1 [66] tocutthecommon sequence ofIllumina Truseq adapters and then
+trimmed toremove low-quality read ends with Trimmomatic 0.33 [67], using thetrimming
+steps “TRAILING:3 SLIDINGWINDOW:4 :15MINLEN:10.” Samples were subjected toaddi-
+tional manual quality checks using FastQC [68] and MultiQC [69] toidentify anyirregularities
+interms ofsequence content, quality, orduplication.
+DNA sequencing and protein occupancy calling. Surviving DNA reads were aligned to
+theU00096.3 genome using bowtie2 version 2.1.0 with “very sensitive” end-to-end alignment
+presets, and dovetail alignments allowed. Only concordant paired-end reads were retained for
+subsequent quantitation. Read occupancies were calculated ata5-bp resolution along the
+chromosome using theparsing method ofKroner and colleagues [24] and scaling thebase
+pair–wise contribution ofeach read bytheinverse ofitslength (thus, each read contributed
+thesame total amount ofoccupancy signal). The resulting read densities were then quantile
+normalized, acting separately fortheinput, IPOD interface, and RNA polymerase ChIP-seq
+tracks ofeach biological condition. Inorder toaccount forthehigher amount ofgenomic
+DNA present near theorigin ofreplication relative totheterminus, wefitted asmoothing
+spline with 4evenly spaced knots and periodic boundary conditions totheinput sample for
+each condition; thesmoothing spline provides alow-pass filter onabundances that accounts
+forlarge-scale variations inDNA abundance across thegenome. The useof4knots allows
+inflection points attheorigin, terminus, and thehalfway points between them. Alloccupancy
+data setswere divided bythespline-smoothed abundances ofthecorresponding input data
+prior tofurther processing. After abundance normalization, alldata tracks were rescaled to
+have matching means, and then allreplicates foreach sample type/biological condition combi-
+nation were averaged togenerate acomposite occupancy track (yielding, forexample, 1input
+data track fortheWT M9/RDM/glu condition, 1IPOD data track fortheWT M9/RDM/glu
+condition, etc.).
+The displayed IPOD and ChIP data tracks were then obtained aslog 2ratios oftheextracted
+(interphase orChIP) toinput samples foreach condition; werefer tothese tracks asthe
+“IPOD” and “ChIP” signals below. Upon viewing thecorrelation between total protein occu-
+pancy and RNA polymerase occupancy, 2protein-occupied subpopulations were apparent (S4
+Fig): alinear subpopulation where total protein and RNA polymerase arewell correlated and a
+second subpopulation ofpositions where thetotal protein occupancy ismuch higher than
+expected based ontheRNA polymerase occupancy. Weinterpret theformer setofpositions as
+protein occupancy duedirectly toRNA polymerase binding and thelatter asnon-RNA poly-
+merase occupancy (asschematized inFig1B). Toobtain thefully processed IPOD-HR signal
+fornon-RNA polymerase occupancy, weapplied amodified linear model toestimate and then
+remove thecontributions ofRNA polymerase totheobserved signal. Tothisend, webegan by
+using only thetop2%ofobserved ChIP values, which arepresumed torepresent sites that are
+bound entirely byRNA polymerase intheIPOD versus ChIP signal comparison (asinS4Fig).
+Wethen generated thelinewith thelowest possible slope, and zero intercept, that issufficient
+tokeep 95% ofthehigh-ChIP data region below it;thus, thisrepresents alinear transformation
+oftheChIP signal that issufficient toremove thevast majority ofRNA polymerase occupancy.
+The resulting slope oftheIPOD versus ChIP data wasthen used togenerate aprediction ofthe
+IPOD contribution attributable toRNA polymerase binding ateach position based onthe
+observed ChIP signal itself and that value subtracted from theIPOD signal. Nosubtraction
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 29/42wasperformed atpositions where theobserved RNA polymerase occupancy wasnegative, so
+that theChIP subtraction canonly lower (not raise) occupancy. Wenote that thechoice of
+slope tocompletely eliminate alloccupancy at95% ofthehigh-ChIP sites represents ahighly
+conservative choice (interms ofremoving virtually alloccupancy from theIPOD signal that
+could potentially beattributed toRNA polymerase). Any choice forthisparameter must neces-
+sarily reflect abalance ofrisks, where lower values (close to50%, which would roughly match a
+direct linear fittotheIPOD versus ChIP data points) increase theodds ofidentifying spurious
+protein occupancy peaks actually attributable toRNA polymerase, and higher values (upto
+100% would beconceivably justifiable) riskerasing true regulatory protein occupancy dueto
+overzealous RNA polymerase occupancy removal.
+Werefer totheresulting ChIP-subtracted IPOD signal astheIPOD-HR signal; foranalysis
+and display, wefurther standardize thesignal bycalculating robust zscores, where therobust
+z-score ziatposition iisdefined as
+zi¼ðxi medianðXÞÞ=madðXÞ
+foraIPOD-HR data vector X,and mad() indicates themedian absolute deviation. Inmany
+cases amore useful signal forvisualization isap-value forenrichment ateach site; log 10p-val-
+uesarecalculated under thenull hypothesis that thedistribution oftherobust z-scores isstan-
+dard normal. Toprovide uncertainty estimates grounded inobserved levels ofbiological
+variability across replicates, foreach data point, wealso constructed aninterval between the
+lowest and highest values that could have been obtained forouroccupancy statistics using any
+combination ofbiological replicates (potentially different replicates fortheIPOD, ChIP, and
+input samples toconstruct thelargest possible range). Tocalculate theerror bars shown inFig
+3A,wethen used parametric bootstrapping togenerate confidence intervals fortheparameters
+ofinterest, assuming that thelog 10pscaled occupancy ofeach TFBS followed alog-normal dis-
+tribution with amean oftheobserved mean and standard deviation ofonequarter therange
+between thehighest and lowest replicate-wise values (thus treating therange ofthepessimistic
+replicate-wise possible values asaninterval expected tocontain approximately 95% of
+observed points); 95% confidence intervals fortheaverage site-wise occupancies were then cal-
+culated from 1,000 bootstrap replicates.
+Feature calling. Toidentify peaks intherobust z-scaled IPOD-HR data, weapplied con-
+tinuous wavelet transform (CWT) peak calling [70] (asimplemented inthescipy.signal pack-
+age), with arange ofwidths from 25bpto125bp(at5-bp increments, reflecting theexpected
+range ofpeak sizes given thefragmentation ofourinput DNA) used togenerate theCWT
+matrix, and refer topeaks based ontheminimum signal-to-noise ratio threshold atwhich they
+appear aspeak calls (note that intheCWT method, arange ofwidths must bespecified aspart
+ofthealgorithm and gives riseonly toasingle peak set). Toprovide quantitative measures of
+theevidence fordifferent peak calls, separate peak setswere generated atseveral signal tonoise
+thresholds (afulllisting canbeobserved inthesetofthresholds shown inS2Data). Each peak
+callwaspadded by30bponeach side todefine thepeak region used insubsequent analysis.
+Weshow theperformance ofavariety ofcalling thresholds inidentifying known TFBSs inS1
+Fig, and based onthose findings, useathreshold of4forallother quantitative analysis pre-
+sented here. However, peak setsatallthresholds aresupplied inS2Data. Comparisons were
+made todata from RegulonDB release 9.4unless otherwise noted.
+EPODs were called using anapproach similar tothat in[10]: Weidentified EPOD seed
+regions asanyregion atleast 1,024 bpinlength, over which themedian ofa512-bp rolling
+mean exceeded theoverallkthpercentile ofa256-bp rolling mean across theentire chromo-
+some (inallcases acting ontherobust z-scored IPODHR data); weusedk=90forthemain
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 30/42EPOD calls made inthetextandk=75fortherelaxed version used inthreshold analysis. In
+thecase ofoverlapping seeds, only theonewith thehighest median wasretained. Seed regions
+were then expanded inboth directions asfaraspossible while maintaining themedian ofthe
+512-bp rolling mean signal over theentire EPOD callabove thethreshold noted above and
+without crossing anylocation with a(rolling mean) robust z-score�0.Wenote that thelower
+threshold (k=75)matches thethreshold used intheoriginal EPOD definitions from [10]
+(albeit using arolling median instead ofmean todefine thesmoothed datasets), whereas the
+more stringent threshold isintended tohighlight themost robust regions oflarge-scale protein
+occupancy; both thresholds show similar properties interms ofoverlaps with gene setsand
+genomic features.
+Transcription factor co-clustering analysis. FortheTFoccupancy and co-clustering
+data, weperformed consensus clustering (inspired by[71]). Foreach biological condition,
+weassigned each TFascore given bythegeometric mean ofthesite-level occupancies
+(IPOD-HR −log 10p-values) forannotated binding sites ofthat TFinthat condition (using a
+minimum value of0.01 foreach site-level value); thecondition-wise average occupancies for
+each TFwere then divided bythehighest average occupancy forthat TFacross allconditions,
+yielding anoccupancy score ontheinterval (0,1] foreach TFcondition combination. The
+occupancy profiles ofTFsacross conditions were clustered 100times using K-means clustering
+ateach number ofclusters between 8and 12(inclusive); the“co-clustering frequency” κis
+defined asthefraction ofthose 100trials inwhich agiven pair ofTFs were assigned tothe
+same cluster. Wethen used thequantity (1-κ) asadistance measure inafinal hierarchical clus-
+tering, assigning theTFs to10clusters, toprovide thecluster identities shown inFig3C.
+RNA sequencing and differential expression calling. RNA-seq data setswere subjected
+tothesame initial preprocessing and quality control steps asoutlined above fortheDNA sam-
+ples, and then gene-level expression wasquantified using kallisto v0.43 [72] onaversion ofthe
+MG1655 (GenBank NC_000913) genome with allribosomal RNAs removed. Gene-level TPM
+values from kallisto were used foralldownstream analysis unless otherwise noted. Togenerate
+high-resolution occupancy plots, reads were instead aligned with bowtie2 asdescribed above
+forDNA reads, and read occupancies quantified using thegenomecov command ofbedtools2
+[73].
+TFBS comparison
+Binding sites identified from IPOD-HR peaks (asdescribed above inthe“Feature calling”
+paragraph) were cross-referenced with known andpredicted TFBSs using bedtools2 [73]. “Known”
+sites comprise allbinding sites contained intheRegulonDB release 9.4BindingSiteSet.txt file[7];
+“predicted” sites areidentified byscanning theMG1655 (GenBank NC_000913) genome with
+FIMO [74] using allE.coliposition weight matrices from SwissRegulon [75] (asdistributed bythe
+MEME project); each PWM wasapplied separately, andallsites with aq-value lessthan 0.2were
+retained. Default settings were used forFIMO, except thatthebackground wasasecond-order
+Markov model based ontheNC_000913 genome, andthenumber ofmaximum stored scores was
+setto10,000,000.
+Motif identification
+Novel sequence motifs implied byIPOD-HR data were identified using aninference pipeline
+built offofFIRE [35]. Occupancy peaks and associated discrete threshold scores inthe
+IPOD-HR traces were called using theCWT-based approach described above, using ascore
+threshold of4;each peak wasassigned adiscrete score corresponding totheaverage IPOD-HR
+occupancy score within that peak, rounding down. Wethen generated abackground
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 31/42distribution ofunbound sequences drawn from theportion ofthegenome notincluded in
+peaks, matching thelength distribution ofthepeaks butwith 3times asmany locations; all
+such background regions were assigned ascore of0todistinguish them from thevarious thre-
+sholded peak regions.
+Motifs were called using FIRE with 2separate variations: FIRE_gapped (with
+parameters --kungapped=6 --gap=0–10 --jn_t_gapped=4 --minr=0.5),
+which searches forgapped motifs typical ofprokaryotic TFBSs; and FIRE_maxdeg (with
+parameters --jn_t=8 --minr=1.5 --maxdeg=1.8), which searches formotifs while
+preserving information content above aspecified threshold. Weapplied additional empirical filters
+tospecifically enrich forpeaks corresponding tobinding sites: Allpeaks identified viaFIRE were
+required tohave themotif significantly depleted from thebackground population (p<0.01). To
+assess theFDR ofourmethods, wealsogenerated 20decoy peak setsbyshuffling thelocations of
+therealpeaks observed ineach condition, along with corresponding randomized unbound setsfor
+each, andthen applied identical peak calling procedures toeach decoy set.
+Toavoid repeated reporting ofvery similar motifs which might beidentified byourpipe-
+lines, weapplied thematrix-clustering module ofRSAT [76] (using recommended thresholds
+-lth cor 0.7 -lth w5-lth Ncor 0.4) toobtain nonredundant motif setsfor
+downstream analysis. Wecompared allcalled motifs with previously known motifs from the
+SwissRegulon database using TOMTOM [36] with default parameters, requiring anE-value of
+0.5orlower for“Identified” hits. Fortheidentification ofpredicted regulons associated with
+each motif, weapplied theFIMO program [74] toidentify potential binding sites ontheE.coli
+K12 genome, with aq-value threshold of0.2;these were referred toas“strict” motif hits. For
+thesubset ofpredicted motifs that yielded nopotential binding sites atthisthreshold, we
+instead report alllocations that correspond totheFIMO score ofthebest single location found
+inthegenome, referring tothese as“loose” motif hits. Forthepurposes ofouranalysis ofthe
+potential regulatory networks ofnovel motifs), wemarked each transcriptional unit inE.coli
+asbeing regulated byaparticular motif ifand only ifapredicted binding siteforthat motif
+waswithin 100bpoftheannotated transcription start site(inRegulonDB) forthat transcrip-
+tional unit.
+Invitro pulldown ofunidentified transcription factors
+Inorder toidentify theprotein(s) binding tothesdaC promoter (asinFig4),wefirst prepared
+biotinylated bait DNA bycloning afragment ofthesdaC promoter (running from positions
+2927790 to2927975 intheU00096.3 genome) into apAZ3-based cloning vector [77] and then
+amplifying that region oftheplasmid using aprimer pair where oneprimer contained a50bio-
+tinylation. The resulting 486-bp fragment wastreated with Exonuclease I(Affymetrix, subsidi-
+aryofThermo Fisher Scientific, Waltham, MA) according tothemanufacturer’s instructions
+toremove unreacted primer and then purified using aZymo Clean &Concentrate 25kit.
+The biotinylated bait DNA wasthen bound toequilibrated Dynabeads MyOne Streptavidin
+C1beads (Invitrogen). Beads were equilibrated bywashing 3times with 1xB&W buffer (5
+mM Tris Cl,pH7.5;0.5mM EDTA; 1MNaCl) and then resuspended in5volumes of2x
+B&W buffer, using 42μLoftheoriginal resuspended bead solution perreaction. The equili-
+brated beads were combined with 8μgofbiotinylated bait DNA plus anappropriate volume of
+water toyield afinal 1xB&W solution and incubated 15minutes atroom temperature with
+gentle rocking toallow forbait binding. The beads were then washed 3times with 500μLof1x
+B&W buffer, twice in500μLof1xBMg/THS buffer (5mM HEPES, pH7.5;5mM MgCl2; 50
+mM KCl; 31mM NaCl; 1xcOmplete EDTA-free protease inhibitors (Roche)), and once with
+500μLof1xBMg/THS/EP buffer (1xBMg/THS buffer supplemented with 20mM EGTA (pH
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 32/428.0) and 10μg/mL poly d(IC) (Sigma, St.Louis, MO)). The beads were then resuspended in
+200μLofBMg/THS/EP buffer and gently mixed byhand for1minute tocomplete
+equilibration.
+Cell extracts were prepared bygrowing toanoptical density (OD) at600nm(OD600) of
+0.2inM9/RDM/glucose media (following thesame procedures asthose given forIPOD-HR
+experiments). Once reaching thetarget OD, thecells were chilled 10minutes oniceand then
+pelleted byspinning for10minutes at5,500 xgwhile at4˚C. Supernatant wasremoved, and
+thecells were flash-frozen inadryice/ethanol bath. Cells were then lysed byresuspending the
+frozen pellet resulting from 82mLofculture in160μLofB-PER IIbacterial protein extraction
+reagent (Thermo Fisher Scientific). Wethen added 3.8mLof1xBMg/THS buffer and 0.8μL
+ofReadyLyse lysozyme solution (Lucigen), 40μLof10mg/mL RNase A,20μLofCaCl 2,and
+200μLofmicrococcal nuclease (NEB; 2,000,000 gelunits/mL). The lysis/digestion reaction
+wasallowed toproceed for30minutes atroom temperature and then clarified bycentrifuga-
+tion at30minutes at16,100x gheld at4˚C. The reaction washalted bytheaddition of444μL
+of5MNaCl, and then theentire volume applied toa3kDa MWCO spin filter (Amicon Ultra;
+Millipore, Burlington, MA) and centrifuged at(3,200 xgheld at4˚C) until approximately
+400μLofretentate remained. Wethen added 3.6mLofBMg/THS (lacking NaCl and KCl, but
+containing 5mM CaCl2) and filtered to400μLofretentate. Retained liquid wasthen recov-
+ered and diluted toafinal volume of4.0mLwith addition ofsalt-free BMg/THS +5mM
+CaCl 2.The retained lysate wasthen incubated 30minutes atroom temperature topermit fur-
+ther activity ofmicrococcal nuclease onremaining DNA inthesample and then quenched
+with 168μLof500mM EGTA. The volume ofthesample wasreduced toapproximately 1.6
+mLbyultrafiltration asabove and further supplemented with 10μg/mL ofpoly d(IC) and 1
+mM dithiothreitol.
+Probing ofthelysates wasthen accomplished bycombining theequilibrated bait-bead com-
+plexes (described above) with thelysates and incubating 30minutes with rocking atroom tem-
+perature. The supernatant wasthen removed, and thebeads washed twice with 200μLof
+BMg/THS/20 mM EGTA/10 μg/mL poly d(IC) and once with 200μLofBMg/THS/20 mM
+EGTA. Proteins were then eluted from thebeads through progressive washes ofelution buffer
+(25mM Tris HCl, pH7.5) with 100mM NaCl, 200mM NaCl, 400mM NaCl, and 1MNaCl,
+with 50μLused foreach elution.
+Wesuccessively probed thelysates described here with probes containing promoter
+sequences fromlexA,purR, and finally,sdaC (each containing identical plasmid-derived flank-
+ingsequences). Anapproximately 25-kDa band ofinterest appeared inthe400mM and 1M
+NaClsdaC eluates butnoteluates from aparallel experiment performed under identical condi-
+tions with asegment ofthethiC promoter; these bands were excised from asilver-stained gel.
+The 400mM gelslice wasthen subjected toproteomic analysis attheUniversity ofMichigan
+Proteomics &Peptide Synthesis core facility. The gelslice wasprocessed using aProGest robot
+(DigiLab, Holliston, MA) towash with 25mM ammonium bicarbonate followed byacetoni-
+trile, reduce with 10mM dithiothreitol at60˚C followed byalkylation with 50mM iodoaceta-
+mide atroom temperature, digested with trypsin (Promega) at37˚C for4hours, and then
+quenched with formic acid. The digest wasthen analyzed bynano liquid chromatography with
+tandem mass spectrometry (LC-MS/MS) with aWaters NanoAcquity HPLC system interfaced
+toaThermo Fisher QExactive. Peptides were loaded onatrapping column and eluted over a
+75-μm analytical column at350nL/min; both columns were packed with Jupiter Proteo resin
+(Phenomenex, Torrance, CA). The injection volume was30μL.The mass spectrometer was
+operated indata-dependent mode, with theOrbitrap operating at60,000 fullwidth athalf
+maximum (FWHM) and 17,500 FWHM formass spectrometry (MS) and tandem mass spec-
+trometry (MS/MS), respectively. The 15most abundant ions were selected forMS/MS. Data
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 33/42were searched using alocal copy ofMascot, and Mascot DAT files were parsed into theScaf-
+fold software forvalidation, filtering, and tocreate anonredundant listpersample. Data were
+filtered using 90% protein and 95% peptide probability thresholds (Prophet scores) and requir-
+ingatleast 2unique peptides perprotein. The resulting mass spectrometry analysis isgiven in
+S3Table after manual pruning bycore staff ofcommon contaminants (e.g., human keratin).
+Miller assay
+Cells containing thelacZ reporter controlled bysdaC promoter variants (see strain construc-
+tion notes above) were grown overnight inM9RDM media with 0.4% glucose. Inthemorn-
+ing, cells were diluted 1:300 infresh, prewarmed M9RDM media with 0.4% glucose in96-well
+plate. The plate wasplaced inaBioTek Synergy H1(BioTek, Winooski, VT) plate reader mea-
+suring OD600 and grown until mid-exponential phase, around 6doublings. Once thecells
+reached thetarget ODofaround 0.2(1-cm path length equivalent), 80uLofcells were placed
+inanew 96-well plate and mixed with 120uLof β-galactosidase assay mix (see below), avoid-
+ingtheproduction ofbubbles. The plate wasloaded into thesame Synergy H1plate reader
+and incubated at37˚C, taking measurements every 2minutes for1hour. Our procedure,
+assay, and analysis fortheMiller assay areadapted from [78].
+Reagents:
+•Z-buffer: 60mM Na2HPO 4,40mM NaH 2PO 4,10mM KCl, 1mM MgSO 4
+•β-mercaptoethanol solution: 2.7μl/mL β-mercaptoethanol inZ-Buffer
+•ONPG solution: 4mg/mL ONPG inZ-Buffer
+•Lysozyme solution: 10mg/mL lysozyme in10mM Tris-HCl, pH=8.0
+β-galactosidase assay mix (100 reactions):
+•8mL β-me solution
+•3mLONPG solution
+•800μlPopCulture Reagent (Sigma-Aldrich)
+•200μlLysozyme solution.
+Wethen calculated theenzymatic activity ineach well first bysubtracting 1.7times the
+OD550 value ateach time point from theOD420 value (toyield theamount ofenzymatic
+product after correcting forcelldebris) and then fitting aLOESS smoothing curve tothe
+resulting values and identifying thepoint ofmaximal slope; that slope (which isarate of
+increase inproduct versus time) istaken astheenzymatic activity. The background activity of
+MG1655 lacZ::cml cells measured atthesame time wasthen subtracted from each data point.
+The activities were then divided bytheOD600 ofthecorresponding cells used ineach assay to
+account forthediffering amounts ofbiological starting material toyield final OD-normalized
+Miller units. The experiments were performed intechnical duplicate oneach of4different
+days.
+The resulting normalized Miller values were then analyzed using aBayesian mixed-effects
+model toidentify therelative promoter activities inour8strains ofinterest. Weassumed that
+thenormalized Miller values followed theform
+Mcent�tðadateþbstrainþgdate:strain;s;vÞ;
+where αand βarefixed effects representing theeffects ofexperimental date and oftheyieP/
+promoter genotypes, respectively; the γisarandom effects term with levels foreach date/strain
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 34/42combination, andσandνarethestandard deviation and degrees-of-freedom parameters of
+thetdistributed residual noise. Mcentindicates centered Miller units where theglobal mean of
+allmeasurements wassubtracted from each value (the fitted coefficients were then decentered
+prior toplotting). The model wasfitted using thebrms [79] module ofR;using anormal
+(0,1,000) prior oneach ofthefixed effects, at(0,500, 10)prior onthestandard deviation
+parameter and defaults forallother parameters (the mildly informative priors used here were
+based onthebehavior ofWT MG1655 cells induced byisopropyl β-D-1-thiogalactopyranoside
+(IPTG) inourassay). Model convergence wasassessed using theRhat metric and manual
+inspection oftheposterior predictive distribution.
+Supporting information
+S1Text. Additional information ontheeffects ofRNA polymerase onlarge-scale protein
+occupancy. Seealso S5–S8 Figs.
+(PDF)
+S2Text. Additional information ontherecovery ofknown TFBS profiles from IPOD-HR
+data and inferred motifs. IPOD-HR, invivo protein occupancy display—high resolution;
+TFBS, transcription factor binding site.
+(PDF)
+S1Fig. Effect ofpeak calling threshold oncoverage and enrichment ofknown TFBSs. Data
+areshown fortheWT cells intheRDM condition. Shown isthefraction oftheentire genome
+contained inpeak calls (left vertical axis, blue line) ortheenrichment ofTFBSs overlapping
+those peak calls relative tothat expected bychance (right vertical axis, redline). Overlaps atall
+shown thresholds were statistically significant (p<0.01, permutation testineach case). RDM,
+rich defined medium; TFBS, transcription factor binding site; WT, wild-type.
+(PNG)
+S2Fig. Average occupancies forTFs with known/characterized binding sites. (A)Shown
+foreach TF(row) isthegeometric mean ofsite-level occupancies foralldetectable sites for
+that TFunder that condition. “Detectable sites” refer toRegulonDB-annotated sites which had
+arobust z-score ofatleast 3under atleast 1condition; factors with fewer than 3detectable
+sites were excluded. The values within asingle site, forasingle condition, aresummarized by
+themaximum occupancy within that site, reflecting thepeak oftheobserved binding signal.
+The TFs areordered based onaconsensus clustering approach asapplied forFig3ofthemain
+text. Raw data ontheunderlying site-level occupancies aregiven inS8Data. (B)AsinA,sub-
+sequently scaling each row byitsmaximum value sothehighest occupancy condition foreach
+TFreceives ascore of1.0.TF,transcription factor.
+(PNG)
+S3Fig. Interplay ofH-NS occupancy, EPOD locations, and transcription. (A)Mean levels
+ofH-NS binding (data from [44]) forallEPODs called intheWT rich media condition; each
+point shows either anEPOD orasingle contiguous non-EPOD region. Each point iscolored
+byitsclassification into high, medium, orlowH-NS binding using aGaussian mixture model
+with 3groups, after removal ofoutliers using thelocal outlier factor [80] asimplemented in
+thepython scikit-learn module [81], using 25neighbors and default settings forother parame-
+ters. (B)Distributions ofmean RNA read density stratified bytheH-NS binding categories
+shown inpanel A,with each case divided byEPOD status. The median ofeach group isshown
+byadashed lineand the25th and 75th quartiles bydotted lines. “�”indicates asignificant dif-
+ference between theEPOD vs.background groups (p<0.05, Mann–Whitney Utest). EPOD,
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 35/42extended protein occupancy domain; WT, wild-type.
+(PNG)
+S4Fig. Identification ofRNA polymerase vs.non-RNA polymerase protein occupancy.
+Shown isadensity plot ofthelog 2(IPOD/Input) signal vs.log 2(RNA polymerase ChIP/Input)
+signal, demonstrating thepresence of3subpopulations ofgenomic positions: unbound posi-
+tions (without enrichment using either protein occupancy profiling method), RNA polymer-
+aseoccupancy (part ofahighly correlated region ofhigh IPOD occupancy and high RNA
+polymerase occupancy), and occupancy with other proteins (which shows high IPOD occu-
+pancy butlowRNA polymerase occupancy). Note that there isnocorresponding population
+ofhigh RNA polymerase occupancy butlowIPOD occupancy, rather, theRNA polymerase-
+bound regions areasubset oftheregions detected byIPOD. Color intensity scales logarithmi-
+cally with binoccupancy. ChIP, chromatin immunoprecipitation.
+(PNG)
+S5Fig. Overlaps ofEPOD sets resulting from different calling methods. Shown intheheat
+map arethefraction ofEPODs from theEPOD setdefined bytherow label that overlap the
+EPOD setdefined bythecolumn label. Asterisks reflectp-values arising from aMonte Carlo
+permutation test(1,000 random circular permutations oftheEPOD locations;�p<0.05,��
+p<0.01,���p<0.001).p-Values fortheoverlaps between the+RIF IPOD-HR EPOD setand
+theVora heEPODs were>0.8 forboth directions ofcomparisons; afulllistofvalues isgiven
+inS2Table. EPOD, extended protein occupancy domain; heEPOD, highly expressed extended
+protein occupancy domain; IPOD-HR, invivo protein occupancy display—high resolution.
+(PNG)
+S6Fig. Effects ofrifampin treatment onprotein occupancy ofahighly transcribed region.
+Shown areoccupancy signals forinterphase-extracted, RNA polymerase ChIP, and ChIP-sub-
+tracted IPOD occupancy (IPOD-HR) samples inthevicinity ofalarge cluster ofribosomal
+protein genes (running fromrplQ torpsJ). Signals arelog2 extracted:input ratios (for IPOD
+and ChIP samples) orChIP-subtracted robust zscores (IPOD-HR). ChIP, chromatin immu-
+noprecipitation; IPOD-HR, invivo protein occupancy display—high resolution.
+(PNG)
+S7Fig. Effects ofrifampin treatment onprotein occupancy ofatranscriptionally silent
+region. Shown areoccupancy signals forinterphase-extracted, RNA polymerase ChIP, and
+ChIP-subtracted IPOD occupancy (IPOD-HR) samples inthevicinity ofthewaaQGPSBO-
+JYZU operon, which wasidentified asastrong tsEPOD in[10]. Signals arelog2 extracted:
+input ratios (for IPOD and ChIP samples) orChIP-subtracted robust zscores (IPOD-HR).
+ChIP, chromatin immunoprecipitation; IPOD-HR, invivo protein occupancy display—high
+resolution; tsEPOD, transcriptionally silent extended protein occupancy domain.
+(PNG)
+S8Fig. Overlaps ofinferred motifs with binding sites forTFs with similar actual motifs.
+(A)Violin plots showing thelog 10-fold enrichment (ordepletion) ofoverlap between theindi-
+cated motif-based binding sitecalls (using IPOD-HR inferred motifs ormotifs from SwissRe-
+gulon) with annotated binding sites from RegulonDB; matches ofinferred motifs with TFs
+arise from TOMTOM calls (see textfordetails). Apseudocount of0.0001 isadded toeach
+overlap. Formotif hitsinthepresent figure, “loose” motif hitswere used ifstrict hitswere not
+available (see Methods fordetails). (B)Log 10recall foridentification ofannotated (from Regu-
+lonDB) binding sites foreach setofmotif-based calls indicated inpanel A;apseudocount of
+0.0001 isadded toeach value toavoid singularities. (C)Recall ofannotated sites foreach
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 36/42indicated TF(matching those shown inpanels Aand B)using either theunion ofallpeaks
+called from ourIPOD-HR data setatapeak calling threshold of4(“combined peaks”) orthe
+union ofallbinding sites forournonredundant motif set(“combined motifs”). Red dashed
+lines show thefraction ofthegenome covered bythepeaks and motifs (depending onthe
+axis), and thus represent therecalls that would beexpected solely bychance. IPOD-HR, in
+vivo protein occupancy display—high resolution; TF,transcription factor.
+(PNG)
+S1Table. Comparisons ofthedistributions ofrobust z-scores (without logscaling)
+observed ondifferent genomic regions inthe“WT,rich” condition; seealso cumulative dis-
+tributions ofthelog 10pstatistic inFig2E.The higher means and rightward skews ofallother
+data setsrelative tothe“Coding, NoTF” portion indicates that theportions ofthegenome
+with higher IPOD-HR robust z-scores areassociated with noncoding regions and annotated
+TFBSs. The “vs.Coding NoTF” column gives thep-value forapermutation testcomparing
+themean z-scores intheindicated genomic region with those inthe“Coding, NoTF” region;
+thepermutation testwasconducted using 200random rotations ofthedata values relative to
+thefeature coordinates, ensuring that thecorrelation structures ofboth data and features were
+conserved. IPOD-HR, invivo protein occupancy display—high resolution; TF,transcription
+factor; TFBS, transcription factor binding site; WT, wild-type.
+(PDF)
+S2Table.p-Values arising from thestatistical tests shown inFig3C(calculated using
+iPAGE software) and inS4Fig(arising from permutation tests inwhich thegenomic coor-
+dinates of1EPOD setwere rotated inunison relative totheother, topreserve theinternal
+correlation structures ofeach group). EPOD, extended protein occupancy domain.
+(XLSX)
+S3Table. Mass spectrometry identified peptide counts showing abundances ofproteins
+pulled down bybiotinylated bait DNA from thesdaC promoter region, after pruning of
+likely contaminants (see Methods fordetails).
+(PDF)
+S4Table. Summary ofEPOD characteristics across experimental conditions. The “Median
+difference” column refers tothedifference inmedian robust Z-scores between EPODs and all
+other sites inthegenome, with positive values indicating higher levels within EPODs.p-Values
+forasignificant difference areobtained using aresampling test, with 1,000 random circular
+permutations oftheEPOD locations onthegenome (thus preserving thecorrelation structure
+ofgenomic features); q-values areobtained bycorrection ofthep-values using theBenjamini–
+Hochberg method [82]. Allsequence features were subjected toa500-bp rolling mean prior to
+overlap calculation. EPOD, extended protein occupancy domain.
+(PDF)
+S5Table. List ofIPOD-HR experiments performed over thecourse ofthestudy, including
+concise names used torefer toeach experiment intheremainder ofthetext (included asa
+separate file). Note that “Aligned reads” refers specifically tothenumber ofconcordant,
+uniquely aligned read pairs arising from agiven sample, orthenumber ofpseudoaligned reads
+inthecase ofanRNA sample. IPOD-HR, invivo protein occupancy display—high resolution.
+(XLSX)
+S1Data. Bedgraph files showing theprocessed occupancy traces forthebiological condi-
+tions considered inthis study, corresponding totheplotted data.
+(ZIP)
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 37/42S2Data. GFF files containing thelocations ofallpeak calls (with cutoffs indicated inthe
+“score” field; seeMethods fordetails) obtained from our IPOD-HR occupancy profiles
+through allconditions inthepresent study. The value inthe“score” column corresponds to
+thepeak calling threshold inuse. Note that the“strand” and “frame” fields convey nouseful
+information. IPOD-HR, invivo protein occupancy display—high resolution.
+(ZIP)
+S3Data MEME-formatted filecontaining thecomplete setofredundancy-pruned motifs
+discovered across allconditions inthepresent study.
+(ZIP)
+S4Data. GFF filegiving theFIMO hits ontheE.coli MG1655 genome forallnewly
+inferred motifs described here. Forfactors that gave hitsusing ourstandard criterion (FIMO
+q-value<0.2), weflaghitsas“Nucleotide motif (strict)”; formotifs that gave nohitsaccording
+tothiscriterion, weinstead report alllocations that correspond totheFIMO score ofthebest
+single location found inthegenome, flagged as“Nucleotide motif (loose)”.
+(ZIP)
+S5Data. Table showing theJaccard index between predicted regulons ofeach ofthenewly
+inferred motifs, with allTFs that have characterized regulons inRegulonDB. Jaccard indi-
+ceswere calculated atthegene level (using gene names asindividual items), using thedefini-
+tions ofregulated genes used elsewhere inthepresent paper forthenewly inferred motifs and
+thenetwork_tf_gene.txt entries from RegulonDB (release 10.8). Motif indices match those in
+S3Data formembers oftheredundancy-pruned set.TF,transcription factor.
+(ZIP)
+S6Data. Table showing theGO terms that areenriched inthepotential regulon ofeach
+newly inferred regulatory motif. The tab-separated table gives themotif name, GOterm, and
+p-value (obtained from iPAGE) foreach inferred regulatory connection. GO, gene ontology.
+(ZIP)
+S7Data. GFF filecontaining thelocations ofallEPODs called onour IPOD-HR occupancy
+profiles (see Methods fordetails). Note that the“score,” “strand,” and “frame” fields convey
+nouseful information. EPOD, extended protein occupancy domain; IPOD-HR, invivo protein
+occupancy display—high resolution.
+(ZIP)
+S8Data. Table showing theoccupancy ateach detectable TFBS used intheanalysis ofFig3
+and associated Supporting information figures. TFBS, transcription factor binding site.
+(ZIP)
+Acknowledgmen ts
+Wearegrateful toDr.Alison Hottes fortechnical assistance and suggestions ontheoriginal
+IPOD method and toMs.Christine Ziegler foroptimization oftheMiller assay asused inFig
+4.
+Author Contributions
+Conceptualization: Saeed Tavazoie.
+Data curation: Peter L.Freddolino, Saeed Tavazoie.
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 38/42Formal analysis: Peter L.Freddolino, Saeed Tavazoie.
+Funding acquisition: Peter L.Freddolino, Saeed Tavazoie.
+Investigation: Peter L.Freddolino, Haley M.Amemiya, Thomas J.Goss.
+Methodology: Peter L.Freddolino, Saeed Tavazoie.
+Software: Peter L.Freddolino.
+Writing –original draft: Peter L.Freddolino, Saeed Tavazoie.
+Writing –review &editing: Peter L.Freddolino, Haley M.Amemiya, Saeed Tavazoie.
+References
+1.Browning DF,Butala M,Busby SJW. Bacterial Transcript ionFactors: Regulatio nbyPick“N”Mix.JMol
+Biol. 2019. https://doi. org/10.1016/j .jmb.2019 .04.011 PMID: 30998934
+2.LeeDJ,Minchin SD,Busby SJW. Activating transcrip tioninbacteria. Annu RevMicrobiol .2012;
+66:125–52. https://doi.or g/10.1146/ annurev-mic ro-092611 -150012 PMID: 22726217
+3.Gruber TM,Gross CA.Multiple sigma subunits andthepartitioning ofbacteria ltranscription space.
+Annu RevMicrobiol .2003; 57:441–66. https://doi.or g/10.1146/ annurev.m icro.57.030502 .090913
+PMID: 145272 87
+4.Murakami KS,Darst SA.Bacterial RNA polymera ses:thewholo story. Curr Opin Struct Biol. 2003;
+13:31–9. https://doi.or g/10.1016/s 0959-440x(0 2)00005-2 PMID: 125816 57
+5.Shen BA,Landick R.Transcrip tionofBacteri alChromatin. JMolBiol. 2019. https://doi.or g/10.101 6/j.
+jmb.2019 .05.041 PMID: 31153903
+6.Ishihama A,Shimad aT,Yamazaki Y.Transcrip tionprofile ofEscherich iacoli:genomic SELEX search
+forregulatory targets oftranscrip tionfactors. Nucleic Acids Res. 2016; 44:2058–74 .https://doi.or g/10.
+1093/nar/gk w051 PMID: 26843427
+7.Gama-Ca stroS,Salgado H,Santos-Z avaleta A,Ledezma- Tejeida D,Muñiz-Ra scado L,Garcı ´a-Sotelo
+JS,etal.RegulonDB version 9.0:high-level integration ofgene regulat ion,coexpression ,motif cluster-
+ingandbeyond. Nucleic Acids Res. 2016; 44:D133–4 3.https://do i.org/10.1093 /nar/gkv115 6PMID:
+26527724
+8.Larsen SJ,Ro¨ttger R,Schmidt HHHW, Baumba chJ.E.coligene regulatory networks areinconsistent
+withgene expression data. Nucleic Acids Res. 2019; 47:85–92. https://doi.or g/10.109 3/nar/gky11 76
+PMID: 304622 89
+9.Mejı´a-Almonte C,Busby SJW, Wade JT,vanJ,Arkin AP,Stormo GD,etal.Redefining fundamen tal
+concepts oftranscription initiation inbacteria .NatRevGenet. 2020. https://doi.o rg/10.1038/s41 576-
+020-0254- 8PMID: 3266558 5
+10. Vora T,Hottes AK,Tavaz oieS.Protein occupanc ylandscape ofabacteria lgenome. MolCell. 2009;
+35:247–53. https://doi.or g/10.1016/ j.molcel.200 9.06.035 PMID: 19647521
+11. Giresi PG,KimJ,McDani ellRM,IyerVR,LiebJD.FAIRE (The Formalde hyde-Assi stedIsolation of
+Regulator yElemen ts)isolates active regulatory elements from human chromatin .Genome Res. 2007;
+17:877–85. https://doi.or g/10.1101/ gr.5533506 PMID: 17179217
+12. Meng LM,Nygaard P.Identificati onofhypoxanthi neandguanine astheco-repres sorsforthepurine
+regulon genes ofEscherich iacoli.MolMicrobiol .1990; 4:2187– 92.https://doi.or g/10.111 1/j.1365-295 8.
+1990.tb0 0580.x PMID: 208922 7
+13. ChoB-K, Federo wicz SA,Embree M,Park Y-S, KimD,Palsson BØ.ThePurR regulon inEscherich ia
+coliK-12 MG1655 .Nucleic Acids Res. 2011; 39:6456–64. https://doi.or g/10.1093/ nar/gkr307 PMID:
+21572102
+14. Tian G,LimD,Carey J,Maas WK.Binding ofthearginine represso rofEscherichia coliK12toitsopera-
+torsites. JMolBiol. 1992; 226:387–97. https://doi.or g/10.1016/ 0022-2836( 92)90954-i PMID: 1640457
+15. Charlier D,Roovers M,VanF,Boyen A,Cunin R,Nakamura Y,etal.Arginine regulon ofEscherich ia
+coliK-12. Astudy ofrepresso r-operator interacti onsandofinvitrobinding affinities versus invivo
+repression .JMolBiol. 1992; 226:367–86. https://do i.org/10.1016 /0022-2836( 92)90953- hPMID:
+1640456
+16. Stragier P,Danos O,Patte JC.Regulatio nofdiamino pimelate decarbo xylase synthesis inEscherich ia
+coli.II.Nucleotide sequence ofthelysAgene anditsregulat oryregion. JMolBiol. 1983; 168:321–31.
+https://doi.or g/10.101 6/s0022-2836( 83)80021- 7PMID: 6350601
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 39/4217. VanGD,Ghosh G,Maas WK,Sigler PB.Structure oftheoligome rization andL-arginine binding domain
+ofthearginine represso rofEscherich iacoli.JMolBiol. 1996; 256:377–91. https://doi.or g/10.1006/ jmbi.
+1996.0093 PMID: 8594204
+18. Rolfes RJ,Zalkin H.Purific ation oftheEscherich iacolipurine regulon represso randidentifi cation of
+corepres sors. JBacteriol. 1990; 172:563 7–42. https://doi.or g/10.112 8/jb.172.10. 5637-5642.1 990
+PMID: 221150 0
+19. Shimada T,Hirao K,KoriA,Yamamoto K,Ishihama A.RutR istheuracil/th ymine-sensin gmaster regu-
+lator ofasetofgenes forsynthes isanddegradation ofpyrimidin es.MolMicrobiol .2007; 66:744–57.
+https://doi.or g/10.111 1/j.1365-295 8.2007.0 5954.x PMID: 17919280
+20. Pedersen H,Søgaard-And ersen L,Holst B,Valentin-Hans enP.Heterolog ouscooperat ivityinEscheri-
+chiacoli.TheCytR repressor both contacts DNA andthecAMP receptor protein when binding tothe
+deoP2 promoter. JBiolChem. 1991; 266:178 04–8. PMID: 165572 6
+21. Gerlach P,Søgaard-And ersen L,Pedersen H,Martinussen J,Valentin-Hans enP,Bremer E.Thecyclic
+AMP (cAMP) -cAMP receptor protein complex functions both asanactivat orandasacorepress oratthe
+tsx-p2 promoter ofEscherich iacoliK-12. JBacteriol. 1991; 173:541 9–30. https://doi.or g/10.112 8/jb.
+173.17.5 419-5430.19 91PMID: 1715855
+22. Gunsalus RP,Park SJ.Aerobic-an aerobic gene regulation inEscherich iacoli:control bytheArcAB and
+Fnrregulons. ResMicrobiol .1994; 145:437 –50. https://doi.o rg/10.1016/09 23-2508(9 4)90092-2 PMID:
+7855430
+23. Iuchi S,LinEC.Adaptat ionofEscherich iacolitoredox environ ments bygene expression .MolMicro-
+biol.1993; 9:9–15. https://doi.or g/10.111 1/j.1365-295 8.1993.tb 01664.x PMID: 8412675
+24. Kroner GM,Wolfe MB,Freddolino PL.Escherich iacoliLrpregulates one-third ofthegenome viadirect,
+cooperat ive,andindirect routes. JBacteri ol.2018. https://doi.or g/10.112 8/JB.0041 1-18 PMID:
+30420454
+25. Karp PD,Weaver D,Paley S,Fulcher C,Kubo A,Kothari A,etal.TheEcoCyc Databas e.EcoSal Plus.
+2014;6. https:/ /doi.org/10.11 28/ecosalp lus.ESP -0009-201 3PMID: 26442933
+26. Solomon MJ,Varsha vsky A.Formalde hyde-med iated DNA-prote incrosslinking :aprobe forinvivo
+chromatin structures. Proc NatlAcad SciUSA.1985; 82:6470 –4.https://doi.or g/10.107 3/pnas.82 .19.
+6470 PMID: 299596 6
+27. McClure WR, Cech CL.Onthemechanism ofrifampicin inhibition ofRNA synthesis .JBiolChem. 1978;
+253:8949–5 6.PMID: 363713
+28. Pique-Regi R,Degner JF,PaiAA,Gaffney DJ,Gilad Y,Pritchard JK.Accurate inferen ceoftranscript ion
+factor binding from DNA sequence andchromatin accessib ilitydata. Genom eRes. 2011; 21:447– 55.
+https://doi.or g/10.110 1/gr.112623.1 10PMID: 21106904
+29. Shimada T,Ogasawar aH,Ishihama A.Genom icSELEX Screening ofRegulator yTargets ofEscheri-
+chiacoliTranscription Factors. Methods MolBiol. 2018; 1837:49 –69. https://doi.or g/10.100 7/978-1-
+4939-8675- 0_4PMID: 301096 05
+30. Belliveau NM,Barnes SL,Ireland WT,Jones DL,Swered oskiMJ,Moradia nA,etal.Systematic
+approach fordissec tingthemolecular mechanisms oftranscript ional regulation inbacteria. Proc Natl
+Acad SciUSA.2018; 115:E4 796–805. https://doi.or g/10.107 3/pnas.17 22055115 PMID: 297284 62
+31. GaoY,Yurkovich JT,SeoSW,Kabimolday evI,Dra¨gerA,Chen K,etal.Systematic discovery of
+uncharac terized transcrip tionfactors inEscherich iacoliK-12 MG1655. Nucleic Acids Res. 2018;
+46:10682–9 6.https://doi.or g/10.1093 /nar/gky752 PMID: 30137486
+32. Sastry AV,GaoY,Szubin R,Hefner Y,XuS,KimD,etal.TheEscherich iacolitranscript ome mostly
+consists ofindependentl yregulat edmodules. NatCommun .2019; 10:5536. https://doi.or g/10.103 8/
+s41467-019 -13483-w PMID: 3179792 0
+33. Kass RE,Raftery AE.Bayes Factors. JAmStatAssoc. 1995; 90:773–95.
+34. WuCH,Apweiler R,Bairoch A,Natale DA,Barker WC, Boeckm annB,etal.TheUniversal Protein
+Resource (UniProt ):anexpanding universe ofprotein informati on.Nucleic Acids Res. 2006; 34:D187–
+91.https://doi. org/10.1093/n ar/gkj16 1PMID: 16381842
+35. Elemento O,Slonim N,Tavazoie SA.Universal Framework forRegulator yElemen tDiscovery across
+AllGenomes andData Types .MolCell. 2007:337–50. https:// doi.org/10.10 16/j.molcel.2 007.09.0 27
+PMID: 179642 71
+36. Gupta S,Stamatoyan nopoul osJA,Bailey TL,Noble WS.Quantify ingsimilarity between motifs.
+Genome Biol. 2007; 8:R24. https://doi.or g/10.1186/ gb-2007-8 -2-r24 PMID: 173242 71
+37. Goodarzi H,Elemento O,Tavazoie S.Revealing global regulatory perturbation sacross human cancers .
+MolCell. 2009; 36:900– 11.https://doi.or g/10.101 6/j.molcel.20 09.11.01 6PMID: 20005852
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 40/4238. Scholz SA,Diao R,Wolfe MB,Fivenson EM,LinXN,Freddolino PL.High-Res olution Mapping ofthe
+Escherich iacoliChromos ome Reveals Position sofHigh andLowTranscript ion.CellSyst. 2019; 8:212,
+e9–25. https:// doi.org/10.10 16/j.cels.201 9.02.004 PMID: 30904377
+39. Buenrostro JD,WuB,Chang HY,Greenlea fWJ.ATAC-seq :AMethod forAssaying Chromatin Acces-
+sibility Genome-Wide .Curr Protoc MolBiol. 2015; 109:21.29.1–9. https://doi.or g/10.1002/ 0471142727.
+mb2129s10 9PMID: 255591 05
+40. Whitfield CR,Wardle SJ,Haniford DB.Theglobal bacterial regulato rH-NS promotes transposo some
+formation andtranspositi onintheTn5system. Nucleic Acids Res. 2009; 37:309– 21.https://doi.or g/10.
+1093/nar/gk n935 PMID: 19042975
+41. Tavazoie S,Church GM.Quantit ative whole-g enome analysis ofDNA-prote ininteracti onsbyinvivo
+methylase protectio ninE.coli.NatBiotechn ol.1998; 16:566–7 1.https://doi.or g/10.1038 /nbt0698-566
+PMID: 962468 9
+42. Navarre WW, McClelland M,Libby SJ,Fang FC.Silencing ofxenogen eicDNA byH-NS-fac ilitation of
+lateral gene transfer inbacteria byadefense system thatrecognize sforeign DNA. Genes Dev. 2007;
+21:1456–71 .https://doi.or g/10.1101/ gad.1543107 PMID: 175750 47
+43. Navarre WW, Porwollik S,Wang Y,McClelland M,Rosen H,Libby SJ,etal.Selective silencing offor-
+eignDNA withlowGCcontent bytheH-NS protein inSalmonella. Science. 2006; 313:236–8. https://
+doi.org/10.11 26/science.11 28794 PMID: 16763111
+44. Kahramanog louC,Seshasayee ASN, Prieto AI,Ibberson D,Schmidt S,Zimmerm annJ,etal.Direct
+andindirect effects ofH-NS andFisonglobal gene express ioncontrol inEscherich iacoli.Nucleic Acids
+Res. 2011:20 73–91. https://doi.or g/10.109 3/nar/gkq934 PMID: 21097887
+45. LingG,Waxman DJ,DNase I.Digestion ofIsolated Nuclei forGenome -Wide Mapping ofDNase Hyper-
+sensitivity Sites inChromatin. Methods MolBiol. 2013:21–33. https:// doi.org/10.10 07/978-1-6 2703-
+284-1_3 PMID: 234363 51
+46. Mieczkows kiJ,Cook A,Bowman SK,Mueller B,Alver BH,Kundu S,etal.MNase titration reveals differ-
+ences between nucleosome occupancy andchromatin accessibility .NatCommun. 2016; 7:11485.
+https://doi.or g/10.103 8/ncomms 11485 PMID: 2715136 5
+47. Melfi MD,Lasker K,Zhou X,Shapiro L.ATAC-seq reveals megabase- scale domains ofabacterial
+nucleoid. bioRxiv. 2021. p.2021.01 .09.426053. https://doi.or g/10.1101/ 2021.01.09.426 053
+48. Al-Bassam MM, Moyne O,Chapin N,Zengler K.Nucleoid openne ssprofiling links bacterial genome
+structure tophenotyp e.bioRxiv. 2020. p.2020.05.07.0 82990. https://doi.or g/10.110 1/2020.05.07.
+082990
+49. Freddolino P,Goss TJ,Amemiy aHM,Tavazoie S.Dynami clandscape ofprotein occupancy across the
+Escherich iacolichromosom e.bioRxiv. 2020. Available from: https:/ /www.biorxi v.org/conten t/10.1101 /
+2020.01. 29.924811v1. abstract.
+50. Fang X,Sastry A,MihN,KimD,TanJ,Yurkovich JT,etal.Global transcriptional regulatory network for
+Escherich iacolirobustly connects gene expression totranscription factor activities. Proc NatlAcad Sci
+USA.2017; 114:10286–91 .https://doi.or g/10.1073/p nas.170258111 4PMID: 28874552
+51. Singh SS,Singh N,Bonocora RP,Fitzgerald DM,Wade JT,Grainger DC.Widespre adsuppressio nof
+intragenic transcrip tioninitiation byH-NS. Genes Dev. 2014; 28:214– 9.https://doi.or g/10.110 1/gad.
+234336.113 PMID: 24449106
+52. Kotlajich MV,Hron DR,Boudreau BA,SunZ,Lyubchenko YL,Landick R.Bridged filaments ofhistone-
+likenucleoid structuring protein pause RNA polymera seandaidterminati oninbacteria. Elife. 2015; 4.
+https://doi.or g/10.755 4/eLife.04970 PMID: 25594903
+53. Landick R,Wade JT,Grainger DC.H-NS andRNA polymerase :alove—hat erelationship? Curr Opin
+Microbiol .2015; 24:53–9. https://doi.or g/10.1016/j. mib.2015.0 1.009 PMID: 25638302
+54. Atlung T,Ingmer H.H-NS: amodulato rofenviron mentally regulated gene expression .MolMicrobiol.
+1997; 24:7–17 .https://doi.or g/10.104 6/j.1365-295 8.1997.3 151679.x PMID: 9140961
+55. OnoS,Goldberg MD,Olsson T,Esposito D,Hinton JCD, Ladbury JE.H-NS isapartofathermally con-
+trolled mechanism forbacterial gene regulation. Biochem J.2005; 391:203–13. https://doi.or g/10.1042/
+BJ20050 453PMID: 15966862
+56. Freddolino PL,Amini S,Tavazoie S.Newly identified genetic variations incommon Escherich iacoli
+MG1655 stock cultures. JBacteriol. 2012; 194:303–6. https://doi. org/10.1128/JB .06087- 11PMID:
+22081388
+57. Ausubel FM.Current Protocols inMolecular Biology. John Wiley &Sons; 1998.
+58. Baba T,AraT,Haseg awaM,Takai Y,Okumur aY,Baba M,etal.Construct ionofEscherich iacoliK-12
+in-frame, single- gene knockout mutants: theKeio collection. MolSyst Biol. 2006; 2(2006):000 8.https://
+doi.org/10.10 38/msb4100 050PMID: 1673855 4
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 41/4259. Cherepa novPP,Wackernag elW.Gene disrupti oninEscherich iacoli:TcRandKmR cassette swiththe
+option ofFlp-catal yzed excision oftheantibiotic -resistance determinant .Gene. 1995; 158:9–14. https://
+doi.org/10.10 16/0378-111 9(95)0019 3-aPMID: 7789817
+60. Huisman OD’Ari R.Aninducible DNA replication–cel ldivision coupling mechanis minE.coli.Nature.
+1981; 290:797 –9.https://doi.or g/10.103 8/290797a0 PMID: 701264 1
+61. Huisman OD’Ari R,Gottesman S.Cell-divisio ncontrol inEscherichia coli:specific induction oftheSOS
+function SfiAprotein issufficient toblock septation. Proc NatlAcad SciUSA.1984; 81:4490–4. https://
+doi.org/10.10 73/pnas.81 .14.4490 PMID: 608732 6
+62. Gibson DG,Young L,Chuang R-Y, Venter JC,Hutchiso nCA,Smith HO.Enzym aticassembly ofDNA
+molecules uptoseveral hundred kilobases. NatMethods. 2009; 6:343–5. https://doi. org/10.1038/
+nmeth.131 8PMID: 193634 95
+63. Neidhar dtFC,Bloch PL,Smith DF.Culture medium forenterobac teria. JBacteriol. 1974; 119:736–47.
+https://doi.or g/10.112 8/jb.119.3. 736-747.197 4PMID: 4604283
+64. Mooney RA,Davis SE,Peters JM,Rowland JL,Ansari AZ,Landick R.Regulator trafficking onbacterial
+transcrip tionunits invivo. MolCell. 2009; 33:97–1 08.https://doi.or g/10.101 6/j.molcel.20 08.12.02 1
+PMID: 191504 31
+65. Tange O.Gnuparallel-th ecommand-li nepower tool.TheUSENI XMagazine. 2011; 36:42–7.
+66. Martin M.Cutadapt removes adapter sequences from high-throu ghput sequencin greads. EMBnet J.
+2011; 17:10–2 .
+67. Bolger AM,Lohse M,Usadel B.Trimmom atic:aflexible trimmer forIllumina sequence data. Bioinf or-
+matics. 2014; 30:2114–20. https:// doi.org/10.10 93/bioinfo rmatics/btu17 0PMID: 246954 04
+68. Andrews S,Others. FastQC: aquality control toolforhighthroug hput sequence data. Babraham Bioin-
+formatics, Babraham Institute, Cambridge ,United Kingdom; 2010.
+69. Ewels P,Magnusson M,Lundin S,Ka¨llerM.MultiQC: summa rizeanalysis results formultiple tools and
+samples inasingle report. Bioinformatics .2016; 32:3047 –8.https://doi.or g/10.109 3/bioinformatic s/
+btw354 PMID: 27312411
+70. DuP,Kibbe WA,LinSM.Improved peak detection inmass spectrum byincorporatin gcontinuou swave-
+lettransform- based pattern matching. Bioinformatic s.2006; 22:2059 –65. https://doi.or g/10.109 3/
+bioinforma tics/btl355 PMID: 16820428
+71. Slonim N,Atwal GS,Tkacik G,Bialek W.Informatio n-based clustering. Proc NatlAcad SciUSA.2005;
+102:18297– 302. https://doi.or g/10.107 3/pnas.050 7432102 PMID: 16352721
+72. Pimentel H,Bray NL,Puente S,Melsted P,Pachter L.Differentia lanalysis ofRNA-seq incorpo rating
+quantifica tionuncertaint y.NatMethods. 2017; 14:687– 90.https://doi.or g/10.103 8/nmeth.43 24PMID:
+28581496
+73. Quinlan AR.BEDTool s:theSwiss-army toolforgenome feature analysis. Curr Protoc Bioinform atics.
+2014; 47:11–2 .https://doi.or g/10.100 2/0471250953 .bi1112 s47PMID: 2519979 0
+74. Grant CE,Bailey TL,Noble WS.FIMO. scanning foroccurrenc esofagiven motif. Bioinfo rmatics. 2011;
+27:1017–8. https://doi.or g/10.1093/ bioinformatic s/btr064 PMID: 213302 90
+75. Pachkov M,Balwierz PJ,Arnold P,Ozonov E,vanNimwegen E.SwissReg ulon, adatabase of
+genome- wide annotati onsofregulatory sites: recent updates. Nucleic Acids Res. 2013; 41:D214–2 0.
+https://doi.or g/10.109 3/nar/gks11 45PMID: 2318078 3
+76. Castro-Mond ragon JA,Jaeger S,Thieffry D,Thomas-Cho llierM.vanHelden J.RSAT matrix-clust ering:
+dynamic explora tionandredundancy reduction oftranscrip tionfactor binding motif collections. Nucleic
+Acids Res. 2017; 45:e119. https://doi.or g/10.1093/n ar/gkx314 PMID: 28591841
+77. Kawano M,Aravind L,Storz G.Anantisense RNA controls synthe sisofanSOS-ind uced toxin evolved
+from anantitoxin. MolMicrobiol. 2007; 64:738–54. https:// doi.org/10.11 11/j.136 5-2958.2007 .05688.x
+PMID: 174620 20
+78. Thibodeau SA,Fang R,Joung JK.High-thr oughput beta-galac tosidase assay forbacterial cell-base d
+reporter systems. Biotechniq ues.2004; 36:410– 5.https://doi. org/10.2144/ 04363BM07 PMID: 15038156
+79. Bu¨rkner P-C. brms: AnRPackage forBayesian Multilevel Models Using Stan. JStatSoftw. 2017; 80:1–
+28.
+80. Breunig MM, Kriegel H-P, NgRT,Sander J.LOF: identifyin gdensity-ba sedlocal outliers .Proceedings
+ofthe2000 ACM SIGMO Dinternationa lconferen ceonManagem entofdata. New York, NY,USA:
+Association forComput ingMachiner y;2000. pp.93–104 .
+81. Pedregosa F,Varoquaux G,Gramfort A,Michel V,Thirion B,Grisel O,etal.Scikit-le arn:Machine learn-
+inginPython. JMach Learn Res. 2011; 12:2825 –30.
+82. Benjamini Y,Hochbe rgY.Controlli ngtheFalse Discovery Rate: APractical andPowerful Approach to
+Multiple Testing. JRStatSocSeries BStatMethodol .1995; 57:289– 300.
+PLOS BIOL OGYHigh-reso lution protein occupancy maps oftheE.colichromosom e
+PLOS Biology |https://doi.or g/10.137 1/journal.pb io.3001306 June 25,2021 42/42

@@ -1,0 +1,1297 @@
+REVIEW
+The mechanism of action of the SSB interactome reveals it
+is the first OB-fold family of genome guardians in
+prokaryotes
+Piero R. Bianco
+Department of Pharmaceutical Sciences,
+College of Pharmacy, University ofNebraska Medical Center, Omaha,Nebraska
+Correspondence
+Piero R. Bianco, Department ofPharmaceutical Sciences, College ofPharmacy, University of NebraskaMedical Center, Omaha, NE 68198-6025,USA.Email: pbianco@unmc.edu
+Funding information
+National Institute of General MedicalSciences, Grant/Award Number:GM10056Abstract
+The single-stranded DNA binding protein (SSB) is essential to all aspects of
+DNA metabolism in bacteria. This protein performs two distinct, but closely
+intertwined and indispensable functions in the cell. SSB binds to single-stranded DNA (ssDNA) and at least 20 partner proteins resulting in their regu-
+lation. These partners comprise a family of genome guardians known as the
+SSB interactome. Essential to interactome regulation is the linker/OB-fold net-
+work of interactions. This network of interactions forms when one or more
+PXXP motifs in the linker of SSB bind to an OB-fold in a partner, with inter-
+actome members involved in competitive binding between the linker and
+ssDNA to their OB-fold. Consequently, when linker-binding occurs to an OB-fold in an interactome partner, proteins are loaded onto the DNA. When
+linker/OB-fold interactions occur between SSB tetramers, cooperative ssDNA-
+binding results, producing a multi-tetrameric complex that rapidly protects the
+ssDNA. Within this SSB-ssDNA complex, there is an extensive and dynamic
+network of linker/OB-fold interactions that involves multiple tetramers boundcontiguously along the ssDNA lattice. The dynamic behavior of these tetramers
+which includes binding mode changes, sliding as well as DNA wrapping/
+unwrapping events, are likely coupled to the formation and disruption of
+linker/OB-fold interactions. This behavior is essential to facilitating down-
+stream DNA processing events. As OB-folds are critical to the essence of the
+linker/OB-fold network of interactions, and they are found in multiple inter-
+actome partners, the SSB interactome is classified as the first family of prokary-otic, oligosaccharide/oligonucleotide binding fold (OB-fold) genome
+guardians.
+KEYWORDS
+genome guardian, OB-fold, PXXP, SH3 domain, SSB
+1|INTRODUCTION
+The single-stranded DNA binding protein (SSB) inter-
+actome is essential to maintaining genome integrity inbacteria.1,2The interactome consists of at least 20 DNA-
+binding proteins that includes exonucleases, DNA heli-cases, DNA polymerases, DNA primases, recombination
+mediators, DNA repair enzymes, and topoisomerasesReceived: 18 March 2021 Revised: 28 May 2021 Accepted: 28 May 2021
+DOI: 10.1002/pro.4140
+Protein Science. 2021;30:1757 –1775. wileyonlinelibrary.com/journal/pro © 2021 The Protein Society. 1757(Figure 1, Table 1). The central player regulating inter-
+actome function is also an interactome member and isthe product of the essential ssbgene, the highly stable,
+tetrameric, SSB.
+1,3–7The link between SSB function and
+interactome regulation was revealed in the sequenceand structure of the protein as explained below.
+SSB monomers are divided into three regions each
+with a unique structure and function critical to the rolesthe protein plays in the cell (Figure 2a).
+8Region one,
+known as the core domain of the protein, contains one
+oligonucleotide-oligosaccharide binding fold (OB-fold;four per tetramer) that is responsible for binding tosingle-strand DNA (ssDNA), the linker of a nearby tetra-
+mer or the acidic phospholipids of the inner membrane
+(Figure 1, center).
+9–16Region 2, an intrinsically disor-
+dered linker or linker, contains three, conserved PXXP
+motifs whose role in protein function is to mediate
+protein –protein interactions.14Region 3, known as theacidic tip (or tip), is positioned at the C-terminus of the
+protein and functions as a regulator of the C-terminal tailand as a secondary binding site.
+It has long been thought that the eight-residue acidic
+tip or C-terminal peptide, mediated all SSB-protein inter-actions as its removal eliminates partner binding and, as
+a peptide, it can bind target proteins.
+17–28However,
+recent evidence suggests that this is no longer an accuratedepiction of SSB function. Hence, the linker/OB-fold
+model was proposed to explain how both SSB and the
+interactome, function.
+29
+This model provides a convincing rationale for mech-
+anism of action of SSB and its cross-talk with the inter-
+actome members containing OB-folds, using a
+mechanism similar to eukaryotic Src homology 3 (SH3)domains binding PXXP motifs to mediate target protein
+function.
+30,31This makes sense because SH3 domains are
+structurally almost identical to OB-folds and, there are
+FIGURE 1 The single-strand binding protein is the central player of the single-stranded DNA binding protein (SSB) interactome. Each
+protein is presented as a ribbon diagram generated in Chimera.135For SSB (PDB file 1EYG; colored cyan and red) the DNA in one-half of
+the tetramer is colored yellow. In the monomer on the top right, an SH3 domain (PDB file: 2KXC; purple) was structurally aligned usingTM-align to show both the alignment and the possible location of a linker position (PXXP ligand; green).
+9,136,137For the interactome
+partners, OB-folds are colored green, DNA where present, is shown in cyan. The following PDB files were used to generate this image:
+Exonuclease I (PDB file: 4JS5),95the extended SH3 domain is colored yellow according to Reference 138; RecO (3Q8D)27; PriA (6DGD)96;
+RecG (1GM5)71; Pol II (PDB file 3K5O)139; and RecJ (5F55)841758 BIANCO
+t h r e eP X X Pm o t i f si ne a c ho ft h el i n k e rr e g i o n so f
+SSB.15,32Consequently, when a linker from one of the
+tetramers binds to the OB-fold in another SSB, coopera-
+tive ssDNA-binding results, rapidly producing a stablecomplex that protects the ssDNA from damage or
+nuclease digestion.
+14In contrast, when an SSB linker
+binds to an OB-fold in an interactome partner, proteinsare loaded onto DNA, their functions are regulated,
+and, in some cases, this is accompanied by SSB dissocia-
+tion.
+14,29,33 –37
+Molecular modeling, recently validated by experi-
+ments, has further revealed that ssDNA and the PXXP-
+ligand can compete for binding to the OB-fold so that
+when SSB coats ssDNA, some OB-folds bind DNA, andsome, linker PXXP-motifs (Figure 1, center).
+14,15Thus,
+during cooperative ssDNA binding, the association of thefirst tetramer with DNA exposes its C-termini.20,38
+Exposed linkers bind to OB-folds in an adjacent tetramer,
+and this is repeated multiple times, creating an extensive
+network of linker/OB-fold interactions that protect thessDNA and require elevated concentrations of salt or
+powerful DNA motor proteins to disrupt them.
+15,29,39 –41
+Concurrently, the remaining exposed linkers within the
+SSB-ssDNA complex are also available to bind inter-
+actome partner OB-folds.33,34
+As linkers can bind to the SSB OB-folds, the primary
+role of the acidic tip is to regulate the structure of the C-terminal regions of the protein to prevent OB-fold bind-
+ing from happening until required.
+42This is critical as if
+linkers bind stably to SSB OB-folds in the absence ofssDNA, the protein may be inactivated and eliminate
+interactome function resulting in cell death. Thus, onceTABLE 1 The majority of
+interactome partners have OB-foldsProtein Has an OB-foldaAligns with SH3 domainbBinds SSBc
+SSB YesC,TYes YesL
+AlkB YesTYes YesL
+DinG NDdNo YesL
+DnaG YesC,TYes YesA
+Exonuclease I YesC,TYes YesA
+Exonuclease IX No No YesU
+Pol II YesC,TYes YesU
+Pol III ( α) YesTYes Yes
+Pol III ( χ) YesTWeakeYesA
+Pol III ( ψ) YesTWeakeYesA
+Pol IV PossibleTWeakeYesU
+PriA YesC,TYes YesL,A
+PriB YesC,TYes Yes
+PriC Unknown NPfYes
+RadD YesTYes Yes
+RecG YesC,TYes YesL
+RecJ YesC,TYes YesA
+RecO YesC,TYes YesL,A
+RecQ ND No YesA
+RNaseHI ND No YesA
+Topo III YesTWeakeYesU
+Uracil glycosylase PossibleTWeakeYesLo rA
+aThe presence of an OB-fold was either readily observable in the crystal structures (C) or detected by TM-
+align (T). OB-folds were identified in in 6 partners by Inoue et. al. (144).
+bTwo SH3 domains were used separately in TM-align to determine of OB-folds were present. These are Abl
+kinase and the insulin receptor tyrosine kinase substrate (IRTKS) SH3 domain.119,123These proteins bind
+ligands with either one or two PXXP motifs, respectively.
+cBinding between linker domain (L) or acidic tip (A) or unknown (U).
+dND, no OB-fold detected either by examination of the crystal structure or using TM-align.117
+eTM-alignment is weak and detects a possible SH3-fold.
+fNP, not possible.BIANCO 1759
+linker/OB-fold mediated, complex formation between
+SSB and a partner has occurred, the secondary function
+of the acidic tip, that is, binding to partners at sites distal
+to the OB-fold, is utilized.
+In both SSB-SSB and SSB-partner binding, OB-folds
+may function as scaffolds for the PXXP-containing linker,
+likely contributing to complex stability, as observed for c-Src.
+43The presence of multiple OB-folds in SSB and its
+interactome partners has led to the proposal that this
+family of proteins is the first family of OB-fold genome
+guardians discovered in prokaryotes.14,29,44 –46The SSB
+protein and the mechanism of interactome regulation are
+the topics of this review.1.1 |Organization of an SSB monomer
+SSB exists as a 75.4 kDa homo-tetramer that is the active
+form of the protein.47,48Each 18,844 Da monomer is
+comprised of three distinct regions with region one being
+easily separated from regions two and three by proteo-
+lytic cleavage (Figure 2a).4,8,15,38,49Region one, known as
+the core domain of the protein, is comprised of the N-terminal 115 amino acids and contains the information
+required for tetramer formation and, the OB-folds which
+bind in competitive fashion to ssDNA, the linker regionof the other SSB tetramers or, the acidic phospholipids of
+the inner membrane (Figure 1, center, 2A).
+14,15,38,49 –54
+FIGURE 2 The three regions of an single-stranded DNA binding protein (SSB) monomer each have critical roles in protein function.
+(a) A single monomer is divided by trypsin cleavage into the SSB core and tail. The tail is further divided into the intrinsically disordered
+linker (linker; blue) and acidic tip (tip; red). The conservation scores were previously published and generated using Praline and the pI ofeach region was calculated using the ProtParam tool of Expasy.
+15,55,140The sequence of the tail of SSB is shown in blue and red,
+corresponding to the linker and tip, respectively. The stars indicate charged residues with the position and sites and sizes of the inserts
+indicated in green (for details see Reference 15). Over-represented residues are highlighted on lines 1 and 2.15The positions of the PXXP
+motifs are shown in purple. The roles of each motif in partner binding are indicated.14,37,65(b) The N-terminal half of the linker can be
+modeled on collagen.15Collagen is colored in cyan, and the N-terminal half of the linker is presented in neutral coloring. (c) A possible
+structure of the SSB acidic tip. The C-terminal 14 residues were used as a tag for purification of myosin II.64The tip was retained during
+structure determination and only the C-terminal residues of PDB file 2JHR are shown with residues colored to enable visualization1760 BIANCO
+Not surprisingly, sequence analyses reveal that the first
+115 residues are well conserved, with a conservationscore of 6 out of 10 and the pI of this domain is 8.01.
+15,16
+The OB-fold is structurally almost identical to eukaryoticSH3 domains.
+32The importance of this point in SSB func-
+tion is elaborated upon in the section “The mechanism of
+linker/OB-fold binding ”.
+Region 2 of the SSB monomer is comprised of the
+intrinsically disordered linker.56It is part of the C-
+terminal one-third of the protein that was initially pro-
+posed to be non-essential, functioning as a spacer.8How-
+ever, it is now clear that this region of SSB is essential forcooperative ssDNA binding mediated via protein –protein
+interactions.
+14,29,56 –58Sequence analysis revealed that the
+overall sequence of the linker is poorly conserved with aconservation score of 2.44 out of 10 and a pI of 9.6.
+15The
+overall poor sequence conservation of the linker region is
+the result of 4, variably sized insertions (Figure 2a, greenarrows). When inserts are accounted for in alignments,
+the presence of 3, well-conserved PXXP motifs is rev-
+ealed.
+15These motifs are well-known for their ability to
+bind SH3 domains in eukaryotes.59,60Further, PXXP
+motifs have a high propensity for adopting a left-handed
+PPII helix, suggesting that this region plays a role inmediating protein –protein interactions.
+61Consistent, the
+PXXP motifs bind to OB-folds in either another SSB tetra-
+mer or interactome partner.14This is explained in more
+detail in the section “The mechanism of linker/OB-fold
+binding. ”
+In addition to the critical PXXP motifs, the linker
+sequence also has a high over-representation for Gly(27.8%), Gln (20.4%), Pro (16.7%) and, Ser (7.4%)
+(Figure 2a).
+15The presence and spacing of these over-
+represented residues in the N-terminal half of this regionending at amino acid 148, is consistent with the forma-tion of a polyproline II helix (PPII).
+62Modeling shows
+that this part of the linker can adopt a PPII helix that
+superimposes well with a collagen peptide, with anRMSD =0.8 Å for the backbone atoms (Figure 2b).
+15The
+similarity to collagen may provide a mechanism for
+the flexibility associated with the linker. Also, the over-represented residues are arranged in repeats similar to
+those found in spider silk, the X-type HMW subunit of
+wheat gluten and, the ω-protein.
+63These have been pro-
+posed to impart similar elastomeric properties to the
+linker of SSB.15Collectively, this flexibility may be neces-
+sary to bind partners of different sizes, present in differ-ent conditions and, to enable the linker to readily dockonto the partner OB-folds.
+Although region 3 or the acidic tip of each SSB mono-
+mer is only 8 residues in length, it is the most well-conserved part of the protein.
+1,15In an alignment of the
+C-terminal tails of 251 Proteobacterial SSB proteins,the conservation score for the tip was 9.33 out of 10 and
+this region has a pI of 3.32 (Figure 2a).15The low pI is
+consistent with this region containing 67% of the charged
+residues in the C-terminal one-third of the protein and
+this plays a role in SSB regulation.42One possible struc-
+ture of the C-terminal 14 residues of Escherichia coli SSB
+was revealed in the structure of myosin II where it was
+used a purification tag.64In this structure, the tip does
+not contact the N-terminal SH3 domain of myosin II and
+is predominantly β-turn with three of the four Asp resi-
+dues on one side of the structure and the terminal Phepositioned in a planar configuration at the C-terminus(Figure 2c). It had long been thought that the tip medi-
+ated all SSB-protein interactions as its removal eliminates
+partner binding and, as a peptide, it can bind target pro-teins sometimes in multiple locations.
+17–28However, this
+is no longer an accurate depiction of SSB protein func-
+tion. Instead, this region of the protein functions as a reg-ulator of SSB and as a secondary binding site as
+explained in subsequent sections.
+1.2 |The linker is the primary protein –
+protein interaction domain of SSB
+In 2017, the Bianco group showed using linker-swapping
+and deletion mutants, that the intrinsically disordered
+linker of SSB was required for binding to RecG and RecO,and that the tip was likely not involved.
+29This follows
+because each mutant SSB used in this study retained a
+functional acidic tip but was defective for partner bind-ing. It was concluded that the acidic tip cannot be
+responsible for mediating protein –protein interactions.
+Consequently, the linker/OB-fold model of interac-
+tions was proposed as being responsible for mediatingSSB-partner binding, thereby linking the ssDNA and
+partner binding activities of the protein together for the
+first time.
+29This model proposed that for SSB-SSB inter-
+actions, binding of the linker of one tetramer to the OB-
+fold in another tetramer, results in cooperative ssDNA-
+binding, producing a stable complex that rapidly protectsthe DNA from damage or nuclease digestion.
+14It also
+proposed that, when SSB linker-binding to an OB-fold in
+interactome partners occurs, proteins are loaded ontoDNA, their functions regulated, and, in some cases, bind-
+ing results in SSB dissociation.
+14,29,33 –37
+The linker/OB-fold model was corroborated by the
+Huang and Varshney groups working with PriA and ura-cil DNA glycosylase, respectively.
+29,65,66Again, linker-
+swapping studies were done, and importantly, a species-
+specific acidic tip was present in each chimeric SSB pro-tein tested. Also, Huang found that linker length may
+also play a role in the ability of SSB to bind partnerBIANCO 1761
+proteins. Recently, the Anindya group demonstrated that
+the acidic tip is dispensable for binding to the DNA alkyl-ation repair protein AlkB and instead, binding required
+residues 152 –169 of the linker.
+37Collectively, these stud-
+ies show that the linker is responsible for mediatingprotein –protein interactions.
+1.3 |The mechanism of linker/OB-fold
+binding
+Analysis of the linker sequence revealed the presence of
+the three conserved PXXP motifs thereby providing the
+first insight into the mechanism of action of linker/OB-
+fold binding (Figure 2a).15PXXP motifs are well known
+in eukaryotic systems as they are the ligand for SH3
+domains.59,60,67The importance of this result for inter-
+actome function became clear when it was realized thatSH3 domains are structurally almost identical to OB-
+folds.
+32When these domains are superimposed, they dif-
+fer by less than 2 Å for the β-strands (Figure 3a-c).29,32Furthermore, SH3 domains bind PXXP-containing
+ligands in a pocket sandwiched between the RT-Src(RT) and nSrc loops (Figure 3d,e).
+68Binding can occur in
+one of the two orientations with either the C-terminus
+proximal to the 3 10-helix as seen for Abl kinase or, the N-
+terminus of the ligand proximal to this helix as observed
+in the GADS adapter protein.67,69,70For Abl kinase, the
+peptide ligand binds over its entire length and interactswith three major sites on the SH3 domain using both
+hydrogen-bonding and van der Waals contacts
+(Figure 3d). Residues 4 –10 of the peptide used to deter-
+mine the co-crystal structure, adopt the conformation ofa left-handed polyproline helix type II. In contrast, in
+addition to being bound in the opposite orientation to
+Abl kinase, ligand binding by the GADS adapter proteinis unique among SH3 domains as the peptide has a 3
+10-
+helix in its approximate center (Figure 3e). This helix
+positions the two proline residues towards the face of theSH3 domain to facilitate binding.
+The binding of PXXP ligands by SH3 domains and the
+structural similarity of these domains to OB-folds
+FIGURE 3 SH3 domains and OB-folds are structurally almost identical. Images were generated using Chimera with helices colored red
+andβ-sheets in purple. The labeling of strands, helices, and loops in panels A and B is taken from Reference 32. Loop nomenclature is from
+the Src protein (RT-Src and nSrc, respectively)/68The RT-loop connects β2 and 3 while the nSrc loop connects β-strands 1 and 2. (a) The SH3
+domain shown is from the insulin receptor tyrosine kinase substrate (IRTKS) SH3 domain (PDB file:2KXC).137(b) The OB-fold is from the
+T. maritima RecG (PDB file:1GM5).71(c) Structural alignment of the SH3 domain and with the RecG OB-fold. The alignment was done
+using TM-align.136(d) and (e) SH3 domains can bind PXXP ligands in opposite orientations. The structures are from PDB files 1ABO and
+2DON, respectively70,1411762 BIANCO
+suggested a mechanism for SSB-partner interactions.15,29
+First, the partner should contain an OB-fold, and second,
+one or more PXXP motifs in the linker of SSB should
+mediate binding to that OB-fold. The importance of the
+partner OB-fold in SSB binding was demonstratedin vivo. First, deletion of OB-folds in PriA, RecG, and
+RecO eliminated SSB binding.
+14Second, mutation of sin-
+gle residues in the RecG OB-fold predicted to be involvedin forming the linker/OB-fold interface, reduced SSB
+binding 10- to 20-fold (Figure 4a,b; residues F75, M80,
+R95 and, F97). These residues are also part of the bindingsite of the helicase for the leading strand arm of thefork.
+71Notably, F97 mutants are defective for both SSB
+and DNA binding, consistent with the model that that
+these binding sites overlap and that DNA and SSB bind-ing is competitive.
+33,72,73
+Next, it was shown that SSB uses PXXP motifs I and
+III to bind RecG, as when these are mutated either by dis-rupting PXXP spacing or by altering the structure when
+Pro is replaced by Ala, binding is reduced 20-fold
+(Figure 4c,d). Linker swapping experiments show thateither PXXP motif I, II, or both, are required for stimula-
+tion of the ATPase activity of Klebsiella pneumoniae PriA
+by its cognate SSB.
+65Finally, the binding site of E. coli
+AlkB was mapped to a region spanning motifs II and IIIof the E. coli SSB linker.37Finally, cooperative ssDNA
+binding by SSB is eliminated when the proline spacing ofPXXP motif I is interrupted.
+14This result makes sense as
+SSB-SSB interactions, mediated by linker/OB-fold bind-
+ing, are required for cooperative ssDNA binding.
+Eukaryotic PXXP motifs have been classified into dif-
+ferent classes.74Similarly, the SSB PXXP motifs may be
+classified into two of these classes. Motif I represents aunique class (WGQPxxPQG) whereas motifs II and III
+more closely resemble Class I ( +xxPXXP; for SSB -
+QxRPxxP and QxxPxxP, respectively).
+14,15Based on their
+sequence contexts, which together with the uniquesequences of each partner OB-fold, enables one SSB
+linker to bind to multiple partners. The utilization of dif-
+ferent motifs for binding to different partners results in aunique protein –protein interface in each case.
+1.4 |The acidic tip can bind to
+interactome partners
+Shortly after its discovery, SSB was shown to interact with
+DNA polymerase II.75It was later shown to bind to Exonu-
+clease I and protein n (PriB).76,77Using SSB-affinity chro-
+matography, three additional, but unidentified partners of
+FIGURE 4 The single-stranded DNA binding protein (SSB)-partner interface is comprised of the partner OB-fold on one side and the
+PXXP motifs of the linker on the other. (a) and (b) Residues of the RecG OB-fold comprise one side of the SSB-RecG interface. (a) Location
+of residues in the RecG OB-fold that were predicted to be involved in SSB binding. The DNA is colored in light grey. (b) Analysis of SDS-
+PAGE gels from in vivo binding studies.14Residues are colored according to their importance in SSB binding: green (unimportant); red
+(critical) and orange (intermediate). (c) and (d) The PXXP motifs comprise one side of the SSB-RecG interface. (c) Location of mutations in
+the PXXP motifs. (d) Analysis of SDS-PAGE gels of in vivo binding studies14BIANCO 1763
+MW r=25, 32 and, 36 kDa were shown to bind.78Several
+years later, the McHenry and O'Donnell groups showedthat SSB bound to the χψ-heterodimer and, separately to
+theψ-subunit of DNA polymerase III and, that a peptide
+comprising the C-terminal 15 residues was sufficient forbinding to psi.
+21,79Also, binding was impaired when a
+mutant in the acidic tip, SSB113 (P176S), was used.
+Later, the Sandigursky and Genshcel groups confirmedSSB-ExoI binding in vivo and in vitro.
+80,81Further,
+Genshcel demonstrated that binding to Exonuclease I in
+the absence of DNA was eliminated when either theSSB113 (P176S), SSB F177C, or SSB ΔC10 (lacks the C-
+terminal 10 residues) mutant proteins were used. In con-
+trast, SSB G15D (an OB-fold mutant) retained binding
+ability. Finally, the binding of Exo I to SSB was inhibitedby a 9-residue peptide corresponding to the acidic tip.
+Next binding of SSB to the χ-subunit only of DNA poly-
+merase III was shown and, when a mutant lacking theC-terminal 26 residues of SSB (SSB ΔC26) was used to
+replace wild type, binding was lost.
+22Subsequent studies
+re-confirmed binding to Exonuclease I and demonstratedbinding to the RecQ DNA helicase.
+26,82Binding was
+studied using full-length SSB and RecQ and, C-terminal
+peptides and full-length partners. It was also shown thatbinding was eliminated when a mutant SSB protein lac-king only the acidic tip was used (SSB ΔC8). Additional
+studies have adopted the peptide-partner approach to
+demonstrate binding to RecO, PriA and, the χ-subunit of
+DNA polymerase III.
+17,20,27Separate studies used
+SSBΔC8 to show the importance of the tip in partner
+binding in vitro and in vivo.23,24,83However, a recent
+study shows that the use of SSB tip mutant proteins is
+problematic as changing a single residue in the tip can
+have a significant impact on the structure of the C-terminal region of SSB, as shown for SSB 113 (P176S).
+14
+One explanation of the effects of tip mutations on SSB
+function is presented in the section “The acidic tip is not
+the primary protein-protein interaction domain of SSB. ”
+Further evidence showing that the tip can form a
+complex with a partner came from several structural
+studies using tip peptides and a full-length partner(Figure 5).
+19,25–27,84,85Surprisingly, and even though the
+sequence of the acidic tip is almost invariant, the primary
+amino acid sequence of the binding pockets is not wellconserved. Instead, the structural features of the binding
+pocket are conserved so that the terminal F177 sits in the
+base of a hydrophobic pocket and is flanked by basic resi-dues that are proposed to contact the acidic residues ofthe tip. However, in all structures to date, only the last
+3 or 4 residues are visible (either DIPF or IPF; Figure 5,
+insets).
+84For Exonuclease I, the structure showed two
+binding sites for the acidic tip, with one of these serving
+as the biologically relevant site.26It is important to note that the binding sites on part-
+ners for the acidic tip are positioned 22 –60 Å from the
+partner OB-fold where DNA binding occurs (Figure 5).68
+Consequently, the current peptide-partner structures donot provide a satisfactory explanation for the mechanismof the functional interaction of SSB with a partner.
+Instead, it is the binding of the linker of SSB to the part-
+ner OB-fold that likely results in the functional interac-tion. For the DNA helicases PriA and RecG, this has
+been called remodeling and takes place during the load-
+ing of these enzymes onto DNA and includes enhancingtheir ATPase and helicase activities.
+33,34For Exo I, Pol II,
+and RecJ this results in regulation of nuclease activ-
+ity.23,65,76,83,86For RecO, likely the binding of its OB-fold
+with the linker of ssDNA-bound SSB, results in tetramerdissociation.
+35,36
+1.5 |The acidic tip is a regulator of SSB
+function
+Multiple studies have shown that the acidic tip can bind to
+partner proteins (see the preceding). These studies were
+done using isolated tip or C-terminal region peptides andan intact partner. However, in the absence of four coredomains, these isolated peptides may function differently,
+as explained below. The structural studies show that the
+peptide binds in a pocket on the partner with the terminalF177 positioned in the base of the pocket (Figure 5,
+insets).
+19,25–27,84,85It was proposed that the F177-pocket
+interaction is essential and supported by the association ofthe charged residues in the tip with appropriately posi-
+tioned residues in the partner pocket.
+This model was tested using full-length, mutant SSB
+proteins and full-length RecG as the partner. First, an extraresidue was added after the terminal Phe to create SSB
+S178 and separately, SSB A178. Second, SSB ΔC8 was used
+and third, the aspartic acid residues were changed to ala-nine to create SSB D4A4. These four mutants do not bind
+RecG in the absence of DNA whereas wild type can do so
+(Figure 6a).
+14The simple, but the incorrect interpretation
+of these results, is that the acidic tip is the primary binding
+site and, when it is mutated, binding is eliminated.
+However, when stoichiometric ssDNA was bound to
+each SSB first, the level of RecG binding increased
+1,417-fold for SSB ΔC8; 400- to 460-fold for SSB S- and A-
+178, respectively and 900-fold for SSB D4A4. The increasein binding is not due to RecG binding to ssDNA as assayswere done in 600 mM NaCl, a condition in which RecG-
+DNA binding is inhibited.
+23,87For the first three mutants,
+which have a site size comparable to wild type, stoichio-metric ssDNA restored SSB-RecG binding to wild type
+levels (Figure 6a).
+14In contrast, for the quadruple1764 BIANCO
+aspartic acid mutant, binding was restored to only 72% of
+wild type, as the amount of DNA added was sub-stoichio-
+metric. This follows because SSB D4A4 has a four-fold
+larger site size, up from 9 ± 0.6 for wild type to 35± 0.3 nt/monomer.
+14The restoration of RecG binding in
+the presence of ssDNA for these mutants demonstrates
+that the acidic tip is not essential for partner bindingwhen this sequence is present in the context of the full-
+length SSB protein. Identical results were observed with
+the recombination mediator RecO. Here, SSB ΔC8 bound
+to immobilized DNA on beads, bound to RecO in the
+absence and presence of 200mM NaCl, with an efficiency
+comparable to wild type.
+28If the acidic tip is the primary
+binding site as has long been thought, then these mutantsshould not bind RecG or RecO, regardless of the presence
+of DNA. Instead, ssDNA binding to SSB OB-folds exposed
+the linkers of these mutant proteins, and the linkersbound to the RecG and separately, RecO OB-folds using
+their PXXP motifs. Therefore, as SSB ΔC8 binds to RecOand separately RecG in the presence of ssDNA, the acidic
+tip is not required for partner binding in the context of
+the SSB protein.
+14,28
+Consequently, the primary role of the acidic tip is as a
+regulator of protein function as first proposed by the
+Dixon group.42In this role, the tip uses long-range elec-
+trostatic effects provided by the four aspartic acid resi-dues to regulate the activity of SSB. One aspect of this
+regulation is to prevent the linker from stably binding to
+the OB-fold of SSB in the absence of ssDNA. This is acritical function as if linker/OB-fold binding were to take
+place in vivo, it would likely be a lethal event as SSB
+would be inactivated and be defective for partner bind-ing. The ability of the acidic tip to prevent the linker frombinding the OB-fold of SSB was shown recently using
+GFP-SSB tail fusions.
+14Here, wild type and separately,
+SSBΔC8 C-terminal tails were fused to GFP, which is a
+β-barrel protein and does not contain an OB-fold.88Bind-
+ing to the core region of SSB was only observed for the
+FIGURE 5 The locations of single-stranded DNA binding protein (SSB) acidic tip binding pockets on partners are distant from the OB-
+folds. The structures of four tip-partner complexes are shown with the OB-folds colored in green and DNA in cyan. The tip peptides arepresented as surfaces and are colored blue. The numbers associated with each panel are the distances in Angstroms from F177 of the peptide
+in its binding pocket to the RT-loop of the OB-fold in each protein. Loop nomenclature is from the Src protein (RT, RT-Src and nSrc,
+respectively).
+68Insets: the tip binding pockets in each of the partner proteins with surfaces colored according to charge. PDB files used to
+create this image were (a) PriA (6DGD and 4NL8)25,96; (b) Exo I (3C94)26; (c) RecO (3Q8D)27and (d, RecJ (5F56)84BIANCO 1765
+mutant tail ( ΔC8) GFP-fusion as the wild-type acidic tip
+sequence prevented OB-fold binding.
+The second aspect of tip regulation is to influence the
+overall structure of the C-terminal tail so that SSB, OB-foldbinding is minimized. Consistent, this region of SSB is very
+sensitive to even single amin o acid mutations as shown by
+circular dichroism (CD).
+89For the wild-type peptide com-
+prised of the C-terminal 30 residues of SSB, the CD spectrum
+exhibits negative peaks at 200 and 230 nm, consistent with
+the presence of either a partially unfolded poly- L-proline type
+II (PPII) helix or random coil and, α-helical structure, respec-
+tively (Figure 6b).90The mutation of P176 to S in SSB113
+eliminated the α-helical content and caused a significant
+reduction in the negative peak at 200 nm. The deletion ofthe acidic tip eliminated virtually all secondary structures in
+the peptide.
+90Structural changes in CD spectra were also
+obtained when comparing the WT and SSB ΔC8 proteins.
+Collectively these results show the acidic tip regulates the
+structure of the SSB tail consistent with Dixon's model.42These results also provide insight into the partner
+binding defects observed for SSB tail mutants, either sub-
+stitutions (SSB P176S; F177C), additions (S/A178), or
+deletions (SSB ΔC8, 10 or 26). These effects of these
+mutations are usually, but incorrectly, interpreted as the
+acidic tip being the primary binding site so that when
+mutated, partner binding is lost. However, an alternativemodel which provides a more convincing rationale,
+supported by the data discussed above, is the following.
+Mutations in the acidic tip of the full-length SSB proteinresult in dramatic changes in the overall structure of the
+C-terminal tail resulting in the linker being sequestered
+by the SSB OB-fold so that in the absence of ssDNA, part-ner binding is prevented (Figure 6c,d).
+14This is consis-
+tent with a loss in the regulation of SSB function.42When
+ssDNA is added, it binds to the SSB OB-folds, displacing
+the linkers so that they can bind to partner proteins. Thisis observed for both the DNA helicase RecG and the
+recombination mediator RecO.
+FIGURE 6 The acidic tip is not required for partner binding but instead regulates SSB tail structure. (a) The results from bead binding
+assays are shown.14In these assays, his-SSB proteins were bound to magnetic beads and then either RecG added (red bars) or, in separate
+experiments poly d(T) followed by RecG (blue bars). The values below each column title are the intrinsic site sizes for each proteindetermined in intrinsic fluorescence quenching experiments. (b) Mutations in the acidic tip affect the structure of the tail of SSB. Circular
+dichroism of peptides corresponding to the C-terminal 30 peptides of SSB was done.
+14Only the last 13 (Wt and SSB113) or 5 residues
+(SSBΔC8) are shown in the graph. Arrow, peak corresponding to α-helical content. (c) Schematic showing RecG binding to SSB in the
+absence of ssDNA. Here binding to exposed linkers occurs. When ssDNA is added, additional RecG can bind, possibly because a linker
+previously and transiently bound to an OB-fold, becomes exposed (subunit in the top right of the SSB tetramer). This may contribute to the
+20% increase in RecG binding observed for WtSSB in panel B. (d) When acidic tips are mutated, regulation of the tail of SSB is lost, enablinglinkers to bind to SSB OB-folds. These linkers cannot bind RecG but when ssDNA is added, it binds to SSB OB-folds with high affinity,
+outcompeting the linkers. Once free of the OB-folds, the linkers bind RecG1766 BIANCO
+The impact of the elimination of the long-range elec-
+trostatic effects in the acidic tip on the tail and thus con-trol of SSB function was revealed in studies with SSB
+D4A4.
+14In the context of the full-length SSB protein, the
+absence of the electrostatic charges in the C-terminal tailof this mutant results in an increase in pI of this region
+from 3.9 ± 0.5 to 6.2 ± 0.5 and for the entire protein,
+5.41 ± 0.09 to 8.95 ± 0.10.
+91The effect of the loss of 67%
+of the electrostatic charges in the tail region is the bind-
+ing of the linker to the SSB OB-fold, thus explaining the
+four-fold increase in the intrinsic site size of the protein.Because the linker is sequestered by the OB-fold, the pro-tein cannot bind RecG in the absence of DNA. In con-
+trast, when ssDNA is added, it binds to the OB-folds
+likely with greater affinity than the linkers(K
+d,ssDNA =1.45/C210/C07–4.04/C210/C09M).92,93This dis-
+places the linkers which then bind to the RecG OB-fold.
+This makes sense as the binding of ssDNA to SSB isknown to induce a conformational change in the protein
+that exposes the tail regions of each monomer. This
+change is manifested as an increase in proteolytic cleav-age of the tails as well as an increase in the affinity of
+SSB for partner proteins.
+20,38,94For wild type SSB, linker/
+OB-fold binding does occur albeit transiently and thismay explain the 20% increase in RecG binding whenssDNA is added to binding assays (Figure 6a,c).
+The loss of the acidic tip reveals insight into the third
+aspect of the regulation of SSB function by this region ofthe protein. That is, it controls the affinity of SSB for
+ssDNA. The absence of the acidic tip results in a protein
+(SSBΔC8) that binds ssDNA with higher affinity than wild
+type.
+57Consequently, it is more difficult for the RecG DNA
+helicase to displace SSB ΔC8, requiring 25% longer than
+wild type.94This aspect of regulation is important for SSB
+function as while it must bind to ssDNA with high affinity,it must also at the same time, be able to vacate the DNA so
+that downstream DNA process ing can occur to restore the
+structure of duplex DNA. This regulation of the C-terminaltail region is provided by the acidic tip using a mechanism
+that is yet to be revealed. The linker is involved as when it
+is absent, the SSB core with only an acidic tip (SSB
+125)b i n d s
+with even greater affinity to ssDNA so that RecA and sepa-
+rately, RecG have great difficulty in displacing this
+mutant.94For RecG, it takes 14-fold longer to displace
+SSB 125than wild type (32 ± 7 vs. 2.3 ± 0.6 sec, respectively).
+1.6 |OB-folds are present in many SSB
+interactome members
+For the linker/OB-fold model to serve as the primary
+mechanism of interactome regulation by SSB, inter-
+actome partners should contain an OB-fold to bind to thePXXP motifs of the linker. For the six partners shown in
+Figure 1, the OB-folds are readily visible (highlightedin dark green). For Exonuclease I, it is in the approximate
+center of the extended SH3 domain; for PriA, RecG, and
+RecO the OB-fold is positioned the N-terminus; for RecJit is in the center of the structure and for Pol II, it is the
+N-terminal domain and is comprised on non-contiguous
+residues (2 –38 and 122 –147, respectively). Analysis of the
+remaining structures of interactome partners, reveals that
+as many as 9 additional partners likely contain an OB-
+fold (Table 1). Thus 15 of 20 interactome members con-tain an OB-fold. Furthermore, for Exonuclease I, PriA,RecG, and RecJ, the OB-folds are involved in DNA bind-
+ing (Figure 1).
+71,84,95,96This suggests that linkers and
+ssDNA may compete for binding to OB-folds.
+For SSB, the competition for OB-fold binding between
+ssDNA and the linker was first predicted using model-
+ing.15,72Here structural alignments of SH3 domains
+bound to peptide ligands with an OB-fold of SSB show
+that the binding sites of a PXXP ligand and ssDNA over-
+lap (Figure 1, SSB structure in the center; ssDNA in yel-low and ligand in green; SH3 domain in purple). The
+competition between the linker and ssDNA binding to
+the OB-folds of SSB was demonstrated experimentallyusing the tip mutant, SSB D4A4.
+14For this mutant, long-
+range electrostatic interactions are absent which then
+allows the SSB OB-folds to sequester the linker. The
+effect of linker sequestration by the OB-fold is observedas a four-fold increase in site-size. The consequence of
+this effect is a loss of RecG binding in the absence
+of ssDNA (Figure 6a,d). In contrast, when ssDNA is pre-sent to compete with linkers for OB-fold binding, the
+DNA binds with higher affinity to the OB-fold, resulting
+in linker displacement followed by binding to the OB-foldin RecG.
+Linker-ssDNA competition was also shown experi-
+mentally for RecG during helicase loading onto forks by
+SSB, and later for PriA. Here the binding of the linker tothe helicase OB-fold results in remodeling of each
+enzyme.
+33,34For RecG, the SSB-remodeled enzyme binds
+only to the duplex DNA of the parental arm of the fork.The only way for RecG to bind to the DNA is by using its
+helicase domains.
+71,97This follows because the wedge
+domain, which is required for fork binding, is bound tothe linker instead during remodeling. For PriA, linker/
+OB-fold binding enables the helicase to bind dsDNA
+directly. This is a significant change induced in the heli-case as in the absence of SSB, PriA does not bind duplexDNA.
+34,98,99
+It is conceivable that when the PXXP motifs mediate
+linker binding to an OB-fold in the interactome partner,this could position the acidic tip of that linker into its
+binding pocket positioned nearby. However, analysis ofBIANCO 1767
+the available crystal structures reveals that tip binding
+pockets are positioned 22 –60 Å away from the RT-loop of
+each partner OB-fold (Figure 5).68This indicates that for
+the linker bound to the OB-fold, its acidic tip is not
+involved in partner binding. However, as the tip bindspartner proteins and, as the binding pockets are distal to
+the OB-fold where ssDNA binding takes occurs, it is con-
+ceivable that the tip from a second monomer within thetetramer also functions as a secondary binding site. Here
+the initial binding requires interactions between the
+linker of one subunit of the tetramer and the OB-fold ofthe partner. The tip from the tail of a second SSB mono-mer binds to its pocket position distal to the OB-fold, pos-
+sibly stabilizing the complex. This would result in a
+stoichiometry of 2 SSB monomers per partner as shownfor ExoI, Pol II, and RecG.
+23,76
+1.7 |Linker OB-fold interactions explain
+cooperative ssDNA binding by SSB
+SSB was originally identified as a DNA unwinding pro-
+tein because of its ability to passively unwind or destabi-
+lize the DNA double helix.100When the gene was
+discovered, the term SSB was proposed to indicate thatthe protein could bind both ssDNA and RNA.
+101–103Once
+it was known that SSB could bind ssDNA, studies were
+targeted at understanding the mechanism of binding.75
+Very early on it was shown that binding to ssDNA was
+cooperative and that binding resulted in shortening of
+the DNA length.104Solution binding studies showed that
+SSB could wrap ssDNA around itself and this was later
+visualized by electron microscopy thereby explaining the
+decrease in ssDNA length associated with proteinbinding.
+105,106
+Early studies to identify the DNA binding domain of
+SSB used a combination of mutagenesis, protein-DNA
+crosslinking, and proteolysis to show that the N-terminal115 residues contained the DNA binding site (reviewed
+in Reference 4). Several years later the analysis of the
+crystal structure of a tetramer comprised of N-terminalcore monomers revealed the presence of four OB-folds
+(one per subunit in the tetramer). These OB-folds were
+intimately associated with the ssDNA which wrappedaround the tetramer using an extensive network of elec-
+trostatic and base-stacking interactions with the pho-
+sphodiester backbone and nucleotide bases, respectively(Figure 1; SSB center).
+9,53This structure explained how
+the binding of SSB to ssDNA resulted in shortening of
+the overall length of the DNA.104–106
+However, SSB tetramers bind to ssDNA coopera-
+tively.12,104,106In electron microscopy images, SSB tetra-
+mers were observed to be unevenly distributed on thessDNA, with sections of the nucleic acid-containing clus-
+ters of protein, bound in juxtaposition and others lackingSSB altogether. This facet of SSB protein behavior can be
+expressed by ϖ, the cooperativity parameter, which
+ranges from 50 to 10
+5.39,104,107
+Implicit in cooperative binding, is the interaction
+between tetramers. The mechanism for these interactions
+initially remained elusive, although several models wereproposed. The first model invoked a tetramer-tetramer
+interface while the second proposed that the linkers wrap
+around each other to enable the acidic tips to join tetra-mers together by binding to SSB core regions.
+9,56The
+tetramer-tetramer interface model has not been con-
+firmed, there are no data available to support the linker-
+wrapping model and, a biologically relevant binding sitefor the acidic tip on SSB has not been identified.
+However, at a non-physiological pH of 3.4, where SSB
+dissociates into monomers, the acidic tip can make intra-molecular contacts with Valines 29 and 58 of the OB-
+fold.
+108The biological relevance of these interactions is
+unclear as SSB was monomeric and thus inactive and,the optimized structural model has the C-terminus of the
+tip pointing away from the OB-fold in an orientation
+opposite to that observed in tip-partner crystal structures.Furthermore, in a subsequent study done at pH 7.6where SSB is a tetramer, it was found that the affinity of
+tip peptides for SSB ranged between 13 ± 3 and 19
+± 5 mM.
+42As the binding is so weak, the majority of
+acidic tips are unbound even in the absence of ssDNA,
+leading the authors to propose that the tip does not bind
+the SSB OB-fold but instead, uses long-range electrostaticeffects to regulate SSB activity. Thus, the acidic tip is
+likely not involved in mediating SSB-SSB interactions
+required for cooperative ssDNA binding.
+The Lohman group found the first evidence for the
+role of the linker in cooperative ssDNA by showing that
+linker deletions impaired cooperativity.
+56They also dem-
+onstrated that SSB-SSB interactions can be mediated bylinker regions.
+109The Bianco group extended these stud-
+ies and revealed that the linker/OB-fold model provides a
+convincing explanation for the mechanism of cooperativessDNA binding by SSB that has subsequently been vali-
+dated experimentally.
+14,15In this model, tetramer-
+tetramer interactions are provided by PXXP motifs in thelinker(s) from one SSB tetramer binding to the OB-fold of
+an adjacent tetramer (Figure 7a; SSB
+35mode).29This is
+repeated multiple times, creating an extensive network oflinker/OB-fold interactions.
+14,94Not surprisingly, inser-
+tion of an asparagine residue in the center of PXXP
+motif I, which increases the spacing between the pro-
+lines, eliminates cooperative binding to ssDNA.14These
+effects were observed in 10 mM NaCl where the SSB 35
+binding mode predominates.110,111The binding of linkers1768 BIANCO
+to OB-folds would position adjacent tetramers closer
+together so that bridge-interface residues, Y22 and K73,can be brought into proximity.112This could further
+enhance cooperative binding mediated by the initiallinker/OB-fold interactions.
+In addition to stimulating ssDNA binding, linker/OB-
+fold interactions are also required for efficient displace-ment of SSB from DNA. Deletion of a region of the linker
+comprising PXXP motifs II and III increases the lag time
+for displacement by RecG 1.4-fold, whereas deletion of aregion comprising all three motifs increases the lag time
+14-fold.
+94Similar results were observed for displacement
+by RecA during in vitro DNA strand exchange.94These
+results point to a role for the linker in SSB dissociationbut the PXXP motifs are yet to be directly implicated in
+this process.
+1.8 |A role for linker/OB-fold
+interactions in the dynamic behaviorof SSB
+SSB exists as a tetramer and binds tightly and coopera-
+tively to ssDNA (K d=1.45x10/C07to 4.04 x 10/C09M),
+requiring as high as 2 M salt for dissocia-
+tion.38,47,92,93,100,113Depending on solution conditions
+such as varying [NaCl], temperature, pH, and appliedforce, each tetramer can occlude 8 –65 nt of ssDNA, and
+the protein can also form octamers via long-range intra-
+molecular interactions between non-nearest neighborSSB tetramers.
+11,35,39,106,114 –116Importantly, SSB does not
+form a static complex on DNA.
+Instead, single-molecule studies have shown that
+SSB-ssDNA complexes are dynamic with binding modes
+interconverting in a salt-dependent manner; that the pro-
+tein can slide on DNA and is undergoes intersegmenttransfer (Figure 7b).
+117–120Recently, it was found that
+ssDNA-binding by SSB is biphasic, with the initial ssDNA
+wrapping events being followed by unwrapping events as
+protein density on the DNA increases (Figure 7c). Theunwrapping energy cost increases as more ssDNA is suc-
+cessively unraveled.
+11,116This dynamic behavior is intrin-
+sic to SSB function as the protein must bindcooperatively to ssDNA to rapidly protect it.
+121Equally
+important, SSB must provide access to other proteins,
+either by disengaging from the DNA or, by rearrangingon the nucleic acid lattice first before finally disengaging.
+The mechanism of the dynamic behavior of SSB can
+be explained by the linker/OB-fold model. For example,in the SSB
+8to SSB 35modes, the commonly held view is
+that not all OB-folds are bound to ssDNA (Figure 7a).
+Cooperative ssDNA binding is observed when multiple
+linker/OB-fold interactions form in the SSB 35mode.111
+Consistent, mutations in PXXP motif I eliminate coopera-
+tive ssDNA binding.14As the [NaCl] increases, SSB
+FIGURE 7 The linker/OB-fold model can explain the dynamic
+behavior of SSB. (a) Single-stranded DNA binding protein (SSB) caninterconvert between ssDNA binding modes, defined by the number
+of nucleotides of ssDNA occluded by a tetramer. Here only two modes
+are shown: SSB
+35, where cooperative binding occurs involving the
+linkers of SSB 1 and 2, binding to the OB-folds of SSB 10and 20,
+respectively. For the SSB 65mode, cooperative ssDNA binding does not
+occur, and linkers do not bind nearby OB-folds. (b) SSB protomersc a ns l i d eo ns s D N A .I nt h ei n i t i a lc o m p l e xs h o w ni nS S B
+35mode,
+linkers of the left SSB bind to the OB-folds of the central SSB
+tetramer. For sliding to occur, these l inker/OB-fold interactions must
+disengage so that this tetramer can slide to the position on the right.
+The sliding tetramer is colored as a faded complex to show the
+transition from the initial to the final position (bright colors). (c) SSBcomplexes undergo unwrapping and wrapping transitions during
+complex assembly. Tetramers are colored as faded complexes
+(wrapped) to show the transition from wrapped to unwrappedcomplexes (SSB
+35mode; bright colors). In the ssDNA-unwrapped
+state, linkers can bind to exposed OB-folds as protein density on the
+ssDNA increases. This figure was adapted from Reference 142BIANCO 1769
+converts from the SSB 35to the SSB 65mode, where it is
+thought that all OB-folds are bound to ssDNA and coop-erative ssDNA binding is reduced.
+39,111,122Under these
+conditions, linker/OB-fold interactions may either not
+occur or are reduced in number. When potassium gluta-mate replaced NaCl, cooperativity is still observed at ele-
+vated salt where the SSB
+65mode formed and required
+functional linkers.109To explain their data, Kozlov et al.
+proposed a model whereby linker-linker interactions
+position acidic tips to bind OB-folds. However, there is
+no evidence of linker-linker interactions and PXXPmotifs are not known to bind to each other. Instead, thepreferred target for a PXXP motif is either an OB-fold or
+an SH3 domain.
+14,59Thus, under these conditions, it is
+more likely that linker/OB-fold interactions mediatecooperative binding.
+Linker/OB-fold binding likely facilitates the recruit-
+ment of additional tetramers to ssDNA and once bound,the juxtaposed SSB molecules could form a compact com-
+plex on the ssDNA. For SSB to slide away from this
+complex, linkers would have to disengage from the OB-folds (Figure 7b). In similar fashion, the sliding of a tetra-
+mer towards this complex could be facilitated by linkers
+reaching out and contacting the lone SSB, resulting inreeling in of this tetramer into the complex.
+The wrapping/unwrapping events that occur as the
+protein density on ssDNA increases may also be coupled
+to linker/OB-fold interactions (Figure 7c).
+11,116At low
+density, the chance of finding a partner is low and ssDNA
+wrapping may occur. Once protein density increases,
+DNA unwrapping coupled to linker/OB-fold binding maythen take place. Finally, in addition to mediating interac-
+tions between juxtaposed tetramers, linker/OB-fold bind-
+ing may also be responsible for mediating long-rangeintramolecular interactions between non-nearest neigh-bor SSB tetramers that result in compacted SSB-ssDNA
+structures.
+35
+1.9 |The SSB OB-folds play additional
+roles in interactome regulation
+In exponentially growing cells, there are 2,058 SSB tetra-
+mers per cell.121There are also on average 2 –4 DNA rep-
+lication forks per cell, with anywhere from 500 to 1,000
+nucleotides of ssDNA exposed at each fork.123Using a
+site size of 40 nucleotides occluded per tetramer, therewould be up to 25 SSB proteins bound per fork or 100 percell, leaving as many as 1,958 free tetramers. If these free
+tetramers are not sequestered away from the genome,
+they could cause excessive strand separation and/or spu-rious melting of duplex DNA that otherwise might be
+lethal to the cell as suggested previously.
+124–126Consequently, in the absence of exogenous DNA
+damage, the storage site of a large fraction of this freeSSB is at the inner membrane where the protein binds to
+the three major, inner membrane phospholipids: phos-
+phatidylethanolamine, phosphatidylglycerol, and cardi-olipin with K
+dvalues below 1 μM.16As SH3 domains also
+bind phospholipids it was proposed that membrane bind-
+ing by SSB is mediated by the OB-folds.16,127,128This
+makes sense as within 5 min of the genome being dam-
+aged, virtually all SSB transfers from the inner membrane
+to the genome to facilitate DNA repair processes. Thetransfer is likely driven by the 117 to 260-fold higheraffinity of SSB for exposed ssDNA relative to phospho-
+lipids.
+92,93,129Finally, once the genome is repaired, SSB
+localizes to the inner membrane. As SSB binds to inter-actome partners, these also colocalize to the membrane
+as shown for the repair DNA helicases RecG and PriA,
+which are present at 7 –15 and 2 –4 molecules per cell,
+respectively.
+24,121The SSB-RecG complex can transfer
+directly to forks, whereas it is more likely that PriA is
+transferred from the complex with SSB to tetramersbound to forks, but this remains an open question.
+24,130
+In addition to being sequestered at the inner mem-
+brane in the absence of DNA damage, some fraction ofSSB undergoes liquid –liquid phase-separation (LLPS) into
+condensates containing protein, ssDNA, and some inter-
+actome partners.
+131In vitro, LLPS was not observed when
+SSBΔC8 or only the core region of SSB was used, and the
+authors concluded that the acidic tip was essential for con-
+densate formation. However, this interpretation is likely
+incorrect as it is now known that linker/OB-fold binding isrequired for SSB-SSB interactions.
+14Thus, the linker/OB-
+fold model also applies to the sequestration of SSB into
+condensates. It follows then, in these condensates, someOB-folds will be occupied by linkers while others arebound to sub-stoichiometric ssDNA. At present, it is
+unknown whether exogenous DNA damage results in dis-
+sociation of condensates resulting in the transfer of SSB tothe genome to facilitate DNA repair processes.
+1.10 |Summary and future perspectives
+The presence of at least one OB-fold in multiple inter-
+actome members has led to the proposal that the SSB
+interactome is the first OB-fold family of genome guard-
+ians identified in prokaryotes.14This is analogous to the
+OB-fold family of genome guardians in eukaryotes.44,45
+In eukaryotic cells, many of the proteins functioning in
+DNA replication, telomere homeostasis, activation of the
+DNA-damage checkpoint, and DNA repair contain OB-folds.
+132–134Not surprisingly, these OB-folds play critical
+roles in DNA binding, protein complex assembly, and are1770 BIANCO
+involved in regulating complex protein –protein interac-
+tions.45For the SSB interactome, maintenance of geno-
+mic stability relies on the coordinated actions of the OB-
+fold family with SSB as the central player. Essential to
+this coordination is the network of linker/OB-fold inter-actions. These interactions ensure that interactome part-
+ners are loaded onto the DNA at the right time to
+guarantee cell viability.
+Crucial components of the linker/OB-fold mechanism
+are the inherent flexibility imparted by the repetitive ele-
+ments in the SSB linker and the polyproline type II helix;the specificity imparted by linker PXXP motifs binding tounique OB-folds in partners, and C-terminal tail regula-
+tion by the acidic tip. Flexibility is needed for cooperative
+ssDNA binding and dissociation, as well as enabling SSBbinding to target proteins of various sizes and, possibly
+occurring in different structural configurations, that is,
+bound to ssDNA, in solution or, within multi-subunitcomplexes such as the replisome. Further, the sequence
+context of each PXXP motif enables one SSB protein to
+bind to multiple partners at different times, and thesequences of the structurally conserved OB-folds enable
+the formation of unique protein –protein interfaces that
+facilitates distinctive functional outcomes. Inherent tothe linker/OB-fold model is the competition betweenssDNA and linkers, and separately, phospholipids and
+ssDNA for the OB-folds, which adds an additional level
+of regulation to the SSB interactome.
+While the linker/OB-fold model provides a satisfac-
+tory explanation for many facets of SSB and interactome
+function, there is still much work to be done. First, thereis a large apparent discrepancy between results obtained
+with C-terminal peptides of different lengths and the full
+length, SSB protein. This disagreement must be resolvedusing carefully characterized, full-length mutant SSB pro-teins only, as peptides likely behave differently in isola-
+tion than within the context of the SSB tetramer. Second,
+studies have demonstrated that SSB-partner interactionsinvolve the PXXP motifs of the linker binding to a nearby
+OB-fold. What remains to be ascertained is the orienta-
+tion of binding and whether it is the same for all SSB-partner interactions. Third, the roles of the PXXP motifs
+in SSB dynamics remain to be established and if they are
+involved, do different motifs have distinct or overlappingfunctions? Fourth, do the linkers and acidic tips coordi-
+nate their actions both within one subunit and between
+subunits of the same tetramer to ensure interactome reg-ulation? Finally, if partners do not contain canonical OB-folds, what is their mechanism of SSB binding? Is it
+exclusively acidic tip-mediated or is the linker involved
+as well? The answers to these and other questions, likelyto be revealed in the answering process, will provide a
+complete picture of the dynamic SSB interactome.ACKNOWLEDGMENTS
+Work in the Bianco Laboratory is supported by theNational Institutes of Health Grant; Grant number:
+GM100156.
+AUTHOR CONTRIBUTIONS
+Piero Bianco: Conceptualization; writing-review &
+editing.
+ORCID
+Piero R. Bianco
+https://orcid.org/0000-0003-2974-7952
+REFERENCES
+1. Shereda RD, Kozlov AG, Lohman TM, Cox MM, Keck JL. SSB
+as an organizer/mobilizer of genome maintenance complexes.Crit Rev Biochem Mol Biol. 2008;43:289 –318.
+2. Lecointe F, Serena C, Velten M, et al. Anticipating chromo-
+somal replication fork arrest: SSB targets repair DNA heli-cases to active forks. EMBO J. 2007;26:4239 –4251.
+3. Chase JW, Williams KR. Single-stranded DNA binding pro-
+teins required for DNA replication. Annu Rev Biochem. 1986;55:103–136.
+4. Meyer RR, Laine PS. The single-stranded DNA-binding pro-
+tein of Escherichia coli . Microbiol Rev. 1990;54:342 –380.
+5. Kowalczykowski SC, Dixon DA, Eggleston AK, Lauder SD,
+Rehrauer WM. Biochemistry of homologous recombination in
+Escherichia coli . Microbiol Rev. 1994;58:401 –465.
+6. Carlini LE, Porter RD. Analysis of SSB mutations in vivo
+implicates SSB protein in two distinct pathways of SOS induc-tion and in recombinational DNA repair. Mol Microbiol.1997;24:129 –139.
+7. Porter RD, Black S, Pannuri S, Carlson A. Use of the
+escherichia coli ssb gene to prevent bioreactor takeover by
+plasmidless cells. Nature Biotechnology, 1990;8(1):47 –51.
+http://dx.doi.org/10.1038/nbt0190-47.
+8. Curth U, Genschel J, Urbanke C, Greipel J. In vitro and in
+vivo function of the C-terminus of escherichia coli single-stranded DNA binding protein. Nucleic Acids Research, 1996;24:2706 –2711. http://dx.doi.org/10.1093/nar/24.14.2706.
+9. Raghunathan S, Kozlov A, Lohman T, Waksman G. Structure
+of the DNA binding domain of E. coli SSB bound to ssDNA.
+Nat Struct Biol. 2000;7:648 –652.
+10. Kuznetsov S, Kozlov A, Lohman T, Ansari A. Microsecond
+dynamics of protein-DNA interactions: Direct observation ofthe wrapping/unwrapping kinetics of single-stranded DNA
+around the E. coli SSB tetramer. J Mol Biol. 2006;359:55 –65.
+11. Naufer MN, Morse M, Möller GB, et al. Multiprotein E. coli
+SSB–ssDNA complex shows both stable binding and rapid dis-
+sociation due to interprotein interactions. Nucleic AcidsResearch, 2021;49:1532 –1549. http://dx.doi.org/10.1093/nar/
+gkaa1267.
+12. Lohman TM, Bujalowski W. Escherichia coli single strand
+binding protein: Multiple single-stranded DNA binding modes
+and cooperativities. In: Revzin A, editor. The biology of non-specific DNA-protein interactions. Boca Raton: CRC Press,Inc., 1990; p. 131 –170.
+13. Lohman TM, Overman LB. Two binding modes in Escherichia
+coli single strand binding protein-single stranded DNABIANCO 1771
+complexes. Modulation by NaCl concentration. J Biol Chem.
+1985;260:3594 –3603.
+14. Ding W, Tan HY, Zhang JX, et al. The mechanism of Single
+strand binding protein –RecG binding: Implications for SSB
+interactome function. Protein Science, 2020;29:1211 –1227.
+http://dx.doi.org/10.1002/pro.3855.
+15. Bianco PR. The tale of SSB. Prog Biophys Mol Biol. 2017;127:
+111–118.
+16. Zhao T, Liu Y, Wang Z, et al. Super-resolution imaging
+reveals changes inEscherichia coliSSB localization in responseto DNA damage. Genes to Cells, 2019;24:814 –826. http://dx.
+doi.org/10.1111/gtc.12729.
+17. Shinn MK, Kozlov AG, Nguyen B, Bujalowski WM,
+Lohman TM. Are the intrinsically disordered linkers involvedin SSB binding to accessory proteins?. Nucleic Acids Research,2019. http://dx.doi.org/10.1093/nar/gkz606.
+18. Lu D, Windsor MA, Gellman SH, Keck JL. Peptide inhibitors
+identify roles for SSB C-terminal residues in SSB/exonucleaseI complex formation. Biochemistry, 2009;48;6764 –6771.
+http://dx.doi.org/10.1021/bi900361r.
+19. Shereda RD, Reiter NJ, Butcher SE, Keck JL. Identification of
+the SSB binding site on E. coli RecQ reveals a conserved sur-
+face for binding SSB's C terminus. J Mol Biol. 2009;386:612–625.
+20. Kozlov AG, Jezewska MJ, Bujalowski W, Lohman TM. Bind-
+ing specificity of escherichia coli single-stranded DNA Bind-
+ing protein for the χsubunit of DNA pol III holoenzyme and
+PriA helicase. Biochemistry, 2010;49:3555 –3566. http://dx.doi.
+org/10.1021/bi100069s.
+21. Kelman Z, Yuzhakov A, Andjelkovic J, O'Donnell M.
+Devoted to the lagging strand-the subunit of DNA polymer-ase III holoenzyme contacts SSB to promote processive elon-
+gation and sliding clamp assembly. EMBO J. 1998;17:2436 –
+2449.
+22. Witte G, Urbanke C, Curth U. DNA polymerase III chi sub-
+unit ties single-stranded DNA binding protein to the bacterialreplication machinery. Nucleic Acids Res. 2003;31:4434 –4440.
+23. Buss J, Kimura Y, Bianco P. RecG interacts directly with SSB:
+Implications for stalled replication fork regression. Nucleic
+Acids Res. 2008;36:7029 –7042.
+24. Yu C, Tan HY, Choi M, et al. SSB binds to the RecG and PriA
+helicases in vivo in the absence of DNA. Genes Cells. 2016;21:163–184.
+25. Bhattacharyya B, George NP, Thurmes TM, et al. Structural
+mechanisms of PriA-mediated DNA replication restart. Proc
+Natl Acad Sci U S A. 2014;111:1373 –1378.
+26. Lu D, Keck JL. Structural basis of Escherichia coli single-
+stranded DNA-binding protein stimulation of exonuclease I.Proc Natl Acad Sci U S A. 2008;105:9169 –9174.
+27. Ryzhikov M, Koroleva O, Postnov D, Tran A, Korolev S.
+Mechanism of RecO recruitment to DNA by single-stranded
+DNA binding protein. Nucleic Acids Res. 2011;39:6305 –6314.
+28. Chilingaryan Z, Headey SJ, Lo ATY, et al. Fragment-based
+discovery of inhibitors of the bacterial DnaG-SSB interaction.Antibiotics. 2018;7:14.
+29. Bianco PR, Pottinger S, Tan HY, Nguyenduc T, Rex K,
+Varshney U. The IDL of E. coli SSB links ssDNA and protein
+binding by mediating protein-protein interactions. Protein Sci.
+2017;26:227 –241.30. Yu H, Chen JK, Feng S, Dalgarno DC, Brauer AW,
+Schreiber SL. Structural basis for the binding of proline-richpeptides to SH3 domains. Cell. 1994;76:933 –945.
+31. Saksela K, Permi P. SH3 domain ligand binding: What's the
+consensus and where's the specificity? FEBS Lett. 2012;586:2609–2614.
+32. Agrawal V, Kishan RK. Functional evolution of two subtly
+different (similar) folds. BMC Struct Biol. 2001;1:5.
+33. Sun Z, Tan HY, Bianco PR, Lyubchenko YL. Remodeling of
+RecG helicase at the DNA replication fork by SSB protein. SciRep. 2015;5:9625.
+34. Wang Y, Sun Z, Bianco PR, Lyubchenko YL. Atomic force
+microscopy-based characterization of the interaction of PriAhelicase with stalled DNA replication forks. J Biol Chem.2020;295:6043 –6052.
+35. Bell JC, Liu B, Kowalczykowski SC. Imaging and energetics of
+single SSB-ssDNA molecules reveal intramolecular condensa-tion and insight into RecOR function. Elife. 2015;4:e08646.
+36. Hwang J, Kim JY, Kim C, et al. Single-molecule observation
+of ATP-independent SSB displacement by RecO in
+Deinococcus radiodurans. Elife. 2020;9:e50945.
+37. Nigam R, Mohan M, Shivange G, Dewangan PK, Anindya R.
+Escherichia coli AlkB interacts with single-stranded DNA
+binding protein SSB by an intrinsically disordered region ofSSB. Mol Biol Rep. 2018;45:865 –870.
+38. Williams KR, Spicer EK, LoPresti MB, Guggenheimer RA,
+Chase JW. Limited proteolysis studies on the Escherichia coli
+single-stranded DNA binding protein. Evidence for a func-tionally homologous domain in both the Escherichia coli andT4 DNA binding proteins. J Biol Chem. 1983;258:3346 –3355.
+39. Lohman T, Ferrari M. Escherichia coli single-stranded DNA-
+binding protein: Multiple DNA-binding modes and
+cooperativities. Annu Rev Biochem. 1994;63:527 –570.
+40. Green M, Hatter L, Brookes E, Soultanas P, Scott DJ. Defining
+the intrinsically disordered C-terminal domain of SSB revealsDNA-mediated compaction. J Mol Biol. 2016;428:357 –364.
+41. Manosas M, Perumal SK, Bianco PR, Ritort F, Benkovic SJ,
+Croquette V. RecG and UvsW catalyse robust DNA rewinding
+critical for stalled DNA replication fork rescue. Nat Commun.
+2013;4:2368.
+42. Su XC, Wang Y, Yagi H, et al. Bound or free: Interaction of
+the C-terminal domain of Escherichia coli single-stranded
+DNA-binding protein (SSB) with the tetrameric core of SSB.Biochemistry. 2014;53:1925 –1934.
+43. Maffei M, Arbesu M, Le Roux AL, Amata I, Roche S, Pons M.
+The SH3 domain acts as a scaffold for the N-terminal intrinsi-cally disordered regions of c-Src. Structure. 2015;23:893 –902.
+44. Nguyen DD, Kim EY, Sang PB, Chai W. Roles of OB-fold pro-
+teins in replication stress. Front Cell Dev Biol. 2020;8:574466.
+45. Flynn RL, Zou L. Oligonucleotide/oligosaccharide-binding
+fold proteins: A growing family of genome guardians. Crit
+Rev Biochem Mol Biol. 2010;45:266 –275.
+46. Bianco PR. DNA helicase-SSB interactions critical to the
+regression and restart of stalled DNA replication forks inEscherichia coli . Genes. 2020;11:471.
+47. Molineux IJ, Friedman S, Gefter ML. Purification and proper-
+ties of the Escherichia coli deoxyribonucleic acid-unwinding
+protein. Effects on deoxyribonucleic acid synthesis in vitro.
+J Biol Chem. 1974;249:6090 –6098.1772 BIANCO
+48. Weiner JH, Bertsch LL, Kornberg A. The deoxyribonucleic
+acid unwinding protein of Escherichia coli . Properties and
+function in replication. J Biol Chem. 1975;250:1972 –1980.
+49. Sancar A, Williams KR, Chase JW, Rupp WD. Sequences of
+the ssb gene and protein. Proc Natl Acad Sci U S A. 1981;78:4274–4278.
+50. Casas-Finet JR, Khamis MI, Maki AH, Chase JW. Tryptophan
+54 and phenylalanine 60 are involved synergistically in thebinding of E. coli SSB protein to single-stranded polynucleo-
+tides. FEBS Lett. 1987;220:347 –352.
+51. Merrill BM, Williams KR, Chase JW, Konigsberg WH. Photo-
+chemical cross-linking of the Escherichia coli single-stranded
+DNA-binding protein to oligodeoxynucleotides. Identification
+of phenylalanine 60 as the site of cross-linking. J Biol Chem.1984;259:10850 –10856.
+52. Carlini L, Curth U, Kindler B, Urbanke C, Porter RD. Identifi-
+cation of amino acids stabilizing the tetramerization of thesingle stranded DNA binding protein from Escherichia coli .
+FEBS Lett. 1998;430:197 –200.
+53. Raghunathan S, Ricard C, Lohman T, Waksman G. Crystal
+structure of the homo-tetrameric DNA binding domain ofEscherichia coli single-stranded DNA-binding protein deter-
+mined by multiwavelength x-ray diffraction on theselenomethionyl protein at 2.9-A resolution. Proc Natl AcadSci USA. 1997;94:6652 –6657.
+54. Savvides SN, Raghunathan S, Futterer K, Kozlov AG,
+Lohman TM, Waksman G. The C-terminal domain of full-length E. coli SSB is disordered even when bound to DNA.
+Protein Sci. 2004;13:1942 –1947.
+55. Wilkins MR, Gasteiger E, Bairoch A, et al. Protein identifica-
+tion and analysis tools in the ExPASy server. Methods MolBiol. 1999;112:531 –552.
+56. Kozlov AG, Weiland E, Mittal A, et al. Intrinsically disordered
+C-terminal tails of E. coli single-stranded DNA binding pro-
+tein regulate cooperative binding to single-stranded DNA.J Mol Biol. 2015;427:763 –774.
+57. Kozlov AG, Cox MM, Lohman TM. Regulation of single-
+stranded DNA binding by the C termini of Escherichia coli
+single-stranded DNA-binding (SSB) protein. J Biol Chem.
+2010;285:17246 –17252.
+58. Antony E, Weiland E, Yuan Q, et al. Multiple C-terminal tails
+within a single E. coli SSB homotetramer coordinate DNA rep-
+lication and repair. J Mol Biol. 2013;425:4802 –4819.
+59. Kaneko T, Li L, Li SS. The SH3 domain —a family of versatile
+peptide- and protein-recognition module. Front Biosci. 2008;
+13:4938 –4952.
+60. Kurochkina N, Guha U. SH3 domains: Modules of protein-
+protein interactions. Biophys Rev. 2013;5:29 –39.
+61. Meirson T, Bomze D, Kahlon L, Gil-Henn H, Samson AO. A
+helical lock and key model of polyproline II conformationwith SH3. Bioinformatics. 2020;36:154 –159.
+62. Adzhubei AA, Sternberg MJ, Makarov AA. Polyproline-II
+helix in proteins: Structure and function. J Mol Biol. 2013;425:2100–2132.
+63. Matsushima N, Yoshida H, Kumaki Y, et al. Flexible struc-
+tures and ligand interactions of tandem repeats consisting ofproline, glycine, asparagine, serine, and/or threonine rich
+oligopeptides in proteins. Curr Protein Pept Sci. 2008;9:
+591–610.64. Fedorov R, Bohl M, Tsiavaliaris G, et al. The mechanism of
+pentabromopseudilin inhibition of myosin motor activity. NatStruct Mol Biol. 2009;16:80 –88.
+65. Huang Y, Huang C. The glycine-rich flexible region in SSB is
+crucial for PriA stimulation. RSC Adv. 2018;8:35280 –35288.
+66. Handa P, Acharya N, Varshney U. Chimeras between single-
+stranded DNA-binding proteins from Escherichia coli and
+Mycobacterium tuberculosis reveal that their C-terminal
+domains interact with uracil DNA glycosylases. J Biol Chem.2001;276:16992 –16997.
+67. Musacchio A, Noble M, Pauptit R, Wierenga R, Saraste M.
+Crystal structure of a Src-homology 3 (SH3) domain. Nature.
+1992;359:851 –855.
+68. Yu H, Rosen MK, Shin TB, Seidel-Dugan C, Brugge JS,
+Schreiber SL. Solution structure of the SH3 domain of Src andidentification of its ligand-binding site. Science. 1992;258:1665–1668.
+69. Feng S, Chen JK, Yu H, Simon JA, Schreiber SL. Two binding
+orientations for peptides to the Src SH3 domain: Development
+of a general model for SH3-ligand interactions. Science. 1994;
+266:1241 –1247.
+70. Dimasi N. Crystal structure of the C-terminal SH3 domain of
+the adaptor protein GADS in complex with SLP-76 motif pep-tide reveals a unique SH3-SH3 interaction. Int J Biochem CellBiol. 2007;39:109 –123.
+71. Singleton MR, Scaife S, Wigley DB. Structural analysis of
+DNA replication fork reversal by RecG. Cell. 2001;107:79 –89.
+72. Bianco PR, Lyubchenko YL. SSB and the RecG DNA helicase:
+An intimate association to rescue a stalled replication fork.Protein Sci. 2017;26:638 –649.
+73. Briggs GS, Mahdi AA, Wen Q, Lloyd RG. DNA binding by the
+substrate specificity (wedge) domain of RecG helicase suggests
+a role in processivity. J Biol Chem. 2005;280:13921 –13927.
+74. Teyra J, Huang H, Jain S, et al. Comprehensive analysis of the
+human SH3 domain family reveals a wide variety of non-canonical specificities. Structure. 2017;25:1598 –1610.
+75. Molineux IJ, Gefter ML. Properties of the Escherichia coli in
+DNA binding (unwinding) prote in: Interaction with DNA poly-
+merase and DNA. Proc Natl Acad Sci U S A. 1974;71:3858 –3862.
+76. Molineux IJ, Gefter ML. Properties of the Escherichia coli
+DNA-binding (unwinding) protein interaction withnucleolytic enzymes and DNA. J Mol Biol. 1975;98:811 –825.
+77. Low RL, Shlomai J, Kornberg A. Protein n, a primosomal
+DNA replication protein of Escherichia coli . Purification and
+characterization. J Biol Chem. 1982;257:6242 –6250.
+78. Perrino FW, Meyer RR, Bobst AM, Rein DC. Interaction of a
+folded chromosome-associated protein with single-strandedDNA-binding protein of Escherichia coli , identified by affinity
+chromatography. J Biol Chem. 1988;263:11833 –11839.
+79. Glover B, McHenry C. The chi psi subunits of DNA polymer-
+ase III holoenzyme bind to single-stranded DNA-binding pro-
+tein (SSB) and facilitate replication of an SSB-coated template.
+J Biol Chem. 1998;273:23476 –23484.
+80. Sandigursky M, Mendez F, Bases RE, Matsumoto T,
+Franklin WA. Protein-protein interactions between theEscherichia coli single-stranded DNA-binding protein and exo-
+nuclease I. Radiat Res. 1996;145:619 –623.
+81. Genschel J, Curth U, Urbanke C. Interaction of E. coli single-
+stranded DNA binding protein (SSB) with exonuclease I. theBIANCO 1773
+carboxy-terminus of SSB is the recognition site for the nucle-
+ase. Biol Chem. 2000;381:183 –192.
+82. Shereda RD, Bernstein DA, Keck JL. A central role for SSB in
+Escherichia coli RecQ DNA helicase function. J Biol Chem.
+2007;282:19247 –19258.
+83. Cadman CJ, McGlynn P. PriA helicase and SSB interact physi-
+cally and functionally. Nucleic Acids Res. 2004;32:6378 –6387.
+84. Cheng K, Xu H, Chen X, et al. Structural basis for DNA 5 -
+end resection by RecJ. Elife. 2016;5:e14294.
+85. Petzold C, Marceau AH, Miller KH, Marqusee S, Keck JL.
+Interaction with single-stranded DNA-binding protein stimu-lates Escherichia coli ribonuclease HI enzymatic activity.
+J Biol Chem. 2015;290:14626 –14636.
+86. Han ES, Cooper DL, Persky NS, et al. RecJ exonuclease: Sub-
+strates, products and interaction with SSB. Nucleic Acids Res.2006;34:1084 –1091.
+87. Slocum SL, Buss JA, Kimura Y, Bianco PR. Characterization
+of the ATPase activity of the Escherichia coli RecG protein
+reveals that the preferred cofactor is negatively supercoiled
+DNA. J Mol Biol. 2007;367:647 –664.
+88. Yang F, Moss LG, Phillips GN Jr. The molecular structure
+of green fluorescent protein. Nat Biotechnol. 1996;14:1246 –
+1251.
+89. Greenfield NJ. Using circul ar dichroism spectra to esti-
+mate protein secondary stru cture. Nat Protoc. 2006;1:
+2876–2890.
+90. Greenfield NJ. Circular dichroism (CD) analyses of protein-
+protein interactions. Methods Mol Biol. 2015;1278:239 –265.
+91. Kozlowski LP. IPC 2.0: Prediction of isoelectric point and pKa
+dissociation constants. Nucleic Acids Res. 2021;gkab29.https://doi.org/10.1093/nar/gkab295.
+92. Ehn M, Nilsson P, Uhlen M, Hober S. Overexpression, rapid
+isolation, and biochemical characterization of Escherichia coli
+single-stranded DNA-binding protein. Protein Exp Purif.2001;22:120 –127.
+93. Wu HY, Lu CH, Li HW. RecA-SSB interaction modulates
+RecA nucleoprotein filament formation on SSB-wrappedDNA. Sci Rep. 2017;7:11876.
+94. Tan HY, Wilczek LA, Pottinger S, et al. The intrinsically disor-
+dered linker of E. coli SSB is critical for the release from
+single-stranded DNA. Protein Sci. 2017;26:700 –717.
+95. Korada SK, Johns TD, Smith CE, Jones ND, McCabe KA,
+Bell CE. Crystal structures of Escherichia coli exonuclease I in
+complex with single-stranded DNA provide insights into the
+mechanism of processive digestion. Nucleic Acids Res. 2013;
+41:5887 –5897.
+96. Windgassen TA, Leroux M, Satyshur KA, Sandler SJ, Keck JL.
+Structure-specific DNA replication-fork recognition directshelicase and replication restart activities of the PriA helicase.Proc Natl Acad Sci U S A. 2018;115:E9075 –E9084.
+97. Mahdi AA, McGlynn P, Levett SD, Lloyd RG. DNA binding
+and helicase domains of the Escherichia coli recombination
+protein RecG. Nucleic Acids Res. 1997;25:3875 –3880.
+98. Tanaka T, Taniyama C, Arai K, Masai H. ATPase/helicase
+motif mutants of Escherichia coli PriA protein essential for
+recombination-dependent DNA replication. Genes Cells.2003;8:251 –261.
+99. Nurse P, Liu J, Marians KJ. Two modes of PriA binding to
+DNA. J Biol Chem. 1999;274:25026 –25032.100. Sigal N, Delius H, Kornberg T, Gefter ML, Alberts B. A DNA-
+unwinding protein isolated from Escherichia coli
+: Its interac-
+tion with DNA and with DNA polymerases. Proc Natl AcadSci U S A. 1972;69:3537 –3541.
+101. Meyer RR, Glassberg J, Kornberg A. An Escherichia coli
+mutant defective in single-strand binding protein is defective
+in DNA replication. Proc Natl Acad Sci U S A. 1979;76:1702 –
+1705.
+102. Molineux IJ, Pauli A, Gefter ML. Physical studies of the inter-
+action between the Escherichia coli DNA binding protein and
+nucleic acids. Nucleic Acids Res. 1975;2:1821 –1837.
+103. Ruyechan WT, Wetmur JG. Studies on the noncooperative
+binding of the Escherichia coli DNA unwinding protein to
+single-stranded nucleic acids. Biochemistry. 1976;15:5057 –
+5064.
+104. Ruyechan WT, Wetmur JG. Studies on the cooperative bind-
+ing of the Escherichia coli DNA unwinding protein to single-
+stranded DNA. Biochemistry. 1975;14:5529 –5534.
+105. Krauss G, Sindermann H, Schomburg U, Maass G. Escherichia
+colisingle-strand deoxyribonucleic acid binding protein: Sta-
+bility, specificity, and kinetics of complexes with oligonucleo-tides and deoxyribonucleic acid. Biochemistry. 1981;20:5346 –
+5352.
+106. Chrysogelos S, Griffith J. Escherichia coli single-strand binding
+protein organizes single-stranded DNA in nucleosome-like
+units. Proc Natl Acad Sci U S A. 1982;79:5803 –5807.
+107. Greipel J, Maass G, Mayer F. Complexes of the single-
+stranded DNA-binding protein from Escherichia coli (eco SSB)
+with poly(dT). An investigation of their structure and internaldynamics by means of electron microscopy and NMR.Biophys Chem. 1987;26:149 –161.
+108. Shishmarev D, Wang Y, Mason CE, et al. Intramolecular
+binding mode of the C-terminus of Escherichia coli single-
+stranded DNA binding protein determined by nuclear mag-netic resonance spectroscopy. Nucleic Acids Res. 2014;42:2750–2757.
+109. Kozlov AG, Shinn MK, Weiland EA, Lohman TM. Glutamate
+promotes SSB protein-protein interactions via intrinsically dis-
+ordered regions. J Mol Biol. 2017;429:2790 –2801.
+110. Bujalowski W, Lohman TM. Escherichia coli single-strand
+binding protein forms multiple, distinct complexes withsingle-stranded DNA. Biochemistry. 1986;25:7799 –7802.
+111. Lohman TM, Overman LB, Datta S. Salt-dependent
+changes in the DNA binding co-operativity of Escherichia
+coli single strand binding protein. J Mol Biol. 1986;187:
+603–615.
+112. Dubiel K, Myers AR, Kozlov AG, et al. Structural mechanisms
+of cooperative DNA binding by bacterial single-strandedDNA-binding proteins. J Mol Biol. 2019;431:178 –195.
+113. Liu J, Choi M, Stanenas AG, et al. Novel, fluorescent, SSB pro-
+tein chimeras with broad utility. Protein Sci. 2011;20:1005 –
+1020.
+114. Lohman T. Kinetics of protein-nucleic acid interactions: Use
+of salt effects to probe mechanisms of interaction. CRC CritRev Biochem. 1986;19:191 –245.
+115. Lohman TM, Bujalowski W, Overman LB, Wei TF. Interac-
+tions of the E. coli single strand binding (SSB) protein with ss
+nucleic acids. Binding mode transitions and equilibrium bind-
+ing studies. Biochem Pharmacol. 1988;37:1781 –1782.1774 BIANCO
+116. Suksombat S, Khafizov R, Kozlov AG, Lohman TM,
+Chemla YR. Structural dynamics of E. coli single-stranded
+DNA binding protein reveal DNA wrapping and unwrappingpathways. Elife. 2015;4:e08193.
+117. Roy R, Kozlov AG, Lohman TM, Ha T. Dynamic structural
+rearrangements between DNA binding modes of E. coli SSB
+protein. J Mol Biol. 2007;369:1244 –1257.
+118. Zhou R, Kozlov AG, Roy R, et al. SSB functions as a sliding
+platform that migrates on DNA via reptation. Cell. 2011;146:222–232.
+119. Roy R, Kozlov AG, Lohman TM, Ha T. SSB protein diffusion
+on single-stranded DNA stimulates RecA filament formation.
+Nature. 2009;461:1092 –1097.
+120. Lee KS, Marciel AB, Kozlov AG, Schroeder CM, Lohman TM,
+Ha T. Ultrafast redistribution of E. coli SSB along long single-
+stranded DNA via intersegment transfer. J Mol Biol. 2014;426:2413–2421.
+121. Schmidt A, Kochanowski K, Vedelaar S, et al. The quantita-
+tive and condition-dependent Escherichia coli proteome. Nat
+Biotechnol. 2016;34:104 –110.
+122. Bujalowski W, Lohman TM. Limited co-operativity in protein-
+nucleic acid interactions. A thermodynamic model for theinteractions of Escherichia coli single strand binding protein
+with single-stranded nucleic acids in the "beaded ", (SSB)65
+mode. J Mol Biol. 1987;195:897 –907.
+123. Lewis JS, Jergic S, Dixon NE. The E. coli DNA replication
+fork. Enzyme. 2016;39:31 –88.
+124. Pant K, Karpel RL, Rouzina I, Williams MC. Mechanical mea-
+surement of single-molecule binding rates: Kinetics of DNAhelix-destabilization by T4 gene 32 protein. J Mol Biol. 2004;336:851 –870.
+125. Shokri L, Marintcheva B, Richardson CC, Rouzina I,
+Williams MC. Single molecule force spectroscopy of salt-
+dependent bacteriophage T7 gene 2.5 protein binding tosingle-stranded DNA. J Biol Chem. 2006;281:38689 –38696.
+126. von Hippel P, Delagoutte E. A general model for nucleic acid
+helicases and their "coupling "within macromolecular
+machines. Cell. 2001;104:177 –190.
+127. Heuer K, Arbuzova A, Strauss H, Kofler M, Freund C. The
+helically extended SH3 domain of the T cell adaptor proteinADAP is a novel lipid interaction domain. J Mol Biol. 2005;348:1025 –1035.
+128. Perez Y, Maffei M, Igea A, et al. Lipid binding by the unique
+and SH3 domains of c-Src suggests a new regulatory mecha-
+nism. Sci Rep. 2013;3:1295.
+129. Kunzelmann S, Morris C, Chavda AP, Eccleston JF,
+Webb MR. Mechanism of interaction between single-strandedDNA binding protein and DNA. Biochemistry. 2010;49:843–852.
+130. Tan HY, Bianco PR. SSB facilitates fork substrate discrimina-
+tion by PriA. ACS Omega. 2021. https://doi.org/10.1021/
+acsomega.1c00722.131. Harami GM, Kovacs ZJ, Pancsa R, et al. Phase separation by
+ssDNA binding protein controlled via protein-protein andprotein-DNA interactions. Proc Natl Acad Sci U S A. 2020;117:26206 –26217.
+132. Gudmundsdottir K, Ashworth A. The roles of BRCA1 and
+BRCA2 and associated proteins in the maintenance of geno-
+mic stability. Oncogene. 2006;25:5864 –5874.
+133. Bonetti D, Colombo CV, Clerici M, Longhese MP. Processing
+of DNA ends in the maintenance of genome stability. FrontGenet. 2018;9:390.
+134. Bochkarev A, Bochkareva E. From RPA to BRCA2: Lessons
+from single-stranded DNA binding by the OB-fold. Curr Opin
+Struct Biol. 2004;14:36 –42.
+135. Pettersen EF, Goddard TD, Huang CC, et al. UCSF chimera —
+a visualization system for exploratory research and analysis.
+J Comput Chem. 2004;25:1605 –1612.
+136. Zhang Y, Skolnick J. TM-align: A protein structure alignment
+algorithm based on the TM-score. Nucleic Acids Res. 2005;33:2302–2309.
+137. Aitio O, Hellman M, Kazlauskas A, et al. Recognition of tan-
+dem PxxP motifs as a unique Src homology 3-binding modetriggers pathogen-driven Actin assembly. Proc Natl Acad SciU S A. 2010;107:21743 –21748.
+138. Breyer WA, Matthews BW. Structure of Escherichia coli exo-
+nuclease I suggests how processivity is achieved. Nat Struct
+Biol. 2000;7:1125 –1128.
+139. Wang F, Yang W. Structural insight into translesion synthesis
+by DNA pol II. Cell. 2009;139:1279 –1289.
+140. Simossis VA, Heringa J. PRALINE: A multiple sequence
+alignment toolbox that integrates homology-extended and sec-ondary structure information. Nucleic Acids Res. 2005;33:W289–W294.
+141. Musacchio A, Saraste M, Wilmanns M. High-resolution crys-
+tal structures of tyrosine kinase SH3 domains complexed withproline-rich peptides. Nat Struct Biol. 1994;1:546 –551.
+142. Bianco PR, Lu Y. Single molecule studies of stalled DNA replica-
+tion fork rescue in E. coli . Nucleic Acids Res. 2021;49:4220 –4238.
+143. Inoue J, Nagae T, Mishima M, Ito Y, Shibata T, Mikawa T. A
+mechanism for single-stranded DNA-binding protein (SSB)
+displacement from single-stranded DNA upon SSB-RecOinteraction. Journal of Biological Chemistry, 2011;286:6720 –
+6732. http://dx.doi.org/10.1074/jbc.m110.164210.
+How to cite this article: Bianco PR. The
+mechanism of action of the SSB interactome
+reveals it is the first OB-fold family of genomeguardians in prokaryotes. Protein Science. 2021;30:
+1757–1775.
+https://doi.org/10.1002/pro.4140BIANCO 1775

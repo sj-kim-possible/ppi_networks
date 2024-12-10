@@ -1,0 +1,39 @@
+x 23782448 https://pubmed.ncbi.nlm.nih.gov/23782448/ [paywall, vpn]
+24908130 https://pubmed.ncbi.nlm.nih.gov/24908130/ [paywall, textbook, could not bypass]
+x 25647153 https://pubmed.ncbi.nlm.nih.gov/25647153/ [zotero]
+x 25755154 https://pubmed.ncbi.nlm.nih.gov/25755154/ [paywall, vpn]
+x 25929189 https://pubmed.ncbi.nlm.nih.gov/25929189/ [paywall, vpn]
+x 26431879 https://pubmed.ncbi.nlm.nih.gov/26431879/ [paywall, vpn]
+x 26778143 https://pubmed.ncbi.nlm.nih.gov/26778143/ [paywall, vpn]
+x 27267703 https://pubmed.ncbi.nlm.nih.gov/27267703/
+x 27454254 https://pubmed.ncbi.nlm.nih.gov/27454254/ 
+x 27515434 https://pubmed.ncbi.nlm.nih.gov/27515434/ [paywall, vpn]
+x 27588604 https://pubmed.ncbi.nlm.nih.gov/27588604/
+x 28225217 https://pubmed.ncbi.nlm.nih.gov/28225217/ [paywall, vpn]
+x 28397356 https://pubmed.ncbi.nlm.nih.gov/28397356/ [paywall, vpn]
+x 28602400 https://pubmed.ncbi.nlm.nih.gov/28602400/ [paywall, vpn]
+x 28712289 https://pubmed.ncbi.nlm.nih.gov/28712289/ [paywall, vpn]
+x 28818726 https://pubmed.ncbi.nlm.nih.gov/28818726/ [paywall, vpn]
+x 28933779 https://pubmed.ncbi.nlm.nih.gov/28933779/ [paywall, vpn]
+x 29307493 https://pubmed.ncbi.nlm.nih.gov/29307493/ [paywall, vpn]
+x 30193929 https://pubmed.ncbi.nlm.nih.gov/30193929/ [paywall, vpn]
+x 31059644 https://pubmed.ncbi.nlm.nih.gov/31059644/ [paywall, vpn]
+x 31059757 https://pubmed.ncbi.nlm.nih.gov/31059757/ [paywall, vpn]
+x 31313906 https://pubmed.ncbi.nlm.nih.gov/31313906/ [paywall, vpn]
+x 31421271 https://pubmed.ncbi.nlm.nih.gov/31421271/ [paywall, vpn]
+31483108 https://pubmed.ncbi.nlm.nih.gov/31483108/ [paywall]
+x 32614412 https://pubmed.ncbi.nlm.nih.gov/32614412/ [paywall, vpn]
+32681487 https://pubmed.ncbi.nlm.nih.gov/32681487/ [paywall]
+x 32768515 https://pubmed.ncbi.nlm.nih.gov/32768515/ [paywall, vpn] elsevier
+x 32843435 https://pubmed.ncbi.nlm.nih.gov/32843435/ 
+x 32855089 https://pubmed.ncbi.nlm.nih.gov/32855089/ [paywall, vpn] elsevier
+x 32860814 https://pubmed.ncbi.nlm.nih.gov/32860814/ [paywall, vpn]
+33108661 https://pubmed.ncbi.nlm.nih.gov/33108661/ [paywall] springerLink
+33215380 https://pubmed.ncbi.nlm.nih.gov/33215380/ [paywall] springerLink
+x 33458734 https://pubmed.ncbi.nlm.nih.gov/33458734/ 
+x 33549710 https://pubmed.ncbi.nlm.nih.gov/33549710/ 
+x 33714757 https://pubmed.ncbi.nlm.nih.gov/33714757/ [paywall, vpn]
+x 33729691 https://pubmed.ncbi.nlm.nih.gov/33729691/ [paywall, vpn]
+x 33741411 https://pubmed.ncbi.nlm.nih.gov/33741411/ [paywall, vpn]
+33847952 https://pubmed.ncbi.nlm.nih.gov/33847952/ [paywall] springer link
+x 33887372 https://pubmed.ncbi.nlm.nih.gov/33887372/ [paywall, vpn]

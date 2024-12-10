@@ -1,0 +1,606 @@
+|
+ORIGINALARTICLE
+INFECTIOUSDISEASE
+Nosocomial outbreak of COVID-19
+pneumonia in Wuhan, China
+Xiaorong Wang1,12, Qiong Zhou 1,12, Yukun He2,12, Lingbo Liu3, Xinqian Ma2,
+Xiaoshan Wei1, Nanchuan Jiang4, Limei Liang1, Yali Zheng5, Ling Ma6, Yu Xu2,
+Dong Yang7, Jianchu Zhang1, Bohan Yang1, Ning Jiang2, Tao Deng8,
+Bingbing Zhai8, Yang Gao8, Wenxuan Liu8, Xinghua Bai8, Tao Pan8,
+Guoqing Wang8, Yujun Chang 9,10, Zhi Zhang9,10, Huanzhong Shi 11,
+Wan-Li Ma1,13 and Zhancheng Gao2,13
+@ERSpublications
+SARS-CoV-2 can be rapidly transmitted from person to person in nosocomial and social settings,
+despitepatientshavingnosymptomshttps://bit.ly/34BHtB5
+Cite this article as: Wang X, Zhou Q, He Y, et al. Nosocomial outbreak of COVID-19 pneumonia in
+Wuhan,China.EurRespirJ2020;55:2000544[https://doi.org/10.1183/13993003.00544-2020].
+ABSTRACT
+Background: The novel coronavirus, severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2),
+infected over 3300 healthcare workers in early 2020 in China. Little information is known about
+nosocomial infections of healthcare workers in the initial period. We analysed data from healthcare
+workers with nosocomial infections in Wuhan Union Hospital (Wuhan, China) and their family
+members.
+Methods: We collected and analysed data on exposure history, illness timelines and epidemiological
+characteristics from 25 healthcareworkers withlaboratory-confirmed coronavirus disease 2019 (COVID-19)
+and two healthcare workers in whom COVID-19 was highly suspected, as well as 10 of their family
+members with COVID-19, between 5 January and 12 February 2020. The demographics and clinical
+features of the 35 laboratory-confirmed cases were investigated and viral RNA of 12 cases was sequenced
+andanalysed.
+Results: Nine clusters were found among the patients. All patients showed mild to moderate clinical
+manifestation and recovered without deterioration. The mean period of incubation was 4.5days, the
+mean±SD clinical onset serial interval (COSI) was 5.2±3.2days, and the median virus shedding time was
+18.5days. Complete genomic sequences of 12 different coronavirus strains demonstrated that the viral
+structure, with small irrelevant mutations, was stable in the transmission chains and showed remarkable
+traitsofinfectioustraceability.
+Conclusions: SARS-CoV-2 can be rapidly transmitted from person to person, regardless of whether they
+havesymptoms,inbothhospitalsettingsandsocialactivities,basedontheshortperiodofincubationand
+COSI. The public health service should take practical measures to curb the spread, including isolation of
+cases, tracing close contacts, and containment of severe epidemic areas. Besides this, healthcare workers
+shouldbealertduringtheepidemicandself-quarantineifself-suspectedofinfection.
+Thisarticlehassupplementarymaterialavailablefromerj.ersjournals.com
+Received:4March2020|Acceptedafterrevision:8April2020
+Copyright ©ERS 2020. This version is distributed under the terms of the Creative Commons Attribution Non-
+CommercialLicence4.0.
+https://doi.org/10.1183/13993003.00544-2020 EurRespirJ2020;55:2000544INFECTIOUSDISEASE | X.WANGETAL.
+Introduction
+17years after the 2003 epidemic of severe acute respiratory syndrome (SARS) [1, 2], a novel coronavirus,
+severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), was isolated from bronchoalveolar lavage
+of several patients with unknown origin pneumonia in Wuhan City, China [3]. SARS-CoV-2 has caused
+coronavirus disease 2019 (COVID-19) across the country and abroad. A total of 83157 COVID-19 cases
+with 4.02% mortality has been reported in China up to 7 April 2020 [4]. The confirmed cases have been
+identified in >180 countries and regions around the world, and >1300000 people have been infected
+globally outside China, including 78932 deaths [5]. The hunt for patient zero is critical, but
+epidemiological investigations are often complex and unclear [6]. A COVID-19 patient usually presents
+with fever, a nonproductive cough, myalgia and malaise. Symptoms, including a productive cough and
+headache, are less common. Dyspnoea is observed in more than one-quarter of patients. Cases with
+persistent lymphopenia usually develop fatal comorbidities, including acute respiratory distress syndrome,
+acutecardiacinjury,secondaryinfectionandmultiorgandysfunction[7–9].
+SARS-CoV-2 is a positive-sense and single-stranded RNA virus of zoonotic origin belonging to
+Betacoronavirus lineage B [3]. It has successfully crossed the animal-to-human barrier and proved to be
+capable of epidemic spread and may even have endemic persistence in the human population [10]. The
+calculatedR0ofSARS-CoV-2isashighas2.68[11],makingpreventionmeasuresandinterventiontactics
+very challenging. Unfortunately, current general hospital settings in Wuhan and many other cities are
+actingasepidemichotspotstofacilitatetransmissionandexacerbatespread[12].Sofar,>3300healthcare
+workers(HCWs)inChinahavebeendiagnosedasinfected,mainlythroughnosocomialtransmission[13].
+HCWs are among the first to suffer during the epidemic. The transmission dynamics of COVID-19 in
+hospitals in the initial period, especially among HCWs, are important for deeper understanding of the
+epidemiologyofthedisease.
+Here we investigated possible transmission links by integrating epidemiological data and whole-genome
+sequencingof25infectedHCWsandtwoHCWsinwhominfectionwashighlysuspected,aswellastheir
+family members who were successively infected with SARS-CoV-2 in the initial period in Wuhan Union
+Hospital. We also collected and analysed the clinical data of the 35 laboratory-confirmed cases among
+theseindividuals.
+Methods
+Studydesignandparticipants
+A total of 35 laboratory-confirmed cases and two highlysuspected cases were enrolled between 5 January
+and 12 February 2020, including 27 HCWs and 10 relatives out of seven families. All participants were
+interviewed using a standard questionnaire that elevated communicable diseases. Items such as HCWs’
+contact history with the confirmed COVID-19 patients, including where, when and how they had been
+exposed, were assessed. We mapped all cases with the precise time of symptom onset. Cluster outbreaks,
+potentialexposuresandpossiblepatternsoftransmissionwereestimated.
+We collected clinical data from the 35 laboratory-confirmed cases, including symptoms and signs,
+laboratory examinations, chest imaging, comorbidities and complications, and clinical treatment and
+outcomes, which were arranged using a standardised data collection form, referencing the case record
+form shared by the International Severe Acute Respiratory and emerging Infection Consortium (ISARIC)
+[14] and the household transmission investigation protocol for SARS-CoV-2 infection from the World
+HealthOrganization(WHO)[15].
+Affiliations: 1Dept of Respiratory and Critical Care Medicine, Union Hospital, Tongji Medical College,
+Huazhong University of Science and Technology, Wuhan, China. 2Dept of Respiratory and Critical Care
+Medicine, Peking University People’s Hospital, Beijing, China. 3School of Urban Design, Wuhan University,
+Wuhan,China.4DeptofRadiology,UnionHospital,TongjiMedicalCollege,HuazhongUniversityofScienceand
+Technology, Wuhan, China. 5Dept of Respiratory, Critical Care, and Sleep Medicine, Xiang’an Hospital of
+Xiamen University, Xiamen, China. 6Dept of Clinical Laboratory, Union Hospital, Tongji Medical College,
+Huazhong University of Science and Technology, Wuhan, China. 7Dept of Anaesthesiology, Union Hospital,
+Tongji Medical College, Huazhong University of Science and Technology, Wuhan, China. 8Beijing CapitalBio
+Medical Laboratory, Beijing, China. 9National Engineering Research Center for Beijing Biochip Technology,
+Beijing, China. 10CapitalBio Corporation, Beijing, China. 11Dept of Respiratory and Critical Care Medicine,
+BeijingChao-YangHospital,CapitalMedicalUniversity, Beijing,China.12Equalcontributors. 13These authors
+arejointprincipalauthors.
+Correspondence:ZhanchengGao,DeptofRespiratoryandCriticalCareMedicine,PekingUniversityPeople’s
+Hospital,Beijing100044,China.E-mail:zcgao@bjmu.edu.cn
+https://doi.org/10.1183/13993003.00544-2020 2INFECTIOUSDISEASE | X.WANGETAL.
+Real-timereversetranscriptionPCRassaytodetectSARS-CoV-2
+TheSARS-CoV-2laboratorytestassayswerebasedonthepreviousWHOrecommendation[16].RNAwas
+extracted from oropharyngeal swabs of patients suspected of having SARS-CoV-2 infection using the
+respiratory sample RNA isolation kit. Then real-time reverse transcription PCR (RT-PCR) assay of
+SARS-CoV-2RNAwasconducted toamplifyand test two target genes, including open reading frame1ab
+(ORF1ab) and nucleocapsid protein (N). Details of the manufacturer’s protocols for RNA extraction and
+real-timeRT-PCRassay,andthediagnosticcriteria,areillustratedinthesupplementarymaterial.
+Whole-genomesequencingandcomparativegenomeanalysis
+Nasopharyngeal and/or oropharyngeal swabs were obtained from all COVID-19 cases for SARS-CoV-2
+nucleic acid assay, and 22 were processed using whole-genome sequencing. Full genomes were sequenced
+using the BioelectronSeq 4000 (CapitalBio Corporation, Beijing, China) and assembled using the de novo
+genome assembler, SPAdes, version 3.10.1 [17]. The complete genome was annotated by Prokka, version
+1.14.5[18].ThemutationswereanalysedwiththeuseofC-Sibelia,version3.07[19],basedontheexisting
+Wuhan-Hu-1 (NC_045512.2) genome, and were annotated by SnpEff, version 4.3 [20]. We integrated
+informationfrom60publishedgenomicsequencesofSARS-CoV-2.
+Full-length genomes were combined with published SARS-CoV-2 genomes and other coronaviruses and
+aligned using the FFT-NS-2 model by MAFFT, version 7.455 [21].Maximum-likelihood phylogenies were
+inferred under a generalised-time-reversal (GTR)+ gamma substitution model and bootstrapped 1000
+times to assess confidence using RAxML, version 8.2.12 [22]. The mutations of assembled amino acid
+sequences of Spike protein were compared with Wuhan-Hu-1 (NC_045512.2), bat-SL-CoVZC45
+(MG772933.1)andSARScoronavirusisolateTor2/FP1-10851(JX163927.1)usingClustalOmega[23].
+Epidemiologicalanalysis
+For participants with detailed onset information, a log-normal distribution was used to fit the incubation
+period, and the probability distribution of the incubation period was estimated. For participants with
+detailed medical visit information, the Weibull distribution was used to fit and determine
+onset-to-first-medical-visit and onset-to-admission distributions based on the dates of the onset of the
+illness, first medical visit and hospital admission. The clinical onset serial interval (COSI) was calculated,
+forwhichtheprobabilitydistributionwasestimatedbythegammadistribution.
+Statisticalanalysis
+For clinical data, categorical variables were expressed as number (proportion). Continuous variables were
+expressed as medians and compared by Mann–Whitney U-tests. p-values <0.05 were considered
+significant. Statistical analyses were conducted using SPSS software, version 23.0 (IBM Corp., Armonk,
+NY,USA),unlessotherwiseindicated.
+Ethicalapproval
+Ethical approval was waived by the institutional review board of the hospital, since we collected and
+analysed all data from the patients according to the policy for public health outbreak investigation of
+emerginginfectiousdiseasesissuedbytheNationalHealthCommissionofthePeople’sRepublicofChina.
+Results
+NosocomialoutbreakofCOVID-19pneumoniaanditsepidemiologicaltransmissionpatterns
+One male patient (aged 69years) in the Department of Neurosurgery of Wuhan Union Hospital
+developed a fever of 38°C on 6 January 2020 and was finally diagnosed with COVID-19 on 16 January
+2020.Afemalepatient (aged55years)hadafeveron11January2020,andCOVID-19wasconfirmedon
+18 January 2020. During this period, the HCWs in the Department of Neurosurgery either had direct
+contact with the two index patients without sufficiently efficient personal protective equipment, or they
+hadindirectcontactthroughtheirco-workersinthedepartmentgatheringson12and13January2020.12
+of the HCWs in the Department of Neurosurgery were finally diagnosed with laboratory-confirmed
+COVID-19 between 16 and 24 January 2020. Besides these, two HCWs (labelled as cases O and Z) were
+diagnosed as probablecases with similarclinical manifestations but negative viral nucleotide tests. Beyond
+the Department of Neurosurgery, there were 13 HCWs of other departments who were
+laboratory-confirmedCOVID-19cases.Thesedepartmentsalsohadsuspectsenrolledatthesametime.
+Afterthe25HCWs’onsetofillness,10outof43familymemberswereconfirmedasCOVID-19casesvia
+nucleotidetests.Theremaining33familymembersoftheHCWswerenotsecondarilyinfected,duetothe
+strict self-quarantine strategies taken by the HCWs immediately after their onset of illness, including
+wearing afacial maskwhen they came home,living alonein aseparatedroom,nevereating togetherwith
+theirfamilies,etc.Insummary,from5to29January2020,25HCWsand10familymembersoutofseven
+https://doi.org/10.1183/13993003.00544-2020 3INFECTIOUSDISEASE | X.WANGETAL.
+families were diagnosed with COVID-19 in a single hospital. The detailed epidemiological and contact
+history, as well as cluster information, are shown in the supplementary material. The time distribution of
+symptomonsetandspeculativetransmissionpatternareshowninfigure1aandb,respectively.
+a) 5 Confirmed HCWs in Neurosurgery
+Confirmed HCWs in other departments
+Suspected HCWs in Neurosurgery
+4
+Family members
+Patients
+3
+2
+1
+0
+5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+January date
+b) Infected patients Confirmed HCWs in Neurosurgery Confirmed HCWs in other units
+Confirmed family members Probable transmission Suspected transmission
+Suspected HCWs in Neurosurgery
+B d Y
+D G I P c X k
+a
+A
+L T V
+b F g Z h
+S
+E K
+N W
+H
+A C R e
+J j
+M
+Q
+B
+U f
+O
+Post-operative Neurosurgery gala
+patient in i
+Neurosurgery Senior nurse job title bidding
+5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+January date
+FIGURE 1 Transmission patterns. a) Timeline of onset of illness of 37 laboratory-confirmed and two
+suspectedCOVID-19cases,includingtwolaboratory-confirmedindexpatientsadmittedtotheDepartmentof
+Neurosurgery, 25 laboratory-confirmed healthcare workers (HCWs), 12 of whom were in the Department of
+Neurosurgery, 10 of their familymemberswith COVID-19and twoHCWshighlysuspectedto have infection.
+b) Transmissionmapof twolaboratory-confirmed index patients,25 laboratory-confirmed HCWs,10 of their
+familymemberswithCOVID-19andtwoHCWswithsuspectedCOVID-19.ThelettersrepresentthepatientID
+labels. In the Department of Neurosurgery, two gatherings were held: a department gala and a meeting
+amongseniornurses,on12and13January2020,respectively.Thereareninecleartransmissionchains,as
+follows. Cluster 1: the first hospitalised man (index patient A) in the Department of Neurosurgery, with two
+nurses(CandH)whotookcareofhim.Cluster2:indexpatientBatthesamewardaspatientA,withthree
+nurses (M, Q and O) who had close contact with patient B; nurse O, a probable case, had a negative viral
+nucleic acid test but had COVID-19-like symptoms and imaging findings. Cluster 3: nurse U with her
+mother-in-lawf,hermotheriandgrandmotherj.Cluster4:nursePwithherhusbandc.Cluster5:nurseF
+withherhusbandg,andhercolleague(doctorS)whohadclosecontactwithFatthegala.Cluster6:nurseR
+with her husband e. Cluster 7: nurse A with her husband a and daughter b. Cluster 8: nurse B with her
+boyfriendd;theyhadcontactsince15January.Cluster9:doctorXwithhermotherhandfatherkwhoisa
+retired doctor. There are seven sporadic laboratory-confirmed cases: doctor D who was mainly responsible
+for gastroscopy; nurse G in the Department of Cardiology; nurse I in the Department of Cardiac Surgery;
+nurseVinthelaboratorydepartment,whoisresponsiblefordeliveringclinicalspecimensdaily;staffLinthe
+financedepartment;doctorT,thedirectorofafeverclinic;anddoctorY,intheDepartmentofNeurology.
+https://doi.org/10.1183/13993003.00544-2020 4
+n
+sesaCINFECTIOUSDISEASE | X.WANGETAL.
+Transmission,incubationperiodandserialinterval
+According to the information from 14 laboratory-confirmed cases whohad specific dates of exposure and
+symptom onset, we estimated that the mean incubation period was 4.5days (95% CI 3.0–6.4days). The
+95th percentile of the probability distribution for the incubation period was 11.4days (95% CI 4.0–
+12.0days)(figure2a).Throughtheninetransmissionchains(figure1b),weestimatedthatthemean±SDof
+the COSI distribution was 5.2±3.2days (95% CI 3.8–6.8days) (figure 2b). Among the data obtained from
+the 35 confirmed cases (including the HCWs and their family members) and two suspected cases, the
+intervalfromthedateofonsettothefirstmedicalvisitwasestimatedtohaveameanof3.0days(95%CI
+2.2–3.9days) (figure 2c). Of the 27 hospitalised cases (23 HCWs and four family members), the interval
+from the date of onset to hospital admission was estimated to have a mean of 6.6days (95% CI 5.3–
+8.2days) (figure 2d). There were no significant differences in these four indicators between HCWs and
+theirfamilymembers.
+Demographicandclinicalfeaturesin35confirmedcases
+Theclinicaloutcomesofthepatientsareshownintable1.Amongthe35confirmedcases,22(62.9%)were
+women, and the median age was 37years (range 25–88years). A few patients had underlying diseases,
+including hypertension (11.4%), coronary heart disease (2.9%), diabetes (5.7%) and asthma (5.7%). By 12
+February 2020, a total of 21 patients (60%) had recovered and been discharged from hospital, six patients
+(17.1%)requiringmedicalobservationremainedinhospital,andeightpatients(22.9%)whostayedathome
+under self-quarantine had recovered. The median virus shedding time was 18.5days (range 12–25days).
+Themediantimeforthelengthofhospitalstaywas21days(range13–28days).
+a) b)
+0.16
+0.20
+0.14
+0.12
+0.15
+0.10
+0.08
+0.10
+0.06
+0.05 0.04
+0.02
+0.00 0.00
+0 1 2 3 4 5 6 7 8 91011121314151617181920 0 1 2 3 4 5 6 7 8 91011121314151617181920
+Incubation period days Serial interval days
+c) d)
+0.50
+0.10
+0.40
+0.08
+0.30 0.06
+0.20 0.04
+0.10 0.02
+0.00 0.00
+0 1 2 3 4 5 6 7 8 91011121314151617181920 0 1 2 3 4 5 6 7 8 91011121314151617181920
+Time from illness onset to first medical visit days Time from illness onset to hospital admission days
+FIGURE 2 Typical statistical probability distribution. a) The estimated incubation period distribution. A
+log-normaldistributionwasusedtofittheincubationperiodofthecaseandtheprobabilitydistributionofthe
+incubationperiodwasestimatedaccordingtotheinformationfrom14peoplewhowereconfirmedCOVID-19
+casesandhadcleardatesofexposureandonset.b)Theestimatedserialinterval.Theprobabilitydistribution
+of the interval time was estimated using the gamma distribution through nine transmission chains (i.e. the
+timeintervalfromonsetofillnessinoneprimarycasetothe onsetofillnessinthe closecontact caseina
+transmission chain). c) The estimated distribution of times from illness onset to first medical visit. The
+Weibulldistributionwasusedtofitandestimateonset-to-first-medical-visitbasedonthedatesoftheonset
+of the illness and first medical visit of 35 laboratory-confirmed cases and two suspected cases. d) The
+estimateddistributionoftimesfromillnessonsettohospitaladmission.TheWeibulldistributionwasusedto
+fit and estimate onset-to-admission distribution based on the dates of the onset of the illness and hospital
+admissionof27hospitalisedpatients.
+https://doi.org/10.1183/13993003.00544-2020 5
+ycneuqerf
+evitaleR
+ycneuqerf
+evitaleR
+ycneuqerf
+evitaleR
+ycneuqerf
+evitaleRINFECTIOUSDISEASE | X.WANGETAL.
+Themostcommonsignsandsymptomsonadmissionwerefever(85.7%)andmalaise(74.3%);22patients
+(62.9%) had a poor appetite, and 19 patients (54.3%) had a cough. Six patients received oxygen
+therapy because of hypoxaemia. Corticosteroids were not administrated in any patients (supplementary
+tableS1).
+The laboratoryresultsof thepatients are showninsupplementary tableS2. Thecomplete bloodcountsof
+patientsonadmissionshowedthatthenumberofwhitebloodcellswasnormalinmostpatients(27outof
+31; 87.1%). Out of 30 patients, 13 (43.3%) had lymphopenia. Alanine aminotransferase was abnormal in
+four patients (15.4%). Creatinine was normal in all patients. Seven patients (30.4%) had increased lactate
+dehydrogenase.
+TABLE1Characteristicsandclinicaloutcomesofhealthcareworkers(HCWs)andtheirfamily
+memberswithlaboratory-confirmedCOVID-19pneumonia
+Variable HCWs Familymembers Total
+Patientsn 25 10 35
+Female 17(68) 5(50) 22(62.9)
+Ageyears 35(25–63) 52(25–88) 37(25–88)
+Agesubgroupyears
+0–15 0 0 0
+16–44 20(80) 4(40) 24(68.6)
+45–64 5(20) 5(50) 10(28.6)
+⩾65 0 1(10) 1(2.9)
+Underlyingillness
+Hypertension 3(12) 1(10) 4(11.4)
+Coronaryheartdisease 0 1(10) 1(2.9)
+Diabetes 1(4) 1(10) 2(5.7)
+Asthma 2(8) 0 2(5.7)
+Exposurehistory
+Huananseafoodwholesalemarket 0 0 0
+Confirmedpatients 7(28) 0 7(20)
+ConfirmedHCWs 3(12) 10(100) 13(37.1)
+Galaandmeeting 4(16) 0 4(11.4)
+Suspectedpatients 3(12) 0 3(8.6)
+Unknown 8(32) 0 8(22.9)
+Epidemiologicaldata
+Incubationperioddays 4(1–4) 3(2–12) 3(1–12)
+Patientsn 4 10 14
+Interquartilerange 1.75–4 2–9.5 2–5.25
+Intervalfromdateofonsettofirstmedicalvisitdays 2(0–8) 4(0–13) 2(0–13)
+Patientsn 25 10 35
+Interquartilerange 1–3.5 2–7 1–4
+Intervalfromdateofonsettohospitaladmissiondays 5(3–16) 11(4–16) 5(3–16)
+Patientsn 23 4 27
+Interquartilerange 3–7 4.75–15.75 3–10
+Serialintervaldays 4(3–7) 3(2–12) 4(2–12)
+Patientsn 6 10 16
+Interquartilerange 3.75–5.5 2–10.25 3–8.5
+Management
+Hospitalisation 23(92) 4(40) 27(77.1)
+Homequarantine 2(8) 6(60) 8(22.9)
+Clinicaloutcomeat12February2020
+Clinicalamelioration,remainedinhospital 4(16) 2(20) 6(17.1)
+Recoveredanddischargedfromhospital 19(76) 2(20) 21(60)
+Homequarantine,recovered 2(8) 6(60) 8(22.9)
+Lengthofstayinhospitaldays 21(15–28) 13(13–13) 21(13–28)
+Interquartilerange 17–25 16.5–24.5
+Virusshedding
+Virussheddingnegative 20(80) 20(57.1)
+Virussheddingtimedays 18.5(12–25) 18.5(12–25)
+Interquartilerange 14.25–21.75 14.25–21.75
+Dataarepresentedasn(%)ormedian(range),unlessotherwisestated.
+https://doi.org/10.1183/13993003.00544-2020 6INFECTIOUSDISEASE | X.WANGETAL.
+On admission, infiltrations in chest computed tomography (CT) images were detected in most cases. In
+total, 29 (82.9%) showed ground-glass opacities, four (11.4%) showed consolidations, and one (2.9%)
+presented mixed ground-glass opacities and consolidation. Only one patient (2.9%) had normal chest
+imaging (supplementary table S2). Figure 3 shows two series of typical CT images of moderate
+pneumonia (HCWs A and C) and supplementary figure S5 shows a series of CT images from a
+suspectedcase(HCWO).
+Sequencingandphylogeneticanalysis
+We obtained 12 whole-genome sequences (GenBank accession numbers MT079843–MT079854) after
+implementing de novo sequencing from 22 swab specimens from 22 COVID-19 patients. These 12
+whole-genomesequenceswerefrompatientsB,C,E,F,G,H,J,M,Q,R,Vande,aslabelledinfigure1b,
+and their corresponding sample numbers are summarised in supplementary table S3. The remaining 10
+samples were removed due to insufficient coverage of the extracted virus genome. Compared with
+Wuhan-Hu-1, except for V, the remaining 11 viral genomes all had two nucleotide mutations. We found
+thatthesetwomutationsitesbothexistin16(26.2%)publishedvirusgenomes(supplementarytablesS4–
+S6).Vshowedtwomissensemutationscompletelydifferentfromtheother11cases;Vwasanurseinthe
+laboratory department, responsible for delivering clinical specimens, so we assume that the difference in
+virus sequence may be because he was exposed to many other patients’ clinical specimens due to his job.
+ThesequencesfromRandherhusbandearethesame(figure4a).Atotalofsixmissensemutationswere
+found in the 12 genomes of SARS-CoV-2 strains, but none of them were located in the genes for
+structural proteins in the new coronavirus, including S, E, M or N proteins (figure 4a). Five of the
+mutations were located on the nonstructural proteins, which are hydrolysed from the virus-encoded
+polyproteins 1a/1ab1. The one remaining missense mutation (position 28144, T>C) was located on the
+cofactorgeneORF8.
+Thephylogenetictreeoffull-lengthgenomesshowedthatSARS-CoV-2strainsformamonophyleticclade
+with a bootstrap support of 100% (supplementary figure S3). The most closely related sequence to this
+cladeisbat-SL-CoV.SequencesfromsixHCWs(C,H,J,M,QandR)intheDepartmentofNeurosurgery
+and one family member (e) were closely related in the phylogenetic tree (figure 4b). The sequence from
+HCW B in another department formed a separate lineage. Compared with bat-SL-CoVZC45
+(MG772933.1) and SARS coronavirus isolate Tor2/FP1-10851 (JX163927.1), SARS-CoV-2 had four and
+threeinsertionregionsrespectively(figure4c).
+a) b)
+18 7
+22 16
+26 22
+31 26
+FIGURE 3 Computed tomography (CT) images from two healthcare workers (A and C), showing moderate
+typical pneumonia. a) The CT images of patient C showed a lesion in the posterior segment of the left
+superiorlobe.Earlyon,therangeof lesionsgraduallyexpanded, fromalightground-glassopacity(GGO)to
+mixed with consolidation and, at last, the lesions were significantly reduced, 17days after onset of illness,
+leavingonlyathin GGO under the pleura on 31 January, 22days afteronsetof illness. b) The CT images of
+patient A showed pneumonia in both lower lungs, which was more prominent in the lower right lung. The
+conditiongraduallyworsenedfrom7to16January,buton22January,17daysafteronsetofillness,theGGO
+becamealleviatedandresolvedsignificantlyon26January,21daysafteronsetofillness.
+https://doi.org/10.1183/13993003.00544-2020 7
+etad
+yraunaJ
+etad
+yraunaJINFECTIOUSDISEASE | X.WANGETAL.
+a) Replicase Replicase Spike 3a 7a
+polyprotein 1a polyprotein 1ab protein M N
+5’ 3’
+WHUHnCoV001 J
+WHUHnCoV002 Q
+WHUHnCoV003 H
+WHUHnCoV004 M
+WHUHnCoV005 C
+WHUHnCoV006 F
+WHUHnCoV007 E
+WHUHnCoV008 R
+WHUHnCoV011 B
+WHUHnCoV012 G Synonymous SNV
+WHUHnCoV020 e
+Nonsynonymous SNV
+WHUHnCoV021 V
+1 15 000 30 000
+b)
+WHUHnCoV007 E
+WHUHnCoV001 J
+58
+WHUHnCoV002 Q
+51
+WHUHnCoV020 e
+51 WHUHnCoV004 M
+92 WHUHnCoV008 R
+83 62
+72 WHUHnCoV005 C
+WHUHnCoV003 H
+WHUHnCoV012 G
+61
+WHUHnCoV021 V
+61
+WHUHnCoV006 F
+WHUHnCoV011 B 0.0001
+c)
+FIGURE 4 Sequencing analysis of the sequences of 12 COVID-19 cases. WHUHnCoV001–WHUHnCoV008,
+WHUHnCoV011, WHUHnCoV012, WHUHnCoV0020 and WHUHnCoV021 are the sample IDs. The letters
+following them represent the corresponding patient IDs from figure 1b. a) Full-genome structure and
+mutation information compared with Wuhan-Hu-1 (GenBank accession number NC_0455122). Nucleotide
+differences are shown by vertical coloured bars in the 12 full-genome sequences of SARS-CoV-2 obtained
+fromourcases.Green indicates asynonymoussingle-nucleotidevariant (SNV)inthe querysequence,reda
+nonsynonymous SNV. b) Phylogenetic tree of full-length genomes of SARS-CoV-2 from our 12 samples. The
+numbernexttoeachnoderepresentsameasureofsupportforthenode,givenasapercentage,where100
+representsmaximalsupport.Thescalebarshowsthelengthofbranchthatrepresentsanamountofgenetic
+change of 0.0001. Sequences from six healthcare workers (C, H, J, M, Q and R) in the Department of
+Neurosurgery and one family member (e) were closely related in the phylogenetic tree. The obviously
+separatecladewasfromhealthcareworkerBintheDepartmentofGynaecology.c)MutationsinSpikeprotein
+of WHUHnCoV001 (healthcare worker J). The reference Spike proteins were from SARS coronavirus isolate
+Tor2/FP1-10851 (JX163927.1), bat-SL-CoVZC45 (MG772933.1) and Wuhan-Hu-1 (NC_045512.2). Compared
+with bat-SL-CoVZC45 and SARScoronavirus isolate Tor2/FP1-10851, SARS-CoV-2 had four insertionregions
+(positions 257–261, 449–454, 479–495 and 685–690) and three insertion regions (positions 74–85, 252–259
+and685–690),respectively.
+https://doi.org/10.1183/13993003.00544-2020 8
+T
+2536
+T
+8782
+C
+8886
+T
+10626
+T
+16325
+T
+17249
+T
+17894
+C
+18996
+T
+24370
+C
+28144
+C
+29029INFECTIOUSDISEASE | X.WANGETAL.
+Discussion
+At the very early stage of the outbreak of COVID-19 in Wuhan City and Hubei Province in China, we
+lacked efficient viral identification capacity to diagnose probable COVID-19 cases. Therewere no effective
+prevention measures in general hospital settingsto isolate and manage the suspected COVID-19 cases, or
+valid containment measures to block the transmission pathways [12]. HCWs are the highest risk
+occupational population in outbreaks of such acute respiratory infectious diseases, such as SARS and
+COVID-19, which are transmitted by contact or respiratory droplets, aerosols or fomites [24]. Here, we
+havedescribedseveralclustersofCOVID-19casesinahospital,showingperson-to-persontransmissionof
+SARS-CoV-2,andhaveassessedtheepidemiologicalfeaturesofCOVID-19.
+Wehavereported25laboratory-confirmed casesandtwohighlysuspectedcasesamongHCWs,whowere
+infected successively in Wuhan Union Hospital. Of these, 14 were co-workers in the Department of
+Neurosurgery.Theyformedtwoclusters,withtwoindexpatientsasthesources,whichfurtheremphasised
+theimportanceofadequateprotectionforHCWsduringtheirdailywork.Moreover,sevenfamilyclusters
+associated with these HCWs have occurred, mainly due to the close contact between the affected HCWs
+and their family members without any isolation measures. Fortunately, the majority of HCWs, who
+isolated themselves from their family members at the onset of illness, effectively protected their family
+members from getting infected. Through mapping the time of onset and possible routes of transmission
+(figure 1b), we can conclude that the general hospitals are just like an epidemic hub, gathering a lot of
+patientswhoarethesourcesofinfection,whichwouldefficientlyfacilitateandexacerbatethetransmission
+andspreadingofvirusviapublictransportoralternativeways.
+Through phylogenetic analysis, we found clustered cases that were closer in the phylogenetic tree
+(figure 4b). Mutation analysis showed that the sequence from each sample had different mutation sites,
+most of which were synonymous mutations. Although some missense mutations existed, none of them
+were located in the genes for structural proteins of SARS-CoV-2 (figure 4a). Additionally, the amino acid
+sequencesofthestructuralproteinshadnochanges(supplementaryfiguresS1andS2).
+Mostoftheinitialsymptomsinourcasesweremyalgia,malaiseandfever.Somepatientshadnofeverbut
+onlymildsymptomssuchasnasalcongestion,whichmayhaveledtopatientsbeingoverlooked,causinga
+widerspreadofCOVID-19.Inourcases,theintervalsofonsetofillnesstofirstmedicalvisitandonsetof
+illness to hospital admission were estimated to have a mean of 3.0days and 6.6days, respectively, which
+were shorter than in other studies [25]. By 12 February, 21 out of 27 hospitalised cases (77.8%) had
+recovered and were discharged; none of them were admitted to the intensive care unit or had died. From
+the chest CT images from HCWs A and C, very mild or moderate infiltrations were presented, and these
+became alleviatedand resolved significantly in ashorttime(figure 3).Thus, early diagnosis, isolation and
+timelytreatmentscanspeeduptherecoveryofpatientsanddecreasethedeteriorativetendency.
+Themediantimeforvirussheddingtobecomenegativeinourcaseswasalongperiodof18.5days(range
+12–25days). It is worth mentioning that nurse F suffered severe diarrhoea during hospitalisation. Even
+after the nucleic acid test of nasopharyngeal swabs turned negative and lung CT images got better, the
+viral nucleic acid test of the stool maintained a sustainable positive result, 1month after onset. We must
+thus pay close attention to the status of virus clearance of patients with COVID-19. Such a long virus
+sheddingperiodperhapshighlightstheproductionofefficientlyneutralisingantibodiesinacomparatively
+postponed manneroreven anunsatisfactorytitre inthepatient’s plasma.Therefore, itmightbenecessary
+to extend the period of hospitalisation for infectious control purposes, and we should adopt a prudent
+strategyfortreatingcriticallyseverepatientswithconvalescentplasmafromCOVID-19patients.
+Our current study has some limitations. First, only 37 patients were enrolled, which might have led to
+potential bias of the incubation period and COSI in our study. More accurate calculation of incubation
+periodandCOSIwouldbepossiblewithalargersamplesize.Secondly,theinvestigationofthekineticsof
+virus shedding and the relevant viral loading in both respiratory and intestinal tracts was not possible,
+since the novel causative pathogen has only just been identified. Thirdly, the potential for superficial
+exposure in infection transmission was not investigated, which may need further studies. Fourthly, the
+kinetics of viral antibodies, especially neutralised antibodies, were not monitored due to laboratory
+limitations. Finally, viral genome analysis and traceability from each patient have notbeen performed and
+shouldbeconductedinfuturestudies.
+In summary, similar to the 2003 SARS outbreak in Guangzhou, the current epidemic of SARS-CoV-2
+resulting in COVID-19 in Wuhan is mainly due to efficient person-to-person transmission or
+super-spreading events in hospital settings and social activities, based on the short period of incubation
+and COSI. Practical strategies and measures, such as isolation of patients, tracing and quarantine of close
+contacts and containment of severe epidemic areas, are crucial to block the spread. Earlier detection and
+diagnosisofpatientswithCOVID-19willresultinbetterprognoses.
+https://doi.org/10.1183/13993003.00544-2020 9INFECTIOUSDISEASE | X.WANGETAL.
+Acknowledgements: We greatly appreciate both the International Severe Acute Respiratory and emerging Infection
+Consortium(ISARIC)forsharingdatacollectiontemplatespubliclyonthewebsiteandtheWorldHealthOrganization
+forsharingthehouseholdtransmissioninvestigationprotocolfortheSARS-CoV-2infection.Wewouldliketodedicate
+this article and pay the highest tribute to every brave healthcare worker who is fighting, devoting themselves and
+self-sacrificingtocontroltheoutbreakofthenovelcoronaviruspneumonia.
+Authorcontributions:Z.GaoandW-L.Mahadtheideaforanddesignedthestudy,hadfullaccesstoalldata,andtake
+responsibility for the integrity of the data and the accuracy of the data analysis. X. Wang, Y. He, L. Liu and X. Ma
+contributed to drafting the manuscript. Z. Gao, X. Wang, Y. Zheng, Q. Zhou, H. Shi and W-L. Ma contributed to
+critical revision of the manuscript for valuable intellectual content. Y. He, L. Liu, L. Liang and X. Ma conducted the
+statisticalanalysis.T.Deng,Y.Gao,B.Zhai,W.Liu,X.Bai,T.Pan,G.Wang,Y.ChangandZ.Zhangcontributedtothe
+sequencingandbioinformaticsanalysis.X.Wang,Q.Zhou,X.Wei,NanchuanJiang,L.Ma,D.Yang,J.Zhang,B.Yang,
+Y. Xu and Ning Jiang contributed to data acquisition, data analysis or data interpretation. The final version had been
+reviewedandapprovedbyallauthors.
+Conflictofinterest:Nonedeclared.
+Support statement: This work is funded by the National Natural Science Foundation of China (grants 81500005,
+81973990,91643101,81900133),theFundamentalResearchFundsfortheCentralUniversities(grant2020kfyXGYJ034)
+and the National Science and Technology Major Project (grant 2017ZX10103004–006). Funding information for this
+articlehasbeendepositedwiththeCrossrefFunderRegistry.
+References
+1 Ksiazek TG, Erdman D, Goldsmith CS, et al. A novel coronavirus associated with severe acute respiratory
+syndrome.NEnglJMed2003;348:1953–1966.
+2 Drosten C, Günther S, Preiser W, et al. Identification of a novel coronavirus in patients with severe acute
+respiratorysyndrome.NEnglJMed2003;348:1967–1976.
+3 Zhu N, Zhang D, Wang W, et al. A novel coronavirus from patients with pneumonia in China, 2019. N Engl J
+Med2020;382:727–733.
+4 NationalHealthCommissionofthePeople’sRepublicofChina.Updateonnewcoronaviruspneumoniaepidemic
+as of 24:00 on April 7. www.nhc.gov.cn/xcs/yqfkdt/202004/5e2b6f0bd47d48559582242e3878447d.shtml Date last
+updated:8April2020.Datelastaccessed:8April2020.
+5 JohnsHopkinsUniversityCenterforSystemsScienceandEngineering.COVID-19globalcases.https://gisanddata.
+maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6 Date last accessed: 8 April
+2020.
+6 CarinciF.Covid-19:preparedness,decentralisation,andthehuntforpatientzero.BMJ2020;368:bmj.m799.
+7 ChenN,ZhouM,DongX,etal.Epidemiologicalandclinicalcharacteristicsof99casesof2019novelcoronavirus
+pneumoniainWuhan,China:adescriptivestudy.Lancet2020;395:507–513.
+8 Wang D, Hu B, Hu C, et al. Clinical characteristics of 138 hospitalized patients with 2019 novel
+coronavirus-infectedpneumoniainWuhan,China.JAMA2020;323:1061–1069.
+9 HuangC,WangY,LiX,etal.Clinicalfeaturesofpatientsinfectedwith2019novelcoronavirusinWuhan,China.
+Lancet2020;395:497–506.
+10 Zhou P, Yang XL, Wang XG, et al. A pneumonia outbreak associated with a new coronavirus of probable bat
+origin.Nature2020;579:270–273.
+11 WuJT, LeungK,LeungGM.Nowcastingandforecastingthepotentialdomesticandinternationalspreadofthe
+2019-nCoVoutbreakoriginatinginWuhan,China:amodellingstudy.Lancet2020;395:689–697.
+12 GaoZC.[Efficientmanagementofnovelcoronaviruspneumoniabyefficientpreventionandcontrolinscientific
+manner].ZhonghuaJieHeHeHuXiZaZhi2020;43:163–166.
+13 National Health Commission of the People’s Republic of China. State Council’s Joint Prevention and Control
+Mechanism for New Coronavirus Infected Pneumonia introduce the latest progress of epidemic prevention and
+control, especially the measures of caring for medical staff. www.nhc.gov.cn/xwzb/webcontrollerdo?
+titleSeq=11231&gecstype=1Datelastupdated:26March2020.Datelastaccessed:26March2020.
+14 InternationalSevereAcuteRespiratoryandemergingInfectionConsortium.COVID-19CaseRecordForms(CRF).
+https://isaric.tghn.org/novel-coronavirus/Datelastupdated:26March2020.Datelastaccessed:26March2020.
+15 World Health Organization. Household transmission investigation protocol for 2019-novel coronavirus
+(2019-nCoV) infection. www.who.int/publications-detail/household-transmission-investigation-protocol-for-2019-
+novel-coronavirus-(2019-ncov)-infectionDatelastupdated:25January2020.Datelastaccessed:26March2020.
+16 Centers for Disease Control and Prevention. Real-time RT-PCR panel for detection of 2019-novel coronavirus.
+www.cdc.gov/coronavirus/2019-ncov/lab/rt-pcr-detection-instructions.html#rRT-PCR-assays Date last updated: 26
+March2020.Datelastaccessed:26March2020.
+17 Bankevich A, Nurk S, Antipov D, et al. SPAdes: a new genome assembly algorithm and its applications to
+single-cellsequencing.JComputBiol2012;19:455–477.
+18 SeemannT.Prokka:rapidprokaryoticgenomeannotation.Bioinformatics2014;30:2068–2069.
+19 Minkin I, Pham H, Starostina E, et al. C-Sibelia: an easy-to-use and highly accurate tool for bacterial genome
+comparison.F1000Res2013;2:258.
+20 Cingolani P, PlattsA,WangleL,etal. Aprogramforannotatingandpredictingtheeffectsofsinglenucleotide
+polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3. Fly 2012; 6:
+80–92.
+21 Katoh K, Rozewicki J, Yamada KD. MAFFT online service: multiple sequence alignment, interactive sequence
+choiceandvisualization.BriefBioinform2019;20:1160–1166.
+22 Stamatakis A. RAxML version 8: a tool for phylogenetic analysis and post-analysis of large phylogenies.
+Bioinformatics2014;30:1312–1313.
+23 EuropeanMolecularBiologyLaboratoryEuropeanBioinformaticsInstitute(EMBL-EBI).ClustalOmega.www.ebi.
+ac.uk/Tools/msa/clustalo/Datelastaccessed:26March2020.
+https://doi.org/10.1183/13993003.00544-2020 10INFECTIOUSDISEASE | X.WANGETAL.
+24 van Doremalen N, Bushmaker T, Morris DH, et al. Aerosol and surface stability of SARS-CoV-2 as compared
+withSARS-CoV-1.NEnglJMed2020;382:1564–1567.
+25 Li Q, Guan X, Wu P, et al. Early transmission dynamics in Wuhan, China, of novel coronavirus-infected
+pneumonia.NEnglJMed2020;382:1199–1207.
+https://doi.org/10.1183/13993003.00544-2020 11

@@ -1,0 +1,200 @@
+---
+title: "build_interaction_table"
+output: html_document
+date: "2024-02-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(data.table)
+```
+
+Input:
+UniProt data for species of interest
+Download all proteins for a species of interest from uniprot.org
+
+Output: 
+1: table of binary interactions: 
+Protein A | Protein B | Species A | Species B | 
+2: list of unique proteins
+
+
+```{r}
+covid_2697049 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark2/uniprotkb_2697049_2024_02_05.tsv")
+```
+
+Confirm list of proteins are unique:
+```{r}
+length(unique(covid_2697049$Entry)) == length(covid_2697049$Entry)
+```
+
+```{r}
+covid_2697049$Reviewed %>% table()
+```
+Since there are only 17 reviewed cases in this data table, continue with using all unreviewed and reviewed cases.
+
+
+Build data.frame of unique proteins:
+```{r}
+unique_2697049 = data.frame(
+  Entry = covid_2697049$Entry,
+  Protein_Names = covid_2697049$`Protein names`
+)
+```
+
+Write data.frame of unique proteins to file:
+
+```{r}
+fwrite(unique_2697049, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark2/2697049_proteins.csv", sep = ",")
+```
+
+### Build Interactions Table:
+
+Isolate Protein A and Protein B from data:
+```{r}
+interactions_2697049 = data.frame(
+  Protein_A = covid_2697049$Entry,
+  Protein_B = covid_2697049$`Interacts with`
+)
+```
+
+
+Filter to just the ones where "protein B/Interacts with" column is populated:
+```{r}
+interactions_2697049 = interactions_2697049[!(is.na(interactions_2697049$Protein_B) | interactions_2697049$Protein_B == ""),]
+```
+
+
+Of the interactions, convert entries with multiple Protein_B into binary interactions
+for example: 
+ProteinA = A, ProteinB = B, C, D, E 
+==> 
+A, B
+A, C
+A, D
+A, E
+
+```{r}
+binary_interactions_covid = data.frame(matrix(ncol=2))
+colnames(binary_interactions_covid) = c("Protein_A", "Protein_B")
+bin_int_count = 0
+mult_int_count = 0
+for(i in seq(dim(interactions_2697049)[1])) {
+  interacts_with = strsplit(interactions_2697049$Protein_B[i], "; ") %>% unlist()
+  if (length(interacts_with) == 1){
+    bin_int_count = bin_int_count + 1
+    proteinA = interactions_2697049$Protein_A[i]
+    proteinB = interactions_2697049$Protein_B[i]
+    binary_interaction = c(proteinA, proteinB)
+    binary_interactions_covid = rbind(binary_interactions_covid, binary_interaction)
+  } else { # more than 1 Protein_B
+    mult_int_count = mult_int_count + 1
+    for(j in seq(length(interacts_with))){
+      proteinA = interactions_2697049$Protein_A[i]
+      proteinB = interacts_with[j]
+      binary_interaction = c(proteinA, proteinB)
+      binary_interactions_covid = rbind(binary_interactions_covid, binary_interaction)
+    }
+  }
+}
+binary_interactions_covid = na.omit(binary_interactions_covid)
+
+```
+340 binary interactions in covid, so far
+
+Filter proteins that interact with itself: Protein A == Protein B
+```{r}
+binary_interactions_covid_dedupe = binary_interactions_covid %>% filter(Protein_A != Protein_B)
+```
+333 binary interactions in covid, so far
+
+Filter duplicate interactions:
+for example, 
+Protein A : Protein B 
+Protein B : Protein A 
+Keep just one
+
+make_interaction_ID makes a unique interaction ID by sorting each term alphabetically
+```{r}
+make_interaction_ID <- function(term1, term2) {
+  paste0(sort(c(term1, term2)), collapse = " ")
+}
+```
+
+Make unique identifier for each binary interaction:
+```{r}
+binary_interactions_covid_dedupe_int = binary_interactions_covid_dedupe %>% mutate(
+  ID = pmap(list(term1 = Protein_A, term2 = Protein_B), make_interaction_ID) %>% unlist()
+)
+```
+
+Keep interactions that are unique 
+```{r}
+binary_interactions_covid_dedupe_int_dist = binary_interactions_covid_dedupe_int %>% distinct(ID, .keep_all = TRUE)
+```
+300 unique binary interactions in covid
+
+
+Fill in Species information:
+```{r}
+getOrganism = function(protein) {
+  protein_info = covid_2697049 %>% filter(Entry == protein)
+  
+  if(length(protein_info$Organism)>0) {
+    organism_name = protein_info$Organism
+  } else {
+    organism_name = "Homo Sapiens (Human)"
+    #organism_name = GetProteinAnnontate(protein_info, "organism_name")
+  }
+  return(organism_name)
+}
+```
+
+
+```{r}
+covid_interactions_table = binary_interactions_covid_dedupe_int_dist %>% mutate(
+  Species_A = map(Protein_A, getOrganism), 
+  Species_B = map(Protein_B, getOrganism)
+)
+```
+
+covid proteome:
+```{r}
+covid_proteome = covid_2697049[covid_2697049$Reviewed == "reviewed"]$Entry
+```
+
+```{r}
+covid_interactions_table %>% filter(Species_B == "Severe acute respiratory syndrome coronavirus 2 (2019-nCoV) (SARS-CoV-2)")
+```
+There are 5 covid-covid interactions
+
+```{r}
+covid_interactions_table_pubs = covid_interactions_table %>% mutate(
+  PMIDs = map2_chr(Protein_A, Protein_B, getPMIDs)
+)
+```
+
+
+```{r}
+getPMIDs = function(proteinA, proteinB) {
+  interacts_with = covid_2697049[(covid_2697049$Entry == proteinA),]$`Interacts with` %>% strsplit("; ") %>% unlist()
+  if(proteinB %in% interacts_with) {
+    pmids = covid_2697049[(covid_2697049$Entry == proteinA),]$`PubMed ID`
+  } else {
+    pmids = NA
+  }
+  return(pmids)
+}
+```
+
+
+```{r}
+fwrite(covid_interactions_table_pubs, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark2/2697049_interactions_table.tsv", sep = "\t")
+```
+
+

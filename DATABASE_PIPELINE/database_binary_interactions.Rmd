@@ -1,0 +1,40 @@
+---
+title: "database_binary_interactions"
+output: html_document
+date: "2024-02-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(data.table)
+```
+
+Input:
+UniProt data for species of interest
+Download all proteins for a species of interest from uniprot.org
+
+```{r}
+ecoli_562 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/uniprotkb_taxonomy_id_562_2024_01_25.tsv")
+```
+
+```{r}
+reviewed_562 = ecoli_562 %>% filter(Reviewed == "reviewed")
+```
+
+Build list of proteins for 562:
+```{r}
+unique_562 = data.frame(
+  Entry = reviewed_562$Entry,
+  Protein_Names = reviewed_562$`Protein names`
+)
+```
+
+
+
+
+

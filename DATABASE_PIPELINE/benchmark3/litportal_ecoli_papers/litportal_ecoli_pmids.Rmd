@@ -1,0 +1,30 @@
+---
+title: "litportal_ecoli_pmids"
+output: html_document
+date: "2024-02-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(data.table)
+```
+
+e_coli_interactome_pubmed.csv was downloaded from LitPortal after performing a search for "e coli interactome" through PubMed, which garnered search results of 199 papers. 
+
+```{r}
+ecoli_562 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark3/e_coli_interactome_pubmed.csv")
+```
+
+```{r}
+ecoli_562_papers = ecoli_562$OriginId
+```
+
+```{r}
+fwrite(as.list(ecoli_562_papers), file = "litportal_ecoli_pmids.csv", sep = ",", quote = FALSE)
+```
+

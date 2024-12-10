@@ -1,0 +1,112 @@
+---
+title: "covid papers"
+output: html_document
+date: "2024-02-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(data.table)
+
+```
+
+Benchmark 2: 2019-nCoV
+Taxonomy ID: 2697049
+
+```{r}
+covid_2697049 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark2/uniprotkb_2697049_2024_02_05.tsv")
+```
+
+```{r}
+table(covid_2697049$Reviewed)
+```
+Onlyl 17 reviewed cases - will incorporate all unreviewed + reviewed cases for this benchmark
+due to the lack of reviewed cases. Ideally, we would have liked to go with just the reviewed cases.
+
+```{r}
+length(unique(covid_2697049$`PubMed ID`))
+```
+101 unique papers that mention covid proteins
+note: not quite, they need to be separated and counted uniquely
+
+```{r}
+covid_papers = covid_2697049$`PubMed ID` %>% strsplit("; ") %>% compact %>% unlist() %>% unique()
+```
+
+
+```{r}
+#setwd("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark2/")
+```
+
+
+
+```{r}
+table(covid_2697049$`Interacts with`)
+```
+about ~270 binary interactions
+
+```{r}
+library(easyPubMed)
+```
+
+Resources:
+https://www.data-pulse.com/dev_site/easypubmed/
+https://www.data-pulse.com/projects/Rlibs/vignettes/easyPubMed_demo.html#Tutorial
+"Other than its web portal, PubMed can be programmatically queried via the NCBI Entrez E-utilities interface."
+"easyPubMed is an open-source R interface to the Entrez Programming Utilities aimed at allowing programmatic access to PubMed in the R environment. The package is suitable for downloading large number of records, and includes a collection of functions to perform basic processing of the Entrez/PubMed query responses."
+
+easyPubMed pipeline is a 3-step process:
+1: query step: get_pubmed_ids()
+2: download pubmed records step: fetch_pubmed_data()
+3: process/extract data step: depends what you're trying to accomplish
+
+Documentation:
+https://cran.r-project.org/web/packages/easyPubMed/easyPubMed.pdf
+
+
+```{r}
+test_pmid_covid = 32511352
+test_query_covid = get_pubmed_ids(test_pmid_covid)
+test_paper_covid = fetch_pubmed_data(test_query_covid, format = "xml", encoding = "ASCII")
+```
+
+```{r}
+test_out = batch_pubmed_download(pubmed_query_string = test_pmid_covid,
+                                 dest_dir = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark2/test_easyPubMed/",
+                                 dest_file_prefix = toString(test_query_covid$IdList$Id),
+                                 format = "xml",
+                                 batch_size = 1,
+                                 encoding = "UTF-8")
+```
+
+format "medline" did not include the entire article...
+uilist was just the PMID in a text file
+abstract was similar output to medline - not entire article
+asn.1 was blank?
+xml = gross, full of html tags, impossible to read in this format, and perhaps might not include the whole paper either?
+
+https://cran.r-project.org/web/packages/easyPubMed/vignettes/getting_started_with_easyPubMed.html
+https://www.data-pulse.com/projects/Rlibs/vignettes/easyPubMed_01_getting_started.html
+
+demo 3: parallelization with doParallel and foreach 
+https://www.data-pulse.com/projects/Rlibs/vignettes/easyPubMed_02_advanced_tutorial.html
+https://www.data-pulse.com/dev_site/easypubmed/
+under the hood,ish-
+https://www.data-pulse.com/projects/Rlibs/vignettes/easyPubMed_demo.html#Tutorial
+example data:
+https://www.data-pulse.com/projects/Rlibs/vignettes/building_the_easyPubMed_EPMsamples_dataset.html
+basic explanation:
+http://www.biotechworld.it/bioinf/2016/01/21/scraping-pubmed-data-via-easypubmed-xml-and-regex-in-r-for-a-targeting-campaign/
+under the hood, github:
+https://github.com/dami82/easyPubMed
+
+No package for retrieving full-text from Pubmed, instead PubMed Central:
+https://www.biostars.org/p/475309/
+https://www.ncbi.nlm.nih.gov/pmc/tools/get-full-text/
+
+
