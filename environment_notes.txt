@@ -1,0 +1,14 @@
+Conda environment: ppiExplore
+current packages:
+python 3.10
+omnipath: https://anaconda.org/conda-forge/omnipath
+    conda install -c conda-forge omnipath
+pip git (conda install git pip)
+    https://stackoverflow.com/questions/19042389/conda-installing-upgrading-directly-from-github
+pypath.git: pip install git+https://github.com/saezlab/pypath.git
+zipfile
+
+
+Installing jupyter notebook in vscode:
+conda install ipykernel (https://www.youtube.com/watch?v=h1sAzPojKMg)
+
