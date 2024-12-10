@@ -1,0 +1,206 @@
+---
+title: "intact_uniprot_comparison"
+output: html_document
+date: "2023-11-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(data.table)
+```
+
+
+
+```{r}
+intact_ecoli = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/83333_interactions_deduped.csv")
+uniprot_ecoli = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/uniprotkb_proteome_UP000000625_2023_11_27.txt")
+```
+
+
+
+```{r}
+intact_proteins = as.list(intact_ecoli$EntityA, intact_ecoli$EntityB) %>% unique() %>% unlist()
+uniprot_proteins = as.list(uniprot_ecoli$Entry) %>% unique() %>% unlist()
+```
+
+
+```{r}
+intact_not_in_uniprot_index = which(!(intact_proteins %in% uniprot_proteins))
+intact_proteins[intact_not_in_uniprot_index] %>% unlist()
+```
+
+
+```{r}
+uniprot_protein_names = uniprot_ecoli$`Protein names` %>% 
+  gsub(pattern = '[^[:alnum:]]', replacement = " ") %>%
+  gsub(pattern = '[:punc:]', replacement = " ", fixed = T)
+```
+
+
+```{r}
+osti1 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti.csv")
+scopus = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_scopus.csv")
+```
+
+
+```{r}
+osti_abstracts = data.frame(ID = osti$OriginId, Abstract = osti$Abstract, Title = osti$Title)
+```
+
+```{r}
+fwrite(osti_abstracts, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_abstracts.csv")
+```
+
+```{r}
+osti2 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_2.csv")
+```
+
+```{r}
+osti2_abstracts = data.frame(ID = osti2$OriginId, Abstract = osti2$Abstract, Title = osti2$Title)
+```
+
+```{r}
+fwrite(osti2_abstracts, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_abstracts_2.csv")
+```
+
+```{r}
+osti3 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_3_reactome.csv")
+```
+
+```{r}
+osti3_abstracts = data.frame(ID = osti3$OriginId, Abstract = osti3$Abstract, Title = osti3$Title)
+```
+
+```{r}
+fwrite(osti3_abstracts, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_abstracts_3.csv")
+```
+
+
+```{r}
+osti4 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_4_interactome.csv")
+```
+
+```{r}
+osti4_abstracts = data.frame(ID = osti4$OriginId, Abstract = osti4$Abstract, Title = osti4$Title)
+```
+
+```{r}
+fwrite(osti4_abstracts, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_abstracts_4.csv")
+```
+
+
+```{r}
+osti5 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_5_proteome.csv")
+```
+
+```{r}
+osti5_abstracts = data.frame(ID = osti5$OriginId, Abstract = osti5$Abstract, Title = osti5$Title)
+```
+
+```{r}
+fwrite(osti5_abstracts, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_abstracts_5.csv")
+```
+
+
+```{r}
+osti6 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_6_protein.csv")
+```
+
+```{r}
+osti6_abstracts = data.frame(ID = osti6$OriginId, Abstract = osti6$Abstract, Title = osti6$Title)
+```
+
+```{r}
+fwrite(osti6_abstracts, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_abstracts_6.csv")
+```
+
+
+```{r}
+osti7 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_7_protein.csv")
+```
+
+```{r}
+osti7_abstracts = data.frame(ID = osti7$OriginId, Title = osti7$Title, Abstract = osti7$Abstract, Journal = osti7$`Publication Name`)
+```
+
+```{r}
+fwrite(osti7_abstracts, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_osti_abstracts_7.csv")
+```
+
+
+
+
+```{r}
+scopus_abstracts = scopus$Abstract %>%
+  gsub(pattern = '[^[:alnum:]]', replacement = " ") %>%
+  gsub(pattern = '[:punc:]', replacement = " ", fixed = T)
+```
+
+
+It turns out that R has terrible regex options.. trying this out in python instead
+
+```{r}
+uniprot_ecoli_synonyms = data.frame(Entry = uniprot_ecoli$Entry, Protein_Names = uniprot_ecoli$`Protein names`)
+fwrite(uniprot_ecoli_synonyms, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/uniprot_ecoli_synonyms.csv")
+```
+
+
+```{r}
+intact_intersection_uniprot = intact_proteins[-intact_not_in_uniprot_index]
+
+ecoli_interactome = data.frame(Entry = intact_intersection_uniprot)
+
+#ecoli_interactome = ecoli_interactome %>% mutate(
+#  Protein_Name = uniprot_ecoli_synonyms[Entry]
+#)
+```
+
+It's nice when merge works seamlessly
+```{r}
+ecoli_interactome = merge(ecoli_interactome, uniprot_ecoli_synonyms, by.x = "Entry")
+```
+
+```{r}
+fwrite(ecoli_interactome, 
+       file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/ecoli_interactome_synonyms.csv")
+```
+
+
+
+```{r}
+length(intersect(osti1$OriginId, osti2$OriginId))
+```
+
+
+```{r}
+length(intersect(osti2$OriginId, osti3$OriginId))
+```
+
+```{r}
+length(intersect(osti3$OriginId, osti4$OriginId))
+```
+
+
+```{r}
+length(intersect(osti4$OriginId, osti5$OriginId))
+```
+
+
+```{r}
+length(intersect(osti5$OriginId, osti6$OriginId))
+```
+
+
+
+
+
+
+
+
+
+
+
