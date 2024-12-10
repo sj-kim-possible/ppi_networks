@@ -1,0 +1,25 @@
+---
+title: "PItools_exploration"
+output: html_document
+date: "2023-06-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Install PI tools:
+
+```{r}
+# Install R PItools package
+install.packages("BiocManager") # for installing BioConductor dependencies
+#BiocManager::install("Biostrings", "remotes") # dependency for PSICQUIC & for installing from github
+BiocManager::install("vitkl/PItools", dependencies = T)
+```
+What is this error? package PItools doesn't exist?
+
+
+```{r}
+library("vitkl/PItools")
+```
+

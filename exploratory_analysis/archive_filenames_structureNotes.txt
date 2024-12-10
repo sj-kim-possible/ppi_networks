@@ -1,0 +1,96 @@
+This file is a quick overview of the file structure of all.zip, which is the entire database
+downloaded from IntAct. 
+
+psimitab/pmid/2016
+" " /2020
+" " /2013
+" " /2014
+" " /2006
+" " /2017
+" " /2009
+" " /2021
+" " /2004
+" " /2001
+" " /2007
+" " /2003
+" " /2008
+" " /2023
+" " /2005
+" " /2002
+" " /2018
+" " /2019
+" " /2015
+" " /2011
+" " /2010
+" " /2022
+" " /2012
+[ probably all the years since 2001 ]
+
+[ this is.. some stuff? ]
+ psimitab/intact.txt
+   691219  06-03-2023 15:22   psimitab/intact-micluster_negative.txt
+     2263  06-02-2023 07:53   psimitab/README
+  3894239  06-03-2023 15:22   psimitab/intact_negative.txt
+629995999  06-03-2023 15:22   psimitab/intact-micluster.txt
+        0  06-02-2023 09:33   cv/
+     1466  06-02-2023 07:53   cv/README
+  1561377  06-02-2023 09:33   cv/intact.obo
+
+Next chunk:
+psi25/pmid/2016
+" " /2015
+" " /2016
+" " /2020
+" " /2013
+" " /2014
+" " /2006
+" " /2017
+" " /2009
+" " /2021
+" " /2004
+" " /2001
+" " /2007
+" " /2003
+" " /2008
+" " /2023
+" " /2005
+" " /2002
+" " /2018
+" " /2019
+" " /2015
+" " /2011
+" " /2010
+" " /2022
+" " /2012
+Up to this point, I am guessing that the structure is:
+/file_type/pubmedid/year_data_was_submitted/data.xml
+
+[ THIS IS THE CHUNK I'M PROBABLY MOST INTERESTED IN: ]
+this folder contains 2424 .xml files, mostly named with species common name
+psi25/species/
+
+psi25/README
+psi25/withdrawn_data/[12 files]
+psi25/MIF25.xsd
+
+[next chunk:]
+psi25/datasets/ [7208, probably mostly disease data]
+psi25/datasets/PDBe/[437 .xml]
+psi25/datasets/Crohn's_disease/[23 .xml]
+psi25/datasets/IBD/[268 .xml]
+...
+
+[ next chunk ]
+various/ [36 files]
+
+psi30/pmid/ [ all the years, same format as psi25 above ]
+[over 200k files in this folder]
+
+psi30/species/[2269 files]
+psi30/datasets/[diseases and conditions] 7186 files
+
+In conclusion, for the PPI pipeline, I can always extract the psi25/species/ folder and just search within for our desired data. 
+psi25 in particular (not psi30) because the RpsiXML package specifies the psi25 file structure. 
+
+
+

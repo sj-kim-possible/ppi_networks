@@ -1,0 +1,71 @@
+---
+title: "Uniprot_package_ppi_sjkim"
+output: html_document
+date: "2023-06-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## UniProt
+
+Downloaded all the Taxon ID's from UniProt's website: https://www.uniprot.org/taxonomy/?query=*
+Columns: Taxon Id, Common name, Scientific name, Synonyms, Lineage, Links
+
+```{bash}
+cd /Users/kimg044/OneDrive\ -\ PNNL/Documents/PPI
+wc -l uniprot-compressed_true_download_true_fields_id_2Ccommon_name_2Cscie-2023.06.12-20.50.17.85.tsv
+```
+
+```{r}
+taxonIDs = data.table::fread("/Users/kimg044/OneDrive\ -\ PNNL/Documents/PPI/uniprot-compressed_true_download_true_fields_id_2Ccommon_name_2Cscie-2023.06.12-20.50.17.85.tsv")
+```
+
+```{r}
+# number of taxonIDs
+nrow(taxonIDs)
+colnames(taxonIDs)
+
+```
+
+```{r}
+taxonIDs %>% 
+  filter(`Taxon Id` %in% 9506:9706)
+```
+
+some taxonIDs have maybe one protein 
+2.5 million taxon ID's, hierarchical, and can explore more from the NCBI taxonomy browser: https://www.ncbi.nlm.nih.gov/taxonomy
+we'd need relevant taxonomy ID 
+
+```{bash}
+head uniprot-compressed_true_download_true_fields_id_2Ccommon_name_2Cscie-2023.06.12-20.50.17.85.tsv
+```
+Yeast Example:
+Yeast taxonomy ID: 559292
+https://www.uniprot.org/uniprotkb?facets=reviewed:true&query=(taxonomy_id:559292)
+- customize columns to include pathway and interactions
+- tsv download
+
+learn how to do API calls
+benchmark off of E.coli
+
+
+## UniProtR
+cran package: https://cran.r-project.org/web/packages/UniprotR/index.html
+```{r}
+install.packages("UniprotR")
+```
+
+documentation: https://cran.r-project.org/web/packages/UniprotR/UniprotR.pdf
+GetProteinInteractions()
+GetproteinNetwork()
+GetproteinNetwork_all()
+All these functions require a proteins accession list as well as a taxon ID 
+These functions also just map to stringDB
+
+https://github.com/Proteomicslab57357/UniprotR/tree/master/R
+
+There isn't a function for all related proteins in a taxonID call 
+
+

@@ -1,0 +1,66 @@
+---
+title: "scrape_exaly"
+output: html_document
+date: "2023-11-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dev = "png",
+                      dpi = 300,
+                      echo = FALSE,
+                      cache = TRUE)
+```
+
+```{r}
+library(tidyverse) 
+library(rvest)
+library(ggplot2)
+```
+
+```{r} 
+url <- "https://exaly.com/journals/if/1" 
+ 
+url %>% 
+    read_html() %>%   
+    html_nodes("table") %>%   
+     html_table(fill = T)
+```
+
+```{r}
+# 727 pages in exaly
+exaly = tibble()
+for(i in 1:727) {
+  url = paste0("https://exaly.com/journals/if/", i)
+  
+  page = url %>% 
+    read_html() %>% 
+    html_nodes("table") %>% 
+    html_table(fill = T)
+  
+  #exaly[i*50, ] = page[[1]]
+  exaly = rbind(exaly, page[[1]])
+  #do.call(rbind, c(exaly, page[[1]]))
+}
+```
+
+
+
+```{r exaly_impact_h-index}
+ggplot(exaly, aes(x = `h-index`, y = `Impact Factor`)) + 
+  geom_point() +
+  theme_bw() +
+  ggtitle("Exaly Impact Factor vs. h-index")
+```
+
+```{r}
+intact_url = "https://www.ebi.ac.uk/intact/search?query=P0A6A8"
+
+intact_page = read_html(intact_url)
+
+table = html_nodes(intact_page, "tabs")
+
+data = html_table(table)
+data
+
+```
+

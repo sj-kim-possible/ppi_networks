@@ -1,0 +1,1144 @@
+---
+title: "intact_xml_parser"
+output: html_document
+date: "2023-07-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+https://www.bioconductor.org/packages//2.7/bioc/html/RpsiXML.html
+RpsiXML
+
+```{r}
+source("http://bioconductor.org/biocLite.R")
+biocLite("RpsiXML")
+```
+
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("RpsiXML")
+```
+
+```{r}
+library(RpsiXML)
+```
+
+```{r}
+library(RtmpiHMvxC)
+```
+
+
+```{r}
+devtools::install_github("bioc/RpsiXML")
+```
+
+
+```{r}
+library(RpsiXML)
+```
+
+
+```{r}
+#example_interaction = parsePsimi25Interaction("./IntAct/psi25/species/yeast_02_negative.xml", INTACT.PSIMI25, verbose=TRUE)
+example_interaction = parsePsimi25Interaction("./IntAct/yeast/yeast_02.xml", INTACT.PSIMI25, verbose=TRUE)
+
+```
+
+
+```{r}
+example_complex = parsePsimi25Complex("./IntAct/psi25/species/yeast_02_negative.xml", INTACT.PSIMI25 ,verbose=TRUE)
+```
+
+manually checked that the yeast folder downloaded from the IntAct website is the same folder from the download of the entire IntAct database
+
+Notes from meeting with David @ 7/21, Friday:
+
+> class(example_interaction)
+[1] "psimi25InteractionEntry"
+attr(,"package")
+[1] "RpsiXML"
+> example_interaction@organismName
+[1] "Saccharomyces cerevisiae"                           
+[2] "Schizosaccharomyces pombe (strain ATCC 38366 / 972)"
+
+psimi25InteractionEntry is an S4 object - access elements with the @ symbol instead of the $
+
+> example_interaction@interactors
+
+> example_interaction@interactors$Q9P7F7
+
+> example_interaction@interactors$Q9P7F7@organismName
+
+
+pseudocode: 
+parse each yeast file
+  make interactions object per file
+    add to dataframe: PMID, participant 1, participant 2, species 1, species 2
+    
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+yeast_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/yeast", 
+                       pattern = "*.xml", full.names = TRUE)
+```
+
+nested for-loop!
+8/1/2023: code in here is fixed, need to parallelize
+*** yeast chunk ***
+```{r}
+yeast_interactions = data.frame()
+yeast_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                  "SpeciesB", "TaxonID_B")
+
+for(file in yeast_filenames) {
+
+  current_interaction = parsePsimi25Interaction(file, INTACT.PSIMI25 ,verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(yeast_headers)))
+  
+  for(i in 1:length(interactions(current_interaction))) {
+    pmid = current_interaction@interactions[[i]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[i]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[i]]@participant[[1]]
+      participantB = current_interaction@interactions[[i]]@participant[[2]]
+    }
+    #participantA = current_interaction@interactions[[i]]@baitUniProt
+    #participantB = current_interaction@interactions[[i]]@preyUniProt
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[i,] = record_list
+  }
+  yeast_interactions = rbind(yeast_interactions, record)
+}
+
+colnames(yeast_interactions) = yeast_headers
+yeast_interactions = na.omit(yeast_interactions)
+```
+
+
+
+get inner for-loop working first, on the one example file:
+example_interaction
+example_complex
+
+```{r}
+inner_df_example = data.frame()
+
+for(i in 1:length(interactions(example_interaction))) {
+  pmid_ex = example_interaction@interactions[[i]]@expPubMed[[1]]
+  participant_list_ex = example_interaction@interactions[[i]]@participant
+  if(length(participant_list_ex) != 2) {#not a binary interaction
+    next
+  } else if(any(is.na(participant_list_ex))) {
+    next
+  } else {
+    participantA_ex = example_interaction@interactions[[i]]@participant[[1]]
+    participantB_ex = example_interaction@interactions[[i]]@participant[[2]]
+  }
+  speciesA_ex = lapply(example_interaction@interactors[participantA_ex], function(x) x@organismName)[[1]]
+  speciesA_taxid_ex = lapply(example_interaction@interactors[participantA_ex], function(x) x@taxId)[[1]]
+  speciesB_ex = lapply(example_interaction@interactors[participantB_ex], function(x) x@organismName)[[1]]
+  speciesB_taxid_ex = lapply(example_interaction@interactors[participantB_ex], function(x) x@taxId)[[1]]
+  
+  record_ex = c(pmid_ex, participantA_ex, participantB_ex, speciesA_ex, speciesA_taxid_ex,
+             speciesB_ex, speciesB_taxid_ex)
+  #print(record_ex)
+  inner_df_example = rbind(inner_df_example, record_ex)
+  
+}
+
+yeast_headers_ex = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                     "SpeciesB", "TaxonID_B")
+colnames(inner_df_example) = yeast_headers_ex
+
+```
+
+What is 143750 referring to? IntAct accession ID??
+> example_interaction@interactions[[1]]@expPubMed[1]
+    143750 
+"11208108" 
+> example_interaction@interactions[[1]]@interactionType
+         143750 
+"anti tag coip" 
+also looked it up on the intact website and it didn't pull up anything 
+
+debug outer for loop:
+
+```{r}
+filenames_ex2 = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/yeast_test",
+                       pattern = "*.xml", full.names = TRUE)
+
+yeast_interactions_ex2 = data.frame()
+
+yeast_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                  "SpeciesB", "TaxonID_B")
+
+for(file in filenames_ex2) {
+  #print(file)
+  current_interaction_ex2 = parsePsimi25Interaction(file, INTACT.PSIMI25 ,verbose=TRUE)
+  record_ex2 = data.frame(matrix(nrow = length(interactions(current_interaction_ex2)), ncol = length(yeast_headers))) 
+  for(i in 1:length(interactions(current_interaction_ex2))) {
+    
+    pmid_ex2 = current_interaction_ex2@interactions[[i]]@expPubMed[[1]]
+    participant_list_ex2 = current_interaction_ex2@interactions[[i]]@participant
+    
+    if(length(participant_list_ex2) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list_ex2))) { #exclude any with na's
+      next
+    } else {
+      participantA_ex2 = current_interaction_ex2@interactions[[i]]@participant[[1]]
+      participantB_ex2 = current_interaction_ex2@interactions[[i]]@participant[[2]]
+    }
+    speciesA_ex2 = lapply(current_interaction_ex2@interactors[participantA_ex2], function(x) x@organismName)[[1]]
+    speciesA_taxid_ex2 = lapply(current_interaction_ex2@interactors[participantA_ex2], function(x) x@taxId)[[1]]
+    speciesB_ex2 = lapply(current_interaction_ex2@interactors[participantB_ex2], function(x) x@organismName)[[1]]
+    speciesB_taxid_ex2 = lapply(current_interaction_ex2@interactors[participantB_ex2], function(x) x@taxId)[[1]]
+    
+    record_list_ex2 = c(pmid_ex2, participantA_ex2, participantB_ex2, speciesA_ex2, speciesA_taxid_ex2,
+             speciesB_ex2, speciesB_taxid_ex2)
+    #print(record_list_ex2)
+    record_ex2[i,] = record_list_ex2
+    #print(record_ex2)
+    
+    #yeast_interactions_ex2 = rbind(yeast_interactions_ex2, record_ex2)
+  }
+  yeast_interactions_ex2 = rbind(yeast_interactions_ex2, record_ex2)
+}
+
+
+colnames(yeast_interactions_ex2) = yeast_headers
+
+yeast_interactions_ex2 = na.omit(yeast_interactions_ex2)
+```
+
+
+
+Write out data to a text file:
+
+```{r}
+
+write.table(yeast_interactions, file = "yeast_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+
+```
+
+```{r}
+write.table(yeast_interactions, file = "fly_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+### function for de-duplicating interactions
+
+```{r}
+deDupe = function(interaction_df) {
+  # condense data to just unique entries
+  interaction_df_distinct = interaction_df %>% distinct()
+  # order data by PMID
+  interaction_df_distinct = interaction_df_distinct[order(interaction_df_distinct$PMID),]
+  # dedupe interactions where pmid, proteinA and proteinB are the same
+  
+  int_df_dist_sort = interaction_df_distinct %>%
+    mutate(
+      ID = purrr::map(1:nrow(interaction_df_distinct), function(row) {
+        paste(interaction_df_distinct$PMID[row], 
+              paste(sort(c(interaction_df_distinct$ParticipantA[row], 
+                           interaction_df_distinct$ParticipantB[row])), collapse = " "))
+      }
+    ) %>% unlist()
+    )
+  
+  deduped = int_df_dist_sort %>% distinct(ID, .keep_all = TRUE)
+  return(deduped)
+}
+
+```
+
+
+
+Parallelize the code to run faster:
+```{r}
+library(doParallel)
+library(foreach)
+library(RpsiXML)
+library(tidyverse)
+```
+
+foreach tip: https://stackoverflow.com/questions/7707467/next-with-revolution-rs-foreach-package
+
+```{r}
+yeast_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/yeast",
+                       pattern = "*.xml", full.names = TRUE)
+
+yeast_interactions = data.frame()
+yeast_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                  "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(yeast_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+#results = foreach(i = 1, .combine = "rbind") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(yeast_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(yeast_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  yeast_interactions = rbind(yeast_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = yeast_headers
+yeast_interactions = na.omit(results)
+```
+filter for yeast-yeast interactions:
+
+```{r}
+yeast_yeast_interactions = yeast_interactions %>% filter((TaxonID_A == 559292) & (TaxonID_B == 559292))
+
+```
+
+write to file:
+```{r}
+write.table(yeast_yeast_interactions, file = "yeast_filtered_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+pull files from all.zip:
+
+```{r}
+temp = "/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/all.zip/psi25/species/"
+data <- read.table(unz(temp, "yeast_02_negative.xml"))
+unlink(temp)
+```
+
+*** the version that worked before the function wrap (and other changes) ***
+
+```{r}
+yeast_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/yeast",
+                       pattern = "*.xml", full.names = TRUE)
+
+yeast_interactions = data.frame()
+yeast_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                  "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+#results = foreach(i = 1:length(yeast_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+#results = foreach(i = 1, .combine = "rbind") %dopar% {
+for(i in 1:length(yeast_filenames)) {
+  
+  current_interaction = RpsiXML::parsePsimi25Interaction(yeast_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(yeast_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  yeast_interactions = rbind(yeast_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = yeast_headers
+yeast_interactions = na.omit(results)
+```
+
+
+*** testing function wrap ***
+9/29: Need to change algorithm due to bait/prey inconsistencies
+
+```{r}
+getFileList = function() {
+  # using species name, pull list of filenames to parse from all.zip
+  setwd("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI")
+  if (dir.exists(paths = "./IntAct/psi25/species/") == FALSE) {
+    print("Cannot find appropriate species files. Download all.zip from IntAct and unzip psi25/species/.")
+  }
+  #filenames = list.files("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/IntAct/psi25/species/", 
+  #                       pattern ="*.xml", full.names = TRUE)
+  filenames = list.files("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/IntAct/yeast_test", 
+                         pattern = "*.xml", full.names = TRUE)
+  return(filenames)
+}
+
+pull_interactions = function(taxonID) {
+  filenames = getFileList()
+  
+  species_interactions = data.frame()
+  data_headers = c("PMID", "EntityA", "EntityB", "SpeciesA", "TaxonID_A", 
+                   "SpeciesB", "TaxonID_B")
+  
+  # parallelize pulling interactions:
+  # don't use all the cores on machine since that will break things
+  numcores <- parallel::detectCores()/2 
+  cl <- parallel::makeCluster(numcores) 
+  clusterEvalQ(cl = cl, library(magrittr)) 
+  clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+  registerDoParallel(cl)
+  
+  # results is the dataframe housing all the ppi data
+  #results = foreach(i = 1:length(filenames), .combine = "rbind", .packages = 'RpsiXML') %dopar% {
+  for(i in 1:length(filenames)) {
+    current_interaction = RpsiXML::parsePsimi25Interaction(filenames[i], INTACT.PSIMI25, verbose=TRUE)
+    record = data.frame(matrix(nrow = length(RpsiXML::interactions(current_interaction)), ncol = length(data_headers)))
+    
+    for(j in 1:length(RpsiXML::interactions(current_interaction))) {
+      pmid = as.numeric(current_interaction@interactions[[j]]@expPubMed[[1]])
+      bait = current_interaction@interactions[[j]]@baitUniProt
+      prey_all = current_interaction@interactions[[j]]@preyUniProt
+      participants_all = current_interaction@interactions[[j]]@participant
+      
+      # case 1/3: # of participants = 1
+      if(length(participants_all) < 2) {
+        # # of participants = 1
+        
+        # if length of bait != 1, next
+        # if length of bait == 1 and length of prey_all == 1 AND bait & prey are both NA --> next
+        # if length of bait == 1 and length of prey_all == 1 AND bait & prey are both NOT NA, keep. 
+        # if length of bait == 1 and length of prey_all > 1 --> bait is NA, next
+        #                                                   --> bait is NOT NA, prey_all is all NA --> next
+        #                                                   --> bait is NOT NA, prey_all is NOT all NA --> remove NA from prey_all, and keep bait:prey that are not NA, and check that bait:prey are not identical
+       
+        # case 2/3: more than 2 participants  
+        } else if(length(participants_all) > 2) { 
+          # more than 2 participants
+          
+          # if length of bait != 1, next
+          # if length of bait == 1 and bait == NA, next
+          # if length of bait == 1 and bait is NOT NA, --> prey is ALL NA, next
+          #                                            --> prey has SOME NA, remove NA from prey and match bait to prey and keep. check bait:prey are not identical.
+          #                                            --> prey has no NA, match bait to each prey and keep each unique, binary interaction as separate record 
+          
+          # if a prey list includes NA, take the NA out of both prey list and participants list
+          if(anyNA(prey_all, recursive = TRUE)) {
+          prey_list = na.omit(prey_all)
+          participant_list = na.omit(participants_all)
+          # in the case that the prey_list is all NA, skip to next
+          if(length(prey_list)< 1) {
+            next
+            }
+          } 
+          } else { # there weren't any NA's to filter out of the prey list:
+          participant_list = participants_all
+          prey_list = prey_all
+        }
+        for(k in 1:(length(participant_list) - 1) ) {
+          prey = prey_list[k]
+          speciesA = lapply(current_interaction@interactors[bait], function(x) x@organismName)[[1]]
+          speciesA_taxon = lapply(current_interaction@interactors[bait], function(x) x@taxId)[[1]]
+          speciesB = lapply(current_interaction@interactors[prey], function(x) x@organismName)[[1]]
+          speciesB_taxon = lapply(current_interaction@interactors[prey], function(x) x@taxId)[[1]]
+          
+          # check if species A and species B match input taxonID
+          if((speciesA_taxon != taxonID) & (speciesB_taxon != taxonID)) {
+            next
+          }
+          
+          record_list = c(pmid, bait, prey, speciesA, speciesA_taxon, speciesB, speciesB_taxon)
+          
+          record[j, ] = record_list
+        }
+      
+      # case 3/3: 
+      } else { # when length of participants_all == 2 (only binary entries)
+        # exactly 2 participants
+        
+        # if length of bait != 1, next
+        # if either participant == NA, next
+        # if both participants are NOT NA and NOT identical, --> if both participants match both bait and prey, keep
+        #                                                    --> if participants DO NOT match bait and prey, --> if bait == NA and prey == NA, keep participants
+        #                                                                                                    --> if bait == NA and prey is not NA, keep participants
+        #                                                                                                    --> if bait == not NA and prey is NA, keep participants
+        #                                                                                                    --> if bait == not NA and prey is not NA, keep bait : prey
+        #                                                                                                    --> what if there's more than 1 prey?
+        
+        
+        if(anyNA(participants_all, recursive = TRUE)){ # don't want NA in participants list
+          next
+        } else {
+          speciesA = lapply(current_interaction@interactors[bait], function(x) x@organismName)[[1]]
+          speciesA_taxon = lapply(current_interaction@interactors[bait], function(x) x@taxId)[[1]]
+          speciesB = lapply(current_interaction@interactors[prey_all], function(x) x@organismName)[[1]]
+          speciesB_taxon = lapply(current_interaction@interactors[prey_all], function(x) x@taxId)[[1]]
+          
+          # check if species A and species B match input taxonID
+          if((speciesA_taxon != taxonID) & (speciesB_taxon != taxonID)) {
+            next
+          }
+          
+          record_list = c(pmid, bait, prey_all, speciesA, speciesA_taxon, speciesB, speciesB_taxon)
+          
+          record[j, ] = record_list
+        }
+      }
+      species_interactions = rbind(species_interactions, record)
+    }
+    #interactions = rbind(interactions, record)
+  }
+  stopCluster(cl)
+  
+  #colnames(results) = data_headers
+  #interactions = na.omit(results)
+  colnames(species_interactions) = data_headers
+  species_interactions = na.omit(species_interactions)
+  
+  return(species_interactions)
+}
+
+pull_interactions(559292)
+
+```
+
+   """
+      participant_list = current_interaction@interactions[[j]]@participant
+      # skip if not a binary interaction:
+      if(length(participant_list) != 2) { 
+        next
+      } # exclude na's
+      else if(any(is.na(participant_list))) {
+        next
+      } else {
+        participantA = current_interaction@interactions[[j]]@participant[[1]]
+        participantB = current_interaction@interactions[[j]]@participant[[2]]}
+      """
+      
+      speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+      speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+      speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+      speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+
+Question:
+why does yeast_interaction include a bunch of data from different species? 
+human to human even tho it's listed under yeast_interaction
+would i get the same thing if I scraped for a different organism?
+
+*** fly chunk ***
+```{r}
+fly_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/drome", 
+                       pattern = "*.xml", full.names = TRUE)
+
+fly_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(fly_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+#results = foreach(i = 1, .combine = "rbind") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(fly_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  fly_interactions = rbind(fly_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+fly_interactions = na.omit(results)
+```
+
+filter for fly-fly interactions:
+```{r}
+fly_fly_interactions = fly_interactions %>% filter((TaxonID_A == 7227) & (TaxonID_B == 7227))
+
+```
+
+write to file:
+```{r}
+write.table(fly_fly_interactions, file = "fly_filtered_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+*** C. elegans chunk ***
+
+```{r}
+worm_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/caeel", 
+                       pattern = "*.xml", full.names = TRUE)
+
+worm_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(worm_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(worm_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  worm_interactions = rbind(worm_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+worm_interactions = na.omit(results)
+```
+
+
+filter for worm-worm interactions:
+```{r}
+worm_worm_interactions = worm_interactions %>% filter((TaxonID_A == 6239) & (TaxonID_B == 6239))
+
+```
+
+write to file:
+```{r}
+write.table(worm_worm_interactions, file = "worm_filtered_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+*** Mouse chunk ***
+
+```{r}
+mus_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/mouse", 
+                       pattern = "*.xml", full.names = TRUE)
+
+mus_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(mus_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(mus_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  mus_interactions = rbind(mus_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+mus_interactions = na.omit(results)
+```
+
+filter for mus-mus interactions:
+```{r}
+mus_mus_interactions = mus_interactions %>% filter((TaxonID_A == 10090) & (TaxonID_B == 10090))
+
+```
+
+write to file:
+```{r}
+write.table(mus_mus_interactions, file = "mus_filtered_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+*** mouse-ear CRESS chunk ***
+
+```{r}
+cress_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/arath", 
+                       pattern = "*.xml", full.names = TRUE)
+
+cress_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(cress_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(cress_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  cress_interactions = rbind(cress_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+cress_interactions = na.omit(results)
+```
+
+filter for cress-cress interactions:
+```{r}
+cress_cress_interactions = cress_interactions %>% filter((TaxonID_A == 3702) & (TaxonID_B == 3702))
+
+```
+
+write to file:
+```{r}
+write.table(cress_cress_interactions, file = "arath_filtered_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+*** e.coli chunk ***
+
+```{r}
+ecoli_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/ecoli", 
+                       pattern = "*.xml", full.names = TRUE)
+
+ecoli_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(ecoli_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(ecoli_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  ecoli_interactions = rbind(ecoli_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+ecoli_interactions = na.omit(results)
+```
+
+
+filter for ecoli-ecoli interactions:
+```{r}
+ecoli_ecoli_interactions = ecoli_interactions %>% filter((TaxonID_A == 83333) & (TaxonID_B == 83333))
+
+```
+
+dedupe the interactions:
+```{r}
+ecoli_filter_dedupe_interactions = deDupe(ecoli_ecoli_interactions)
+```
+
+write to file:
+```{r}
+write.table(ecoli_filter_dedupe_interactions[1:ncol(ecoli_filter_dedupe_interactions)-1], file = "ecoli_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+*** rat chunk ***
+
+```{r}
+rat_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/rat", 
+                       pattern = "*.xml", full.names = TRUE)
+
+rat_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(rat_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(rat_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  rat_interactions = rbind(rat_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+rat_interactions = na.omit(results)
+```
+
+filter for rat-rat interactions:
+```{r}
+rat_rat_interactions = rat_interactions %>% filter((TaxonID_A == 10116) & (TaxonID_B == 10116))
+
+```
+
+write to file:
+```{r}
+write.table(rat_rat_interactions, file = "rat_filtered_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+*** covid chunk ***
+
+```{r}
+covid_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/SARS-CoV-2", 
+                       pattern = "*.xml", full.names = TRUE)
+
+covid_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(covid_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(rat_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  covid_interactions = rbind(covid_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+covid_interactions = na.omit(results)
+```
+
+filter for covid-covid interactions: ** THERE'S NONE OF THESE **
+```{r}
+covid_covid_interactions = covid_interactions %>% filter((TaxonID_A == 2697049) & (TaxonID_B == 2697049))
+
+```
+
+write to file:
+```{r}
+write.table(covid_covid_interactions, file = "covid_filtered_interaction_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+*** human chunk ***
+
+```{r}
+human_filenames = list.files("/Users/kimg044/OneDrive - PNNL/Documents/PPI/IntAct/human", 
+                       pattern = "*.xml", full.names = TRUE)
+
+human_interactions = data.frame()
+data_headers = c("PMID", "ParticipantA", "ParticipantB", "SpeciesA", "TaxonID_A", 
+                 "SpeciesB", "TaxonID_B")
+
+
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+results = foreach(i = 1:length(human_filenames), .combine = "rbind", .packages = "RpsiXML") %dopar% {
+
+  current_interaction = RpsiXML::parsePsimi25Interaction(human_filenames[i], INTACT.PSIMI25, verbose=TRUE)
+  record = data.frame(matrix(nrow = length(interactions(current_interaction)), ncol = length(data_headers)))
+  
+  for(j in 1:length(interactions(current_interaction))) {
+    
+    pmid = current_interaction@interactions[[j]]@expPubMed[[1]]
+    participant_list = current_interaction@interactions[[j]]@participant
+    if(length(participant_list) != 2) {#not a binary interaction
+      next
+    } else if(any(is.na(participant_list))) { #exclude any with na's
+      next
+    } else {
+      participantA = current_interaction@interactions[[j]]@participant[[1]]
+      participantB = current_interaction@interactions[[j]]@participant[[2]]
+    }
+    speciesA = lapply(current_interaction@interactors[participantA], function(x) x@organismName)[[1]]
+    speciesA_taxid = lapply(current_interaction@interactors[participantA], function(x) x@taxId)[[1]]
+    speciesB = lapply(current_interaction@interactors[participantB], function(x) x@organismName)[[1]]
+    speciesB_taxid = lapply(current_interaction@interactors[participantB], function(x) x@taxId)[[1]]
+    
+    record_list = c(pmid, participantA, participantB, speciesA, speciesA_taxid,
+             speciesB, speciesB_taxid)
+    #print(record)
+    record[j,] = record_list
+  }
+  human_interactions = rbind(human_interactions, record)
+  
+}
+
+stopCluster(cl)
+
+colnames(results) = data_headers
+human_interactions = na.omit(results)
+```
+
+filter for human-human interactions:
+```{r}
+human_human_interactions = human_interactions %>% filter((TaxonID_A == 9606) & (TaxonID_B == 9606))
+```
+
+
+dedupe human-human interactions:
+```{r}
+human_filter_dedupe_interactions = deDupe(human_human_interactions)
+```
+
+write to file:
+```{r}
+write.table(human_filter_dedupe_interactions[1:ncol(human_filter_dedupe_interactions)-1], file = "human_IntAct_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+
+### tODO:
+Wrap this process into a function
+input: species name, taxon ID, path to files
+
+Problem: filenames in all.zip aren't a unified system
+for example: yeast files can be found under: "yeast", "yeasx", "yeas2"
+When downloading the entire interactome of yeast from intact's website, it doesn't
+include all the yeast files from all.zip -- strange discrepancy -- perhaps not the same taxonID?
+
+^ solution:
+only mine the /psi25/species file from all.zip so we don't have to parse the ENTIRE
+database. Only the species files in the xml format that we can deal with.

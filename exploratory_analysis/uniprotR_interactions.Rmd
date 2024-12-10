@@ -1,0 +1,333 @@
+---
+title: "uniprotR_interactions"
+output: html_document
+date: "2024-01-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(UniprotR)
+library(tidyverse)
+library(data.table)
+```
+
+
+```{r}
+lysA = GetProteinInteractions("P00861")
+```
+
+```{r}
+ecoli_83333 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/litportal_ecoli/uniprotkb_proteome_UP000000625_2023_11_27.txt")
+```
+
+
+uniprotkb_taxonomy_id_562_2024_01_25.tsv was downloaded from UniProt's website, using the UniProtKB searchbar, taxonomy ID: 562. The download file was as a zipped .tsv file, and unzipped in terminal using gunzip [filename].
+
+```{r}
+ecoli_562 = fread("/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/uniprotkb_taxonomy_id_562_2024_01_25.tsv")
+```
+
+```{r}
+reviewed_562 = ecoli_562 %>% filter(Reviewed == "reviewed")
+table(ecoli_562$Reviewed)
+```
+
+Build list of proteins for 562:
+```{r}
+unique_562 = data.frame(
+  Entry = reviewed_562$Entry,
+  #Entry_Name = reviewed_562$`Entry Name`,
+  Protein_Names = reviewed_562$`Protein names`
+  #Organism = reviewed_562$Organism
+)
+```
+
+
+Make file for list of proteins for 562:
+```{r}
+fwrite(unique_562, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/562_ecoli_proteins.csv", sep = ",")
+```
+
+Make dataframe of Protein A and B
+```{r}
+interactions_562 = data.frame(
+  Protein_A = reviewed_562$Entry,
+  Protein_B = reviewed_562$`Interacts with`
+)
+```
+
+Isolate the entries with interactions: the entries where "Protein_B" is populated
+```{r}
+interactions_562 = interactions_562[!(is.na(interactions_562$Protein_B) | interactions_562$Protein_B==""),]
+```
+
+Of the interactions, convert entries with multiple Protein_B into binary interactions
+for example: 
+ProteinA = A, ProteinB = B, C, D, E 
+==> 
+A, B
+A, C
+A, D
+A, E
+```{r}
+binary_interactions_562 = data.frame(matrix(ncol=2))
+colnames(binary_interactions_562) = c("Protein_A", "Protein_B")
+bin_int_count = 0
+mult_int_count = 0
+for(i in seq(dim(interactions_562)[1])) {
+  interacts_with = strsplit(interactions_562$Protein_B[i], "; ") %>% unlist()
+  if (length(interacts_with) == 1){
+    bin_int_count = bin_int_count + 1
+    proteinA = interactions_562$Protein_A[i]
+    proteinB = interactions_562$Protein_B[i]
+    binary_interaction = c(proteinA, proteinB)
+    binary_interactions_562 = rbind(binary_interactions_562, binary_interaction)
+  } else { # more than 1 Protein_B
+    mult_int_count = mult_int_count + 1
+    for(j in seq(length(interacts_with))){
+      proteinA = interactions_562$Protein_A[i]
+      proteinB = interacts_with[j]
+      binary_interaction = c(proteinA, proteinB)
+      binary_interactions_562 = rbind(binary_interactions_562, binary_interaction)
+    }
+  }
+}
+binary_interactions_562 = na.omit(binary_interactions_562)
+```
+
+Filter proteins that interact with itself: Protein A == Protein B
+```{r}
+binary_interactions_562_dedupe = binary_interactions_562 %>% filter(Protein_A != Protein_B)
+```
+
+Filter duplicate interactions:
+for example, 
+Protein A : Protein B 
+Protein B : Protein A 
+Keep just one
+
+make_interaction_ID makes a unique interaction ID by sorting each term alphabetically
+```{r}
+make_interaction_ID <- function(term1, term2) {
+  paste0(sort(c(term1, term2)), collapse = " ")
+}
+```
+
+Make unique identifier for each binary interaction:
+```{r}
+binary_interactions_562_dedupe_int = binary_interactions_562_dedupe %>% mutate(
+  ID = pmap(list(term1 = Protein_A, term2 = Protein_B), make_interaction_ID) %>% unlist()
+)
+```
+
+Keep interactions that are unique 
+```{r}
+binary_interactions_562_dedupe_int_dist = binary_interactions_562_dedupe_int %>% distinct(ID, .keep_all = TRUE)
+```
+
+
+```{r}
+getPMID_562 = function(proteinA, proteinB) {
+  interacts_with = ecoli_562[(ecoli_562$Entry == proteinA),]$`Interacts with` %>% strsplit("; ") %>% unlist()
+  if(proteinB %in% interacts_with) {
+    pmids = ecoli_562[(ecoli_562$Entry == proteinA),]$`PubMed ID`
+  } else {
+    pmids = NA
+  }
+  return(pmids)
+}
+```
+
+
+```{r}
+ecoli_562_interactions_table_pubs = binary_interactions_562_dedupe_int_dist %>% mutate(
+  PMIDs = map2_chr(Protein_A, Protein_B, getPMID_562)
+)
+```
+
+
+```{r}
+ecoli_562_papers = ecoli_562_interactions_table_pubs$PMIDs %>% strsplit("; ") %>% compact %>% unlist() %>% unique()
+```
+
+```{r}
+fwrite(as.list(ecoli_562_papers), file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/DATABASE_PIPELINE/benchmark3/ecoli_562_papers.csv", sep = ",")
+```
+
+
+
+test case:
+```{r}
+test_interactions = head(interactions_562, 45)
+```
+
+```{r}
+test_bin_int = data.frame(matrix(ncol=2))
+colnames(test_bin_int) = c("Protein_A", "Protein_B")
+
+for(i in seq(dim(test_interactions)[1])){
+  test_int_with = strsplit(test_interactions$Protein_B[i], "; ") %>% unlist()
+  if (sum(grepl("\\s+", test_int_with)) > 0) {test_int_with = str_extract(test_int_with, "(?<=\\[).*(?=\\])")}
+  if (length(test_int_with) == 1) {
+    proteinA = test_interactions$Protein_A[i]
+    proteinB = test_int_with
+    bin_int = c(proteinA, proteinB)
+    test_bin_int = rbind(test_bin_int, bin_int)
+  } else {
+    for(j in seq(length(test_int_with))) {
+      proteinA = test_interactions$Protein_A[i]
+      proteinB = test_int_with[j]
+      bin_int = c(proteinA, proteinB)
+      test_bin_int = rbind(test_bin_int, bin_int)
+    }
+  }
+}
+test_bin_int = na.omit(test_bin_int)
+```
+
+
+```{r}
+test_bin_int_dedupe = test_bin_int %>% filter(Protein_A != Protein_B)
+```
+
+
+
+Continue building dataframe with Species and publication information:
+
+```{r}
+binary_interactions_562 = binary_interactions_562 %>% mutate(
+  Species_A = map(Protein_A, getOrganism),
+  Species_B = map(Protein_B, getOrganism),
+  Number_Publications = map2_dbl(Protein_A, Protein_B, getBinIntPubs)
+)
+```
+slow!
+url error? ---> need to clean data more
+
+```{r}
+binary_interactions_562 = binary_interactions_562 %>% mutate(
+  Species_A = GetProteinAnnontate(Protein_A, "organism_name"),
+  Species_B = GetProteinAnnontate(Protein_B, "organism_name"),
+  Number_Publications = map2_dbl(Protein_A, Protein_B, getBinIntPubs)
+)
+```
+
+
+function for finding the number of publications per binary interaction
+```{r}
+getBinIntPubs = function(proteinA, proteinB) {
+  A = ecoli_562 %>% filter(Entry == proteinA)
+  pubs_A = A$`PubMed ID` %>% strsplit("; ") %>% unlist()
+  B = ecoli_562 %>% filter(Entry == proteinB)
+  pubs_B = B$`PubMed ID` %>% strsplit("; ") %>% unlist()
+  #print(c("proteinA: ", proteinA))
+  #print(c("pubs_A: ", pubs_A))
+  #print(c("proteinB: ", proteinB))
+  #print(c("pubs_B: ", pubs_B))
+  
+  interaction_pubs = intersect(pubs_A, pubs_B)
+  #print(c("interaction_pubs: ", interaction_pubs))
+  return(length(interaction_pubs))
+}
+```
+
+
+
+```{r}
+getBinIntPubs0 = function(proteinA, proteinB) {
+  pubs_A = GetProteinAnnontate(proteinA, "lit_pubmed_id") %>% strsplit("; ") %>% unlist()
+  pubs_B = GetProteinAnnontate(proteinB, "lit_pubmed_id") %>% strsplit("; ") %>% unlist()
+  #print(c("proteinA: ", proteinA))
+  #print(c("pubs_A: ", pubs_A))
+  #print(c("proteinB: ", proteinB))
+  #print(c("pubs_B: ", pubs_B))
+  
+  interaction_pubs = intersect(pubs_A, pubs_B)
+  #print(c("interaction_pubs: ", interaction_pubs))
+  return(length(interaction_pubs))
+}
+```
+
+
+
+```{r}
+getOrganism = function(protein) {
+  protein_info = ecoli_562 %>% filter(Entry == protein)
+  #print(protein_info)
+  organism_name = protein_info$Organism 
+  #print(organism_name)
+  return(organism_name)
+}
+```
+
+
+
+```{r}
+bin_int_test0 = test_bin_int_dedupe %>% mutate(
+  Species_A = GetProteinAnnontate(Protein_A, "organism_name"),
+  Species_B = GetProteinAnnontate(Protein_B, "organism_name"),
+  Number_Publications = map2_dbl(Protein_A, Protein_B, getBinIntPubs0)
+)
+```
+2:38p - 2:44p, 6 minutes for 88 entries, 88*2 proteins, 88*2*3 GetProteinAnnontate() queries
+
+parallelize:
+3:41p
+```{r}
+library(doParallel)
+library(foreach)
+# parallelize pulling interactions:
+# don't use all the cores on machine since that will break things
+numcores <- parallel::detectCores()/2 
+cl <- parallel::makeCluster(numcores) 
+clusterEvalQ(cl = cl, library(magrittr)) 
+clusterEvalQ(cl = cl, library(dplyr)) # clusterExport(cl = cl, "combos_num") library(foreach) library(doParallel) 
+registerDoParallel(cl)
+
+start.time = Sys.time()
+results = foreach(i = 1:dim(test_bin_int_dedupe)[1], .combine = "cbind", .packages = c('UniprotR', 'tidyverse')) %dopar% {
+  bin_int_test1 = test_bin_int_dedupe %>% mutate(
+  Species_A = GetProteinAnnontate(Protein_A, "organism_name"),
+  Species_B = GetProteinAnnontate(Protein_B, "organism_name"),
+  Number_Publications = map2_dbl(Protein_A, Protein_B, getBinIntPubs0) )
+} 
+stopCluster(cl)
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
+```
+
+
+furr 
+```{r}
+
+```
+
+
+
+```{r}
+bin_int_test2 = test_bin_int %>% mutate(
+  Species_A = GetProteinAnnontate(Protein_A, "organism_name"),
+  Species_B = GetProteinAnnontate(Protein_B, "organism_name"),
+  Number_Publications = map2_dbl(Protein_A, Protein_B, getBinIntPubs)
+)
+```
+
+
+```{r}
+bin_int_test3 = test_bin_int %>% mutate(
+  Species_A = map(Protein_A, getOrganism),
+  Species_B = map(Protein_B, getOrganism),
+  Number_Publications = map2_dbl(Protein_A, Protein_B, getBinIntPubs)
+)
+```
+
+
+```{r}
+fwrite(binary_interactions_562, file = "/Users/kimg044/Library/CloudStorage/OneDrive-PNNL/Documents/PPI/562_ecoli_binary_interactions.tsv", sep = "\t")
+```
+
+

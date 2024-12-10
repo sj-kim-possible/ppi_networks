@@ -1,0 +1,272 @@
+---
+title: "BertSRC_data"
+output: html_document
+date: "2023-07-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document combines the test/training/validation data from BertSRC (https://github.com/ssr01357/BertSRC/tree/master/data).
+The combined data is filtered for gene/protein interactions (gene-gene, gene-protein, protein-protein).
+The BertSRC data only contains the sentence from which the interaction was sourced. We wanted to look at the entire abstract.
+Using these interactions and easyPubMed, pulled the entire abstract for each interaction PMID and combined the original data with their 
+matched abstracts. The function is called extractAbstracts(), and expects a dataframe as input (the combined and filtered data mentioned above). 
+This input dataframe must have the structure of the BertSRC data: 17 columns, with PMID in the 1st column. 
+
+## Read in the data:
+```{r}
+test_data = read.csv('./test.csv', stringsAsFactors = FALSE)
+```
+
+```{r}
+train_data = read.csv('./train.csv', stringsAsFactors = FALSE)
+```
+
+```{r}
+validation_data = read.csv('./validation.csv', stringsAsFactors = FALSE)
+```
+
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+Combine the data into one data frame by column. 
+```{r}
+data_all <- list.files(path = "../BertSRC_data/",  # Identify all CSV files
+                       pattern = "*.csv", full.names = TRUE) %>% 
+  lapply(read.csv) %>%                              # Store all files in list
+  bind_rows                                         # Combine data sets into one data set 
+data_all    
+
+```
+
+Filter data_all by gene-gene and protein-protein interactions.
+column 4 and column 9 must be both gene or both protein
+Update 9/11/23: column 4 and 9 can be both/either gene/protein - all combos
+```{r}
+entities = c("GENE", "PROTEIN")
+
+#gg_data = data_all %>% filter((X4 == 'GENE') & (X9 == "GENE"))
+#pp_data = data_all %>% filter((X4 == "PROTEIN") & (X9 == "PROTEIN"))
+gg_pp_data = data_all %>% filter( ((X4 == "GENE") & (X9 == "GENE")) | ((X4 == "PROTEIN") & (X9 == "PROTEIN")) )
+gene_prot_all_data = data_all %>% filter( ((X4 == "GENE") & (X9 == "GENE")) | ((X4 == "PROTEIN") & (X9 == "PROTEIN")) | 
+                                   ((X4 == "GENE") & (X9 == "PROTEIN")) | ((X4 == "PROTEIN") & (X9 == "GENE")) )
+#gene_prot_all_data_1 = data_all %>% filter( ((X4 == ("GENE" | "PROTEIN")) | (X9 == ("GENE" | "PROTEIN")) ) )
+gene_prot_all_data_1 = data_all %>% filter((X4 %in% entities) & (X9 %in% entities))
+
+```
+
+
+```{r}
+install.packages("easyPubMed")
+```
+
+
+```{r}
+library(easyPubMed)
+```
+
+```{r}
+easyPubMed::article_to_df(gg_pp_data$X0[1])
+```
+
+
+https://www.data-pulse.com/projects/Rlibs/vignettes/easyPubMed_02_advanced_tutorial.html
+Demo 1:
+```{r}
+pmids = as.list(gg_pp_data$X0)
+
+example_query = get_pubmed_ids(pmids[1])
+example_xml = fetch_pubmed_data(example_query)
+example_xml_list = articles_to_list(example_xml)
+example_df = do.call(rbind, lapply(example_xml_list, article_to_df, max_chars = -1, getAuthors = FALSE))
+
+
+```
+
+
+Use easyPubMed and Demo 1 example on my data:
+```{r}
+# make a dataframe to hold 2 columns: pmids and title+abstract
+pubmed_abstracts = data.frame(matrix(ncol = 2, nrow = length(pmids)))
+col_headers = c("pmid", "title_abstract")
+colnames(pubmed_abstracts) = col_headers
+# populate pmid column
+pubmed_abstracts$pmid = pmids
+```
+
+
+```{r}
+# do a for loop for all pmid's of interest
+for(i in 1:length(pmids)) {
+  paper = pmids[i]
+  query_pubmed_server = get_pubmed_ids(paper)
+  pubmed_xml = fetch_pubmed_data(query_pubmed_server)
+  xml_list = articles_to_list(pubmed_xml)
+  pubmed_record = do.call(rbind, lapply(xml_list,
+                                        article_to_df,
+                                        max_chars = -1,
+                                        getAuthors = FALSE))
+  # populate dataframe with extracted information (title and abstract)
+  pubmed_abstracts$title_abstract[i] = paste(pubmed_record$title, pubmed_record$abstract)
+}
+  
+```
+
+
+Update combined data with extracted pubmed titles and abstracts
+Replace column 14 with pubmed_abstracts$title_abstract
+
+```{r}
+
+for(i in 1:length(pmids)) {
+  gg_pp_data$X14[i] = pubmed_abstracts$title_abstract[i]
+}
+
+```
+
+Make column names more human readable:
+```{r}
+gg_pp_col_headers = c("PMID", "Sentence_ID", "Left_Context_Entity1", "Entity1", "Entity1_Type", "Right_Context_Entity1",
+                      "Biological_Context", "Left_Context_Entity2", "Entity2", "Entity2_Type", "Right_Context_Entity2",
+                      "Directional_Relation", "Activity_Relation", "Relation_Verb", "Title_Abstract", 
+                      "Semantic_Relation_1", "Semantic_Relation_2")
+```
+
+assign new column names to the data table
+```{r}
+colnames(gg_pp_data) = gg_pp_col_headers
+```
+
+
+```{r}
+orig_sentence = data_all %>% filter( ((X4 == "GENE") & (X9 == "GENE")) | ((X4 == "PROTEIN") & (X9 == "PROTEIN")) )
+# original sentence = orig_sentence$X14
+```
+
+
+```{r}
+gg_pp_data$Sentence = orig_sentence$X14
+```
+
+
+Write out the data to a tab-delimited txt file.
+```{r}
+write.table(gg_pp_data, file = "BertSRC_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+-----------------------------
+```{r}
+library(easyPubMed)
+```
+
+```{r}
+pmids = as.list(gene_prot_all_data_1$X0)
+
+# make a dataframe to hold 2 columns: pmids and title+abstract
+pubmed_abstracts = data.frame(matrix(ncol = 2, nrow = length(pmids)))
+col_headers = c("pmid", "title_abstract")
+colnames(pubmed_abstracts) = col_headers
+# populate pmid column
+pubmed_abstracts$pmid = pmids
+
+```
+
+
+```{r}
+# do a for loop for all pmid's of interest
+for(i in 1:length(pmids)) {
+  paper = pmids[i]
+  query_pubmed_server = get_pubmed_ids(paper)
+  pubmed_xml = fetch_pubmed_data(query_pubmed_server)
+  xml_list = articles_to_list(pubmed_xml)
+  pubmed_record = do.call(rbind, lapply(xml_list,
+                                        article_to_df,
+                                        max_chars = -1,
+                                        getAuthors = FALSE))
+  # populate dataframe with extracted information (title and abstract)
+  pubmed_abstracts$title_abstract[i] = paste(pubmed_record$title, pubmed_record$abstract)
+}
+```
+
+
+```{r}
+# Update combined data with extracted pubmed titles and abstracts
+# Add title&abstract column @ X17 with pubmed_abstracts$title_abstract
+for(i in 1:length(pmids)) {
+  gene_prot_all_data_1$X17[i] = pubmed_abstracts$title_abstract[i]
+}
+
+# make column headers
+gg_pp_col_headers = c("PMID", "Sentence_ID", "Left_Context_Entity1", "Entity1", "Entity1_Type", "Right_Context_Entity1",
+                      "Biological_Context", "Left_Context_Entity2", "Entity2", "Entity2_Type", "Right_Context_Entity2",
+                      "Directional_Relation", "Activity_Relation", "Relation_Verb", "Sentence", 
+                      "Semantic_Relation_1", "Semantic_Relation_2", "Title_Abstract")
+colnames(gene_prot_all_data_1) = gg_pp_col_headers
+
+#orig_sentence = data_all %>% filter( ((X4 == "GENE") & (X9 == "GENE")) | ((X4 == "PROTEIN") & (X9 == "PROTEIN")) )
+#gg_pp_data$Sentence = orig_sentence$X14
+
+#write.table(gg_pp_data, file = "BertSRC_data.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+write.table(gene_prot_all_data_1, file = "BertSRC_data_augmented.txt", sep = "\t", col.names = TRUE, row.names = FALSE)
+```
+
+
+
+
+```{r}
+# extractAbstracts takes a filtered dataframe as input
+# the filtered dataframe is in the format from the BertSRC data
+# filtered for specific entities in column X4 and X9
+# function uses PMID and package easyPubMed to extract abstracts
+# and adds them to output dataframe, which gets written out to a tab-delimited 
+# text file
+extractAbstracts = function(bertsrc_data) {
+  pmids = as.list(bertsrc_data$X0)
+  # make a dataframe to hold 2 columns: pmids and title+abstract
+  pubmed_abstracts = data.frame(matrix(ncol = 2, nrow = length(pmids)))
+  col_headers = c("pmid", "title_abstract")
+  colnames(pubmed_abstracts) = col_headers
+  # populate pmid column
+  pubmed_abstracts$pmid = pmids
+  
+  # do a for loop for all pmid's of interest
+  for(i in 1:length(pmids)) {
+    paper = pmids[i]
+    query_pubmed_server = get_pubmed_ids(paper)
+    pubmed_xml = fetch_pubmed_data(query_pubmed_server)
+    xml_list = articles_to_list(pubmed_xml)
+    pubmed_record = do.call(rbind, lapply(xml_list,
+                                          article_to_df,
+                                          max_chars = -1,
+                                          getAuthors = FALSE))
+    # populate dataframe with extracted information (title and abstract)
+    pubmed_abstracts$title_abstract[i] = paste(pubmed_record$title, pubmed_record$abstract)
+  }
+    
+  # Update combined data with extracted pubmed titles and abstracts
+  # Add title&abstract column @ X17 with pubmed_abstracts$title_abstract
+  for(i in 1:length(pmids)) {
+    bertsrc_data$X17[i] = pubmed_abstracts$title_abstract[i]
+  }
+  
+  # make column headers
+  gg_pp_col_headers = c("PMID", "Sentence_ID", "Left_Context_Entity1", "Entity1", "Entity1_Type", "Right_Context_Entity1",
+                      "Biological_Context", "Left_Context_Entity2", "Entity2", "Entity2_Type", "Right_Context_Entity2",
+                      "Directional_Relation", "Activity_Relation", "Relation_Verb", "Sentence", 
+                      "Semantic_Relation_1", "Semantic_Relation_2", "Title_Abstract")
+  colnames(bertsrc_data) = gg_pp_col_headers
+  
+  return(bertsrc_data)
+}
+```
+
+
+```{r}
+bertsrc_abstract_data = extractAbstracts(gene_prot_all_data)
+```
+
+
